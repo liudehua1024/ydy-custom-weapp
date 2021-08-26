@@ -1,0 +1,10 @@
+<page-root>
+    <tab-page-switcher class="tab-page__container" selected-name="{{selectedName}}" bind:onSwitch="onSwitch">
+        <tab-page-item generic:tab-page-comp="tab-page-index" name="index" />
+        <tab-page-item generic:tab-page-comp="tab-page-personal-center" name="personal-center" />
+        <tab-page-bar slot="tab-bar"
+                      items="{{items}}"
+                      model:selected-name="{{selectedName}}">
+        </tab-page-bar>
+    </tab-page-switcher>
+</page-root>

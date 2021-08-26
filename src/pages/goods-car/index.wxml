@@ -1,0 +1,16 @@
+<page-root>
+    <list-view
+            class="list_container"
+            enableRefresher="{{true}}"
+            refreshState="{{refreshState}}"
+            loadingState="{{loadingState}}"
+            enableLoadMore="{{hasNextPage}}"
+            bind:onRefresh="onRefresh"
+            bind:onLoadMore="onLoadMore"
+            model:scroll-top="{{scrollTop}}"
+    >
+        <block wx:for="{{recordList}}" wx:key="index">
+            <goods-car-goods-card info="" ></goods-car-goods-card>
+        </block>
+    </list-view>
+</page-root>

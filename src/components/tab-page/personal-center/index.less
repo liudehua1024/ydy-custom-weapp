@@ -1,0 +1,142 @@
+.comp-tab-page_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  position: relative;
+
+  .top_bg {
+    width: 100%;
+    height: unit(100, rpx);
+    background: #FF0000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .content_panel_container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+.user_block {
+  width: calc(100% - unit(24, rpx) * 2);
+  height: unit(150, rpx);
+  padding: 0 unit(24, rpx);
+  border-radius:  unit(16, rpx);
+  background: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  &:active {
+    background: #F0F0F0;
+  }
+
+  .user_logo_block {
+    width: unit(110, rpx);
+    height: unit(110, rpx);
+
+    .user_logo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .user_info_block {
+    width: 0;
+    height: 100%;
+    flex-grow: 1;
+    margin-left: unit(24, rpx);
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+
+    .not_login_tip {
+      width: 100%;
+      height: 100%;
+      color: black;
+      font-size: unit(38, rpx);
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .user_name {
+      width: 100%;
+      color: black;
+      font-size: unit(38, rpx);
+    }
+  }
+}
+
+.user_block_click {
+  background: #F0F0F0;
+}
+
+.action_block {
+  width: calc(100% - unit(24, rpx) * 2);
+  margin-top: unit(20, rpx);
+  padding: unit(10, rpx) unit(20, rpx);
+  border-radius: unit(16, rpx);
+  background: white;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .title {
+    margin: unit(10, rpx) 0;
+    font-weight: 600;
+    font-size: unit(32, rpx);
+  }
+
+  .manager_btn_block {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: unit(28, rpx);
+    color: #333333;
+
+    .btn_block {
+      width: 0;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: unit(20, rpx) 0;
+
+      .btn_img {
+        width: unit(42, rpx);
+        height: unit(42, rpx);
+        margin-bottom: unit(10, rpx);
+      }
+    }
+  }
+
+  &_click {
+    transform: scale(.95);
+  }
+}
+
+.other_manager_block {
+  margin-top: unit(40, rpx);
+}

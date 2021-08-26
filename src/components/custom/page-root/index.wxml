@@ -1,0 +1,14 @@
+<view class="^page__container my-class">
+    <nav-bar
+            id="nav-bar"
+            wx:if="{{useNavBar}}"
+            title="{{title}}"
+            titleAlign="{{titleAlign}}"
+            background="{{background}}"
+            immerse="{{immerse}}"
+            showBack="{{showBack}}"
+            backMode="{{backMode}}"
+            bind:tap="onNavBarClick" />
+    <slot></slot>
+    <view wx:if="{{showMask}}" class="^page__mask" bind:tap="onMaskClick"></view>
+</view>

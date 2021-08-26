@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "badge": "../../components/custom/badge/index",
+    "list-view": "../../components/custom/list-view/index",
+    "goods-car-goods-card": "../../components/custom/goods-car-goods-card/index",
+    "load-more": "../../components/custom/load-more/index"
+  }
+}

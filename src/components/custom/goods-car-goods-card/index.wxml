@@ -1,0 +1,27 @@
+<view class="goods-car-goods-card__container my-class">
+    <view class="goods_logo_block">
+        <lazy-load-image class="goods_logo" mode="aspectFill" src="{{goodsInfo.coverImg}}"
+                         defaultSrc="/assets/default_img.png"/>
+    </view>
+    <view class="goods_info_block">
+        <ellip-text class="goods_name">{{goodsInfo.name}}</ellip-text>
+        <ellip-text class="goods_desc">{{goodsInfo.goodsDesc}}</ellip-text>
+        <text class="goods_month_sales">{{monthSales > 0 ? '月销量' + monthSales : ''}}</text>
+        <view class="other_block">
+            <view class="price_and_count_block">
+                <view class="good_price_block">
+                    <price value="{{goodsInfo.sellPrice}}" unit="¥" size="36" color="red"/>
+                    <view style="width:6rpx;height:1rpx;"/>
+                    <price  wx:if="{{goodsInfo.discount}}" value="{{goodsInfo.originPrice}}" size="24" color="#595959" delLine="{{true}}"/>
+                    <view class="discount_block" wx:if="{{goodsInfo.discount}}">
+                        <view class="left_triangle"></view>
+<!--                        <my-icon icon-class="left_triangle" name="triangle-solid-left" useIconClassFont/>-->
+                        <view class="discount">{{goodsInfo.discount}}折</view>
+                    </view>
+                </view>
+                <counter model:value="{{goodsInfo.buyCount}}" size="38"/>
+            </view>
+        </view>
+        <view class="bottom_line"></view>
+    </view>
+</view>

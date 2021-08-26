@@ -1,0 +1,6 @@
+<view class="load-more__container my-class">
+    <view id="loading-view" class="load-more__loading" style="{{containerStyle}}">
+        <view class="~loading_icon" style="{{loadingIconStyle}}"></view>
+        <view wx:if="{{loadingTips}}" class="loading_tips">{{loadingTips}}</view>
+    </view>
+</view>

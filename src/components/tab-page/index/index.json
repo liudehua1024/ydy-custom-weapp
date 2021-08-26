@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tab-page-item": "../../custom/tab-page-item/index",
+    "divider": "../../custom/divider/index",
+    "shop-card": "../../custom/shop-card/index",
+    "list-view": "../../custom/list-view/index",
+    "load-more": "../../custom/load-more/index"
+  }
+}

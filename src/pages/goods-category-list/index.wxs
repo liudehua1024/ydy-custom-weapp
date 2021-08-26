@@ -1,0 +1,46 @@
+var isInitialized = false;
+var goodsCarPos = { x: 0, y: 0, width: 0, height: 0 };
+
+// 初始化购物车按钮位置
+function initGoodsCarBtnPos(newVal, oldVal, ownerInstance, instance) {
+    if (isInitialized) return;
+    isInitialized = true;
+    var movableArea = ownerInstance.selectComponent('#movable-area');
+    var movableView = ownerInstance.selectComponent('#movable-view');
+    if (!movableArea || !movableView) return;
+    var movableAreaRect = movableArea.getBoundingClientRect();
+    var movableViewRect = movableView.getBoundingClientRect();
+    if (!movableAreaRect.width || !movableViewRect.width) return;
+    goodsCarPos.x = movableAreaRect.width - movableViewRect.width;
+    goodsCarPos.width = movableViewRect.width;
+    if (!movableAreaRect.height || !movableViewRect.height) return;
+    goodsCarPos.y = movableAreaRect.height - movableViewRect.height * 2;
+    goodsCarPos.height = movableViewRect.height;
+    ownerInstance.callMethod('onGoodsCarPosChange', goodsCarPos);
+}
+
+function onGoodsCarPosChange(evt, ownerInstance) {
+    var detail = evt.detail;
+    if (!detail.source) return;
+    if (goodsCarPos.x !== detail.x || goodsCarPos.y !== detail.y) {
+        goodsCarPos.x = detail.x;
+        goodsCarPos.y = detail.y;
+        ownerInstance.callMethod('onGoodsCarPosChange', goodsCarPos);
+    }
+}
+
+function getSecondLevelCategoryList(parentId, record) {
+    var list;
+    if (record) {
+        list = record['2-' + parentId];
+    } else {
+        list = [];
+    }
+    return list;
+}
+
+module.exports = {
+    initGoodsCarBtnPos: initGoodsCarBtnPos,
+    onGoodsCarPosChange: onGoodsCarPosChange,
+    getSecondLevelCategoryList: getSecondLevelCategoryList
+};

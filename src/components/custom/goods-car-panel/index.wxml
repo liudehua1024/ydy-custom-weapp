@@ -1,0 +1,34 @@
+<view class="goods-car goods-car__container">
+    <view class="goods-car__head_block">
+        <text>购物车</text>
+        <text class="total_buy_count_block">(共{{totalBuyCount}}件商品)</text>
+        <text wx:if="{{totalReducedPrice}}" class="total_reduced_price_block">已优惠{{totalReducedPrice}}元</text>
+        <view class="clear_goods" bind:tap="onClearGoods">清空</view>
+    </view>
+    <list-view class="goods-car__list_container" style="height:{{listHeight}}">
+        <block wx:for="{{recordList}}" wx:key="index">
+            <goods-car-goods-card
+                    goods-info="{{item}}"
+                    data-item="{{item}}"
+                    bind:tap="toGoodsInfoPage"
+                    bind:countChange="onCountChange">
+            </goods-car-goods-card>
+        </block>
+    </list-view>
+    <view class="goods-car__floor_block">
+        <badge count="{{totalBuyCount}}" my-class="total_count_container" badge-align-class="badge_align">
+            <view class="goods_car_img_block">
+                <image class="img_goods_car" mode="widthFix" src="/assets/shopping-trolley.png"></image>
+            </view>
+        </badge>
+        <view class="total_price_block">
+            <price class="total_sell_price" value="{{totalSellPrice}}" unit="¥" unitMode="small" smallRate="0.8"
+                   size="40"/>
+            <block wx:if="{{totalReducedPrice}}">
+                <view style="height:5rpx;width:5rpx;"></view>
+                <price value="{{totalOriginPrice}}" delLine color="#999999" unit="¥" size="32"/>
+            </block>
+        </view>
+        <view class="confirm_order_btn">去结算</view>
+    </view>
+</view>

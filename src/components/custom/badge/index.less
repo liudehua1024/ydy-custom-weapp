@@ -1,0 +1,39 @@
+.badge_container {
+  position: relative;
+
+  .badge_count {
+    position: absolute;
+    top: unit(-10, rpx);
+    right: unit(-22, rpx);
+    height: unit(38, rpx);
+    min-width: unit(38, rpx);
+    padding: 0 unit(4, rpx) 0 unit(6, rpx);
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ed3f14;
+    border-radius: unit(20, rpx);
+    box-shadow: 0 0 0 unit(2, rpx) #FFFFFF;
+    color: #FFFFFF;
+    font-size: unit(22, rpx);
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .badge_dot {
+    position: absolute;
+    top: unit(-6, rpx);
+    right: unit(-4, rpx);
+    transform-origin: 0 center;
+    height: unit(18, rpx);
+    width: unit(18, rpx);
+    border-radius: 100%;
+    background: #ed3f14;
+    z-index: 10;
+    box-shadow: 0 0 0 1px #fff
+  }
+}
+
+

@@ -1,0 +1,25 @@
+<view class="load-more__container my-class">
+    <loading-view wx:if="{{loadingState}}"
+                  height="{{height}}"
+                  animated="{{false}}"
+                  loadingTips="{{loadingTips}}"
+                  loadingIconSize="{{loadingIconSize}}"
+                  bind:onHidden="onHidden"
+    />
+
+   <view class="load_end_container load-end-class" wx:if="{{!loadingState && loadEndState}}">
+       <block wx:if="{{useCustomLoadEnd}}">
+           <slot></slot>
+       </block>
+       <block wx:else>
+           <divider
+                   my-class="load-end-class"
+                   line-class="load-end-line-class"
+                   height="{{height}}px"
+                   lineHeight="2"
+                   size=""
+                   color=""
+                   content="{{loadEndTips}}"/>
+       </block>
+   </view>
+</view>

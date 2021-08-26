@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "list-view": "../list-view/index",
+    "goods-car-goods-card": "../goods-car-goods-card/index",
+    "badge": "../badge/index",
+    "price": "../price/index"
+  }
+}

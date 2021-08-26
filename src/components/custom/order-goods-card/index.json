@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "counter": "../counter/index",
+    "price": "../price/index",
+    "ellip-text": "../ellip-text/index",
+    "my-icon": "../icon/index"
+  }
+}

@@ -1,0 +1,5 @@
+<view class="badge_container my-class">
+    <slot></slot>
+    <view class="badge_dot badge-align-class" wx:if="{{ dot }}"></view>
+    <view class="badge_count badge-align-class" wx:elif="{{ count !== 0 }}">{{ finalCount }}</view>
+</view>

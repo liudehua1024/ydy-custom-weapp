@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "list-view": "../../custom/list-view/index",
+    "ellip-text": "../../custom/ellip-text/index",
+    "my-icon": "../../custom/icon/index"
+  }
+}

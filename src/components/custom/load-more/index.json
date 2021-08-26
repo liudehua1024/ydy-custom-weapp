@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "loading-view": "../loading-view/index",
+    "divider": "../divider/index"
+  }
+}

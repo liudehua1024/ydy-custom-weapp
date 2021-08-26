@@ -1,0 +1,10 @@
+<view class="divider__container my-class" style="{{heightStyle}}{{fontStyle}}">
+    <view class="divider__line line-class" style="{{lineStyle}}"></view>
+    <view class="divider__content" wx:if="{{content !== ''}}">
+        {{content}}
+    </view>
+    <view class="divider__content" wx:else>
+        <slot></slot>
+    </view>
+    <view class="divider__line line-class" style="{{lineStyle}}"></view>
+</view>

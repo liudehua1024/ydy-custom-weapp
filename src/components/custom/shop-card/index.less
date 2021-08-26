@@ -1,0 +1,90 @@
+.shop-card__& {
+  &container {
+    position: relative;
+    width: 100%;
+    border-radius: unit(12, rpx);
+    padding: unit(20, rpx) unit(24, rpx);
+    background: white;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    box-shadow: #DDDDDD 0 0 unit(10, rpx);
+
+    .shop_logo_block {
+      width: unit(180, rpx);
+      height: unit(180, rpx);
+      border-radius: 5%;
+      overflow: hidden;
+
+      .shop_logo {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .shop_info_block {
+      flex: 1;
+      width: 0;
+      margin-left: unit(24, rpx);
+      height: unit(180, rpx);
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: stretch;
+      justify-content: start;
+
+      .shop_name {
+        color: black;
+        font-weight: 600;
+        font-size: unit(32, rpx);
+      }
+
+      .shop_month_sales {
+        color: black;
+        font-size: unit(22, rpx);
+        line-height: unit(24, rpx);
+        margin-top: unit(6, rpx);
+      }
+
+      .other_block {
+        flex-grow: 1;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        justify-content: center;
+      }
+
+      .tag_scroll_block {
+        width: 100%;
+        height: unit(38, rpx);
+
+        .tag_list_block {
+          height: 100%;
+          display: flex;
+          flex-flow: row nowrap;
+
+          .tag_note {
+            height: 100%;
+            flex-grow:0;
+            flex-shrink: 0;
+          }
+
+          .tag_note_container {
+            border-color: #f1c6c6;
+            background: none;
+            color: #F55938;
+            font-size: unit(22, rpx);
+          }
+
+          .tag_interval {
+            flex-grow:0;
+            flex-shrink: 0;
+            width: unit(10, rpx);
+            height: unit(10, rpx);
+          }
+        }
+      }
+    }
+  }
+}

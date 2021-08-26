@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "lazy-load-image": "../../components/custom/lazy-load-image/index",
+    "ellip-text": "../../components/custom/ellip-text/index",
+    "tag": "../../components/custom/tag/index",
+    "price": "../../components/custom/price/index",
+    "counter": "../../components/custom/counter/index"
+  }
+}

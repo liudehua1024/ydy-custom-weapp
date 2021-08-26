@@ -1,0 +1,291 @@
+.page__container {
+  background: #FFFFFF;
+}
+
+.movable_area {
+  width: 100%;
+  height: 100%;
+
+  .movable_view {
+    width: unit(108, rpx);
+    height: unit(108, rpx);
+    z-index: 99;
+
+    .goods_car_container {
+      position: absolute;
+      top: unit(8, rpx);
+      right: unit(8, rpx);
+      width: calc(100% - unit(8, rpx));
+      height: calc(100% - unit(8, rpx));
+
+      .goods_car_badge_align {
+        top: unit(-8, rpx);
+        right: unit(-8, rpx);
+      }
+    }
+
+    .goods_car_block {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(to bottom right, #FA4515, #FA4515);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .img_goods_car {
+        width: 56%;
+      }
+    }
+  }
+}
+
+.list_root_container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+
+  .shop_details_container {
+    width: calc(100% - unit(24, rpx) * 2);
+    padding: unit(20, rpx) unit(24, rpx);
+    margin: unit(20, rpx) unit(24, rpx);
+    background: #FFFFFF;
+    border-radius: unit(16, rpx);
+    box-shadow: #DDDDDD 0 0 unit(10, rpx);
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .shop_basics_info_block {
+      position: relative;
+      width: 100%;
+      height: unit(120, rpx);
+      overflow: hidden;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      .shop_logo {
+        position: absolute;
+        right: 0;
+        top: 0;
+        border-radius: unit(10, rpx);
+        width: unit(120, rpx);
+        height: unit(120, rpx);
+      }
+
+      .shop_basics_info {
+        width: calc(100% - unit(120, rpx) - unit(20, rpx));
+      }
+
+      .shop_name {
+        color: black;
+        font-weight: 600;
+        font-size: unit(38, rpx);
+      }
+
+      .shop_month_sales {
+        color: black;
+        font-size: unit(22, rpx);
+        line-height: unit(24, rpx);
+        margin-top: unit(8, rpx);
+      }
+
+    }
+
+    .shop_other_info_block {
+      width: 100%;
+      min-height: unit(100, rpx);
+      display: flex;
+      flex-flow: column-reverse nowrap;
+      align-items: flex-end;
+      align-content: flex-end;
+
+      .tag_scroll_block {
+        width: 100%;
+        height: unit(38, rpx);
+
+        .tag_list_block {
+          height: 100%;
+          display: flex;
+          flex-flow: row nowrap;
+
+          .tag_note {
+            height: 100%;
+            flex-grow: 0;
+            flex-shrink: 0;
+          }
+
+          .tag_note_container {
+            border-color: #f1c6c6;
+            background: none;
+            color: #F55938;
+            font-size: unit(22, rpx);
+          }
+
+          .tag_interval {
+            flex-grow: 0;
+            flex-shrink: 0;
+            width: unit(10, rpx);
+            height: unit(10, rpx);
+          }
+        }
+      }
+
+      .shop_notice_block {
+        width: 100%;
+        margin-top: unit(10, rpx);
+        display: flex;
+        flex-flow: row nowrap;
+        font-size: unit(26, rpx);
+        color: #333333;
+
+        .shop_notice {
+          width: 0;
+          flex-grow: 1;
+          color: #666666;
+        }
+      }
+
+    }
+  }
+
+  .shop_bar_container {
+    //width: 100%;
+    //height: unit(68, rpx);
+    //background: #2d8cf0;
+  }
+
+  .category_list_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+.list_container {
+  height: 100%;
+
+  &_left {
+    width: unit(200, rpx);
+    bottom: 0;
+    left: 0;
+    background: #F4F4F4;
+
+    .first_category_block {
+      width: 100%;
+      height: unit(100, rpx);
+      padding: 0 unit(10, rpx);
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: center;
+      font-size: unit(26, rpx);
+      color: #333333;
+    }
+
+    .category_checked {
+      background: #FFFFFF;
+      color: #ed3f14;
+    }
+  }
+
+  &_right {
+    width: calc(100% - unit(200, rpx));
+    bottom: 0;
+    right: 0;
+
+    .second_category_block {
+      width: 100%;
+      padding: unit(20, rpx) unit(24, rpx);
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+
+      .second_category_info {
+        position: relative;
+        width: 100%;
+        max-height: unit(200, rpx);
+        border-radius: unit(10, rpx);
+        overflow: hidden;
+
+        .category_cover_img {
+          width: 100%;
+          height: unit(200, rpx);
+          background: #2d8cf0;
+        }
+
+        .category_name {
+          width: 100%;
+          overflow: hidden;
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          justify-content: flex-start;
+          font-size: unit(26, rpx);
+          color: #333333;
+        }
+
+        .category_img_name {
+          height: unit(200, rpx);
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          z-index: 9999;
+          padding: 0 unit(20, rpx);
+          font-size: unit(28, rpx);
+          font-weight: 600;
+          color: white;
+
+          background: linear-gradient(to left, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+        }
+      }
+
+      .sub_category_list_block {
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        .third_category_block {
+          width: 33.33333333%;
+          min-width: unit(150, rpx);
+          margin-top: unit(20, rpx);
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          justify-content: center;
+
+          &_click {
+            transform: scale(.95);
+          }
+
+          .category_icon_block {
+            width: unit(150, rpx);
+            height: unit(150, rpx);
+            border-radius: unit(10, rpx);
+          }
+
+          .category_name_block {
+            margin-top: unit(6, rpx);
+            color: #333333;
+            font-size: unit(26, rpx);
+          }
+        }
+      }
+    }
+  }
+}
+
+.goods_car_panel_container {
+  width: 100%;
+  overflow: hidden;
+}

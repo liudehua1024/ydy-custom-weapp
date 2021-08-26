@@ -1,0 +1,38 @@
+<view class="goods-card__container my-class">
+    <view id="anim-goods-logo" class="anim_goods_logo_block" catch:tap="ignoreClick">
+        <lazy-load-image class="goods_logo" mode="aspectFill" src="{{goodsInfo.coverImg}}"
+                         defaultSrc="/assets/default_img.png"/>
+    </view>
+    <view id="goods-logo-block" class="goods_logo_block">
+        <lazy-load-image class="goods_logo" mode="aspectFill" src="{{goodsInfo.coverImg}}"
+                         defaultSrc="/assets/default_img.png"/>
+    </view>
+    <view class="goods_info_block">
+        <ellip-text class="goods_name" maxLine="2">{{goodsInfo.name}}</ellip-text>
+        <ellip-text class="goods_desc" wx:if="{{goodsInfo.goodsDesc}}">{{goodsInfo.goodsDesc}}</ellip-text>
+        <view class="goods_sales">
+            月销量{{goodsInfo.monthSales}}
+            库存{{goodsInfo.stock}}
+        </view>
+        <view class="other_block">
+            <scroll-view class="tag_scroll" scroll-x enhanced show-scrollbar="{{false}}">
+                <tag my-class="discount_and_limit_tag" wx:if="{{goodsInfo.discount || goodsInfo.limitNum}}">
+                    <text wx:if="{{goodsInfo.discount}}">{{goodsInfo.discount}}折</text>
+                    <view class="separator" wx:if="{{goodsInfo.discount && goodsInfo.limitNum}}"></view>
+                    <text wx:if="{{goodsInfo.limitNum}}">限{{goodsInfo.limitNum}}份</text>
+                </tag>
+            </scroll-view>
+
+            <view class="price_count_block">
+                <view class="good_price_block">
+                    <price value="{{goodsInfo.sellPrice}}" unit="¥" size="36" color="red"/>
+                    <block wx:if="{{goodsInfo.discount}}">
+                        <view style="width:6rpx;height:1rpx;"/>
+                        <price value="{{goodsInfo.originPrice}}" size="24" color="#666666" delLine="{{true}}"/>
+                    </block>
+                </view>
+                <counter model:value="{{buyCount}}" size="38" maxNum="{{maxCount}}" catch:tap="ignoreClick"/>
+            </view>
+        </view>
+    </view>
+</view>

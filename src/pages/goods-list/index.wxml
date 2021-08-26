@@ -1,0 +1,59 @@
+<page-root>
+    <movable-area id="movable-area" class="movable_area">
+        <movable-view wx:if="{{showGoodsCarBtn && !showGoodsCarPanel}}"
+                      id="movable-view"
+                      class="movable_view"
+                      x="{{goodsCarPos.x}}px"
+                      y="{{goodsCarPos.y}}px"
+                      direction="all"
+                      inertia="{{true}}"
+                      animation="{{true}}"
+                      bind:change="{{util.onGoodsCarPosChange}}"
+                      bind:tap="onGoodsCarBtnClick">
+            <badge
+                    my-class="goods_car_container"
+                    badge-align-class="goods_car_badge_align"
+                    count="{{totalBuyCount}}">
+                <view id="goods-car-block" class="goods_car_block">
+                    <image class="img_goods_car" mode="widthFix" src="/assets/shopping-trolley.png"></image>
+                </view>
+            </badge>
+        </movable-view>
+        <list-view
+                class="list_container"
+                enableRefresher="{{true}}"
+                refreshState="{{refreshState}}"
+                loadingState="{{loadingState}}"
+                enableLoadMore="{{hasNextPage}}"
+                bind:onRefresh="onRefresh"
+                bind:onLoadMore="onLoadMore"
+                model:scroll-top="{{scrollTop}}"
+        >
+            <view>
+                <block wx:for="{{goodsList}}" wx:key="index">
+                    <goods-card id="goods-{{item.goodsId}}"
+                                my-class="good_card_container"
+                                buyCount="{{buyCountMap[item.goodsId]?buyCountMap[item.goodsId]:0}}"
+                                goodsInfo="{{item}}" data-item="{{item}}"
+                                bind:tap="toGoodsInfoPage"
+                                bind:countChange="onCountChange"/>
+                </block>
+            </view>
+            <load-more slot="list-bottom" wx:if="{{hasNextPage||isLoadEnd}}" loadingState="{{hasNextPage}}"
+                       loadEndState="{{isLoadEnd}}"></load-more>
+        </list-view>
+    </movable-area>
+    <page-container
+            show="{{totalBuyCount && showGoodsCarPanel}}"
+            position="bottom"
+            duration="{{500}}"
+            close-on-slide-down="{{true}}"
+            bind:leave="closeGoodsCarPanel"
+            bind:clickoverlay="closeGoodsCarPanel"
+            custom-style="background:none"
+    >
+        <goods-car-panel class="goods_car_panel_container" shopId="{{shopId}}"
+                         bind:triggerClosePanel="closeGoodsCarPanel"></goods-car-panel>
+    </page-container>
+</page-root>
+<wxs src="../goods-category-list/index.wxs" module="util"></wxs>

@@ -1,0 +1,98 @@
+.goods_logo_block {
+  width: 100%;
+  height: unit(560, rpx);
+  max-height: 48%;
+
+  .goods_logo {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.goods_base_info_block {
+  width: 100%;
+  height: unit(230, rpx);
+  background: #FFFFFF;
+  padding: unit(16, rpx) unit(20, rpx);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .goods_name_block {
+    width: 100%;
+    font-weight: 600;
+    font-size: unit(32, rpx);
+    color: black;
+    line-height: unit(36, rpx);
+  }
+
+  .goods_sales {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    color: gray;
+    font-size: unit(22, rpx);
+    line-height: unit(20, rpx);
+  }
+
+  .tag_scroll {
+    height: unit(36, rpx);
+    white-space: nowrap;
+
+    .discount_and_limit_tag {
+      height: 100%;
+      font-size: unit(22, rpx);
+      border-color: #f1c6c6;
+      background: none;
+      color: #F55938;
+
+      .separator {
+        width: unit(2, rpx);
+        height: 100%;
+        background: #f1c6c6;
+        margin: 0 unit(6, rpx);
+      }
+    }
+  }
+
+  .price_count_block {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .good_price_block {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: baseline;
+      justify-content: center;
+    }
+  }
+
+}
+
+.goods_detail_block {
+  width: 100%;
+  margin-top: unit(20, rpx);
+  background: white;
+  padding: unit(16, rpx) unit(20, rpx);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: unit(28, rpx);
+  color: #666666;
+
+  .title {
+    color: #000000;
+  }
+
+  .detail {
+    width: 0;
+    flex-grow: 1;
+  }
+}

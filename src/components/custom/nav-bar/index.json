@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "my-icon": "../icon/index",
+    "ellip-text": "../ellip-text/index"
+  }
+}

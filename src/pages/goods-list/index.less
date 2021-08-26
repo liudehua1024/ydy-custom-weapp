@@ -1,0 +1,65 @@
+.movable_area {
+  width: 100%;
+  height: 100%;
+
+  .movable_view {
+    width: unit(108, rpx);
+    height: unit(108, rpx);
+    z-index: 99;
+
+    .goods_car_container {
+      position: absolute;
+      top: unit(8, rpx);
+      right: unit(8, rpx);
+      width: calc(100% - unit(08, rpx));
+      height: calc(100% - unit(08, rpx));
+
+      .goods_car_badge_align {
+        top: unit(-8, rpx);
+        right: unit(-8, rpx);
+      }
+    }
+
+    .goods_car_block {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(to bottom right, #FA4515, #FA4515);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .img_goods_car {
+        width: 56%;
+      }
+    }
+  }
+
+  .anim_goods_logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: #2d8cf0;
+    z-index: 999;
+  }
+}
+
+.list_container {
+  width: 100%;
+  height: 100%;
+
+  .good_card_container {
+    width: calc(100% - unit(48, rpx));
+    margin: unit(20, rpx) unit(24, rpx);
+  }
+}
+
+.goods_car_panel_container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+}

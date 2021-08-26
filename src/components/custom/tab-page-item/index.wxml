@@ -1,0 +1,3 @@
+<view class="tab-page-item__container my-class" hidden="{{!show}}">
+    <tab-page-comp class="tab_page_comp" id="{{name}}" show="{{show}}"></tab-page-comp>
+</view>

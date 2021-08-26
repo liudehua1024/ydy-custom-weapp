@@ -1,0 +1,23 @@
+<view class="shop-card__container my-class" hover-class="click-class" hover-start-time="0" hover-stay-time="0">
+    <view class="shop_logo_block">
+        <lazy-load-image class="shop_logo"  mode="aspectFill" src="{{shopInfo.shopImgUrl}}" defaultSrc="/assets/default_img.png"  />
+    </view>
+    <view class="shop_info_block">
+        <ellip-text class="shop_name">{{shopInfo.shopName}}</ellip-text>
+        <view class="shop_month_sales">
+            <block wx:if="{{monthSales <= 0}}">
+                月销量 {{monthSales}}
+            </block>
+        </view>
+        <view class="other_block">
+            <scroll-view class="tag_scroll_block" scroll-x="{{true}}">
+                <view class="tag_list_block">
+                    <block wx:for="{{tagArr}}" wx:for-item="tag" wx:key="index">
+                        <tag class="tag_note" my-class="tag_note_container">{{tag}}</tag>
+                        <view wx:key="interval-{{index}}" class="tag_interval"></view>
+                    </block>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>

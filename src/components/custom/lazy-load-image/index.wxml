@@ -1,0 +1,2 @@
+<image class="loading_image my-class" hidden="{{!loadSuccess}}" mode="{{mode}}" src="{{src}}" webp="{{webp}}" bind:error="onLoadError" bind:load="onLoadSuccess" lazy-load></image>
+<image class="loading_image my-class" hidden="{{loadSuccess}}" mode="{{mode}}" src="{{defaultSrc}}" webp="{{webp}}"></image>

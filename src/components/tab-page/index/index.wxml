@@ -1,0 +1,19 @@
+<list-view
+        class="list_container"
+        enableRefresher="{{true}}"
+        refreshState="{{refreshState}}"
+        loadingState="{{loadingState}}"
+        enableLoadMore="{{hasNextPage}}"
+        bind:onRefresh="onRefresh"
+        bind:onLoadMore="onLoadMore">
+    <view>
+        <block wx:for="{{subShopList}}" wx:key="index">
+            <shop-card my-class="shop_card_container"
+                       click-class="shop_card_item_click"
+                       shopInfo="{{item}}"
+                       data-shop-info="{{item}}"
+                       bind:tap="onShopCardClick"/>
+        </block>
+    </view>
+    <load-more slot="list-bottom" wx:if="{{hasNextPage||isLoadEnd}}" loadingState="{{hasNextPage}}" loadEndState="{{isLoadEnd}}"></load-more>
+</list-view>
