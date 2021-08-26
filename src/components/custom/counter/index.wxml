@@ -1,0 +1,11 @@
+<view class="counter_container" style="height:{{height}}rpx;">
+    <block wx:if="{{mode === 'zero' || (mode=== 'hidden-zero' && value > 0)}}">
+        <my-icon icon-class="btn_reduce" name="minus-circle" size="{{iconSize}}rpx"
+                 style="width:{{btnWidth}}rpx;margin-right:{{spaceWidth}}rpx;" data-type="{{-1}}" catch:tap="counter"></my-icon>
+        <view class="count_num" style="min-width:{{countNumMinWidth}}rpx;font-size:{{countNumSize}}rpx;">
+            {{value}}
+        </view>
+    </block>
+    <my-icon icon-class="btn_add" name="add-circle-solid" size="{{iconSize}}rpx"
+             style="width:{{btnWidth}}rpx;margin-left:{{spaceWidth}}rpx;" data-type="{{1}}" catch:tap="counter"></my-icon>
+</view>

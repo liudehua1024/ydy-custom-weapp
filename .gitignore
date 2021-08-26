@@ -1,0 +1,10 @@
+.DS_Store
+.idea/
+*.iml
+package-lock.json
+yarn.lock
+yarn-error.log
+node_modules
+dist/*
+!dist/project.config.json
+!dist/sitemap.json

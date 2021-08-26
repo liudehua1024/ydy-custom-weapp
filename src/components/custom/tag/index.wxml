@@ -1,0 +1,3 @@
+<view class="tag_container tag_border my-class">
+    <slot></slot>
+</view>

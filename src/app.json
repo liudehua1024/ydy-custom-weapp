@@ -1,0 +1,19 @@
+{
+  "window": {
+    "navigationBarBackgroundColor": "#FF0000",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFFFFF",
+    "navigationStyle": "custom"
+  },
+  "networkTimeout": {
+    "request": 5000,
+    "connectSocket": 5000,
+    "uploadFile": 5000,
+    "downloadFile": 5000
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {},
+  "useExtendedLib": {
+    "weui": true
+  }
+}

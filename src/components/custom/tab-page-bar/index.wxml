@@ -1,0 +1,22 @@
+<view class="tab-page-bar__container" style="height:{{height}}rpx;background:{{background}};" hidden="{{items.length === 0}}">
+    <view class="tab-page-bar__border" style="background: {{borderStyle}}"></view>
+    <view class="tab-page-bar__item" wx:for="{{items}}" wx:key="index"
+          data-index="{{index}}"
+          data-name="{{item.name}}"
+          bind:tap="itemClick">
+        <tab-page-bar-item
+                class="item"
+                selected="{{selectedName === item.name}}"
+                textImgPadding="{{textImgPadding}}"
+                text="{{item.text}}"
+                textSize="{{textSize}}"
+                color="{{color}}"
+                selectedColor="{{selectedColor}}"
+                imgSize="{{imgSize}}"
+                imgUrl="{{item.imgUrl}}"
+                selectedImgUrl="{{item.selectedImgUrl}}"
+                tipCount="{{item.tipCount}}"
+                showDot="{{showDot}}">
+        </tab-page-bar-item>
+    </view>
+</view>

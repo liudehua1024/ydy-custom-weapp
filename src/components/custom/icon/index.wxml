@@ -1,0 +1,1 @@
+<text class="my-icon {{iconName}} icon-class" style="{{useIconClassFont?'':iconFontStyle}}{{customFontStyle}}"></text>

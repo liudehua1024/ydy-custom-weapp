@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "loading-view": "../../components/custom/loading-view/index",
+    "load-more": "../../components/custom/load-more/index",
+    "goods-car-goods-card": "../../components/custom/goods-car-goods-card/index",
+    "lazy-load-image": "../../components/custom/lazy-load-image/index",
+    "my-icon": "../../components/custom/icon/index",
+    "divider": "../../components/custom/divider/index",
+    "list-view": "../../components/custom/list-view/index",
+    "goods-car-panel": "../../components/custom/goods-car-panel/index",
+    "goods-card": "../../components/custom/goods-card/index"
+  }
+}

@@ -1,0 +1,9 @@
+<view class="nav-bar__container {{immerse?'immerse':''}}" style="{{navBarStyleStr}}">
+    <view wx:if="{{immerse}}" class="nav-bar_status_bar" style="{{statusBarStyleStr}}"></view>
+    <view class="nav-bar__back " wx:if="{{showBack}}" style="{{backStyleStr}}" catch:tap="onBack">
+        <my-icon name="arrow-left" />
+    </view>
+    <view wx:if="{{!immerse}}" class="nav-bar__title" style="{{titleStyleStr}}">
+        <ellip-text>{{title}}</ellip-text>
+    </view>
+</view>

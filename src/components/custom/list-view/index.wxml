@@ -1,0 +1,70 @@
+<view id="container" class="list-view__container my-class" style="background:{{background}};{{customStyle}}">
+    <scroll-view
+            id="scroll-view"
+            class="list-view__scroll"
+            scroll-y="{{enableScroll}}"
+            show-scrollbar="{{showScrollBar}}"
+            refresher-enabled="{{enableRefresher}}"
+            refresher-triggered="{{refreshState}}"
+            refresher-threshold="{{refresherThreshold}}"
+            refresher-default-style="none"
+            throttle="{{false}}"
+            bind:refresherpulling="onPulling"
+            bind:refresherabort="onPullCancel"
+            bind:refresherrestore="onPullCancel"
+            bind:refresherrefresh="onPullRefresh"
+            bind:scroll="onScroll"
+            upper-threshold="{{upperThreshold}}"
+            bind:scrolltoupper="onScrollToUpper"
+            lower-threshold="{{lowerThreshold}}"
+            bind:scrolltolower="onScrollToLower">
+        <view class="list-view__refresher" slot="refresher" style="height:{{refresherThreshold}}px;">
+            <block wx:if="{{showPullTip}}">
+                <view class="pull_Arrow" style="transform:rotate({{pullArrowDeg}}deg);">↓</view>
+                <text>{{pullTip}}</text>
+            </block>
+            <block wx:else>
+                <loading-view
+                        my-class="refresher_view"
+                        height="{{refresherThreshold}}"
+                        background="{{background}}"
+                        loadingTips="正在刷新"/>
+            </block>
+        </view>
+        <!--占位元素,防止在第一条设置margin-top导致scroll-view会垂直塌陷-->
+        <view style="content: ''; overflow: hidden;"></view>
+        <slot></slot>
+        <view class="list_bottom_block" loadMoreProp="{{loadMoreProp}}"
+              change:loadMoreProp="{{util.loadMorePropChange}}">
+            <slot name="list-bottom"></slot>
+        </view>
+    </scroll-view>
+</view>
+<wxs module="util">
+    /**数据没有达到scroll-view高度时触发加载更多**/
+    function loadMorePropChange(loadMoreProp, _, ownerInstance, instance) {
+        if (!loadMoreProp.enable) return;
+        var scrollView = ownerInstance.selectComponent('#scroll-view');
+        var loadMore = instance;
+        if (!scrollView || !loadMore) return;
+        var ownerRect = ownerInstance.getBoundingClientRect();
+        var scrollViewRect = scrollView.getBoundingClientRect();
+        var loadMoreRect = loadMore.getBoundingClientRect();
+        if (!scrollViewRect || !loadMoreRect) return;
+        var height = scrollViewRect.height;
+        // 如果高度为0则不触发,避免误触
+        if (height === 0) return;
+        // 防止scroll-view的高度跟随内容变化
+        if (height > ownerRect.height) {
+            height = ownerRect.height
+        }
+        var offset = height - loadMoreRect.top;
+        if (offset > 0) {
+            ownerInstance.callMethod('onLoadMore');
+        }
+    }
+
+    module.exports = {
+        loadMorePropChange: loadMorePropChange
+    };
+</wxs>

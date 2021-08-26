@@ -1,0 +1,12 @@
+<view class="price_container my-class"
+      style="flex-direction:{{unitAlign==='right'?'row-reverse':'row'}};color:{{color}};">
+    <view wx:if="{{delLine}}" class="del_line_block" style="background:{{color}}"></view>
+    <block wx:if="{{unit}}">
+        <text style="{{unitStyle}}">{{unit}}</text>
+        <text style="width:2rpx;{{unitStyle}}"></text>
+    </block>
+    <view class="price_block">
+        <view class="price" style="{{prefixPriceStyle}}">{{prefixPrice}}</view>
+        <view class="price" wx:if="{{suffixPrice}}" style="{{suffixPriceStyle}}">.{{suffixPrice}}</view>
+    </view>
+</view>

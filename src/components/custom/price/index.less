@@ -1,0 +1,30 @@
+.price_container {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  height: max-content;
+  width: max-content;
+
+  .del_line_block {
+    content: '';
+    position: absolute;
+    top: 58%;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background: red;
+  }
+
+  .price_block {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: center;
+    line-height: 1;
+    padding: 0 unit(2,rpx);
+  }
+}

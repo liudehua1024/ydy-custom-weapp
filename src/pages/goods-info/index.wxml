@@ -1,0 +1,43 @@
+<page-root background="" immerse>
+    <view class="goods_logo_block" bind:tap="onClick">
+        <lazy-load-image class="goods_logo" mode="aspectFill" src="{{goodsInfo.coverImg}}"
+                         defaultSrc="/assets/default_img.png"/>
+    </view>
+    <view class="goods_base_info_block">
+        <view class="goods_name_block">
+            <ellip-text maxLine="2">{{goodsInfo.name}}</ellip-text>
+        </view>
+        <view class="goods_sales">
+            月销量{{goodsInfo.monthSales}}
+            库存{{goodsInfo.stock}}
+        </view>
+        <scroll-view class="tag_scroll" scroll-x enhanced show-scrollbar="{{false}}">
+            <tag my-class="discount_and_limit_tag" wx:if="{{goodsInfo.discount || goodsInfo.limitNum}}">
+                <text wx:if="{{goodsInfo.discount}}">{{goodsInfo.discount}}折</text>
+                <view class="separator" wx:if="{{goodsInfo.discount && goodsInfo.limitNum}}"></view>
+                <text wx:if="{{goodsInfo.limitNum}}">限{{goodsInfo.limitNum}}份</text>
+            </tag>
+        </scroll-view>
+        <view class="price_count_block">
+            <view class="good_price_block">
+                <price value="{{goodsInfo.sellPrice}}" unit="¥" unitMode="small" smallRate="0.68" size="46"
+                       color="red"/>
+                <block wx:if="{{goodsInfo.discount}}">
+                    <view style="width:6rpx;height:1rpx;"/>
+                    <price value="{{goodsInfo.originPrice}}" size="30" color="#666666" delLine="{{true}}"/>
+                </block>
+            </view>
+            <counter model:value="{{buyCount}}" size="38" maxNum="{{maxCount}}" bind:countChange="onCountChange"/>
+        </view>
+    </view>
+
+    <view class="goods_detail_block" wx:if="{{goodsInfo.goodsDesc}}">
+        <text class="title">商品描述：</text>
+        <ellip-text class="detail" maxLine="4">{{goodsInfo.goodsDesc}}</ellip-text>
+    </view>
+
+    <view class="goods_detail_block" wx:if="{{goodsInfo.goodsSpec}}">
+        <text class="title">规格说明：</text>
+        <ellip-text class="detail"  maxLine="4">{{goodsInfo.goodsSpec}}</ellip-text>
+    </view>
+</page-root>

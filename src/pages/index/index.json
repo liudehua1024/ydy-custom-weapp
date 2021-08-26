@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "tab-page-switcher": "../../components/custom/tab-page-switcher/index",
+    "tab-page-item": "../../components/custom/tab-page-item/index",
+    "tab-page-bar": "../../components/custom/tab-page-bar/index",
+    "tab-page-index": "../../components/tab-page/index/index",
+    "tab-page-personal-center": "../../components/tab-page/personal-center/index"
+  }
+}

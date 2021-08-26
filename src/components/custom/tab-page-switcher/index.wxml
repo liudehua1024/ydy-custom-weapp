@@ -1,0 +1,8 @@
+<view class="tab-page__container  my-class">
+    <view class="tab-page__tab-bar-block">
+        <slot name="tab-bar"></slot>
+    </view>
+    <view class="tab-page__items-block">
+        <slot></slot>
+    </view>
+</view>

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "badge": "../../components/custom/badge/index",
+    "list-view": "../../components/custom/list-view/index",
+    "goods-card": "../../components/custom/goods-card/index",
+    "load-more": "../../components/custom/load-more/index",
+    "goods-car-panel": "../../components/custom/goods-car-panel/index"
+  }
+}

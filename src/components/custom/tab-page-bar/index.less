@@ -1,0 +1,30 @@
+.tab-page-bar {
+  &__container {
+    position: relative;
+    width: 100%;
+    padding-bottom: env(safe-area-inset-bottom);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(0.5);
+  }
+
+  &__item {
+    width: 0;
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}

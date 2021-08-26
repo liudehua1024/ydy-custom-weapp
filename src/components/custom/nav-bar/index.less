@@ -1,0 +1,43 @@
+:host {
+  width: 100%;
+}
+
+.nav-bar__ {
+  &container {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+
+  &status_bar {
+    width: 100%;
+    z-index: 1;
+  }
+
+  &back {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    color: white;
+    font-size: unit(40, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    color: white;
+    font-size: unit(32, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+}

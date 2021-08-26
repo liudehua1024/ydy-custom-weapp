@@ -1,0 +1,111 @@
+.goods-car-goods-card__& {
+  &container {
+    width: 100%;
+    height: unit(180, rpx);
+    padding: unit(20, rpx) unit(24, rpx);
+    background: white;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+
+    .goods_logo_block {
+      width: unit(140, rpx);
+      height: unit(140, rpx);
+
+      .goods_logo {
+        width: 100%;
+        height: 100%;
+        border-radius: unit(12, rpx);
+      }
+    }
+
+    .goods_info_block {
+      position: relative;
+      flex: 1;
+      width: 0;
+      margin-left: unit(34, rpx);
+      height: unit(140, rpx);
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: stretch;
+      justify-content: start;
+
+      .goods_name {
+        color: black;
+        font-weight: 600;
+        font-size: unit(30, rpx);
+      }
+
+      .goods_desc {
+        color: gray;
+        font-size: unit(22, rpx);
+        line-height: unit(24, rpx);
+        margin-top: unit(6, rpx);
+      }
+
+      .other_block {
+        flex-grow: 1;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        justify-content: flex-end;
+
+        .price_and_count_block {
+          width: 100%;
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          justify-content: space-between;
+
+          .good_price_block {
+            display: flex;
+            height: unit(36, rpx);
+            flex-flow: row nowrap;
+            align-items: baseline;
+            justify-content: center;
+          }
+
+          .discount_block {
+            height: unit(32, rpx);
+            align-self: center;
+            display: flex;
+            padding-left: unit(4, rpx);
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: flex-start;
+            overflow: hidden;
+
+            .left_triangle {
+              width: 0;
+              height: 0;
+              box-sizing: border-box;
+              border-top: unit(16, rpx) solid transparent;
+              border-right: unit(18, rpx) solid #d1121a;
+              border-bottom: unit(16, rpx) solid transparent;
+            }
+
+            .discount {
+              height: unit(32, rpx);
+              font-size: unit(18, rpx);
+              line-height: unit(22, rpx);
+              padding: unit(5, rpx) unit(8, rpx);
+              color: #FFF;
+              background: #d1121a;
+            }
+          }
+        }
+      }
+
+      .bottom_line {
+        position: absolute;
+        bottom: unit(-20, rpx);
+        width: 100%;
+        height: 0.5px;
+        background: #F0F0F0;
+        z-index: 2;
+      }
+    }
+  }
+}
