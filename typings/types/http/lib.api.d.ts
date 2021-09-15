@@ -25,7 +25,8 @@ interface ShopInfoReq {
 }
 
 //[响应]
-interface ShopInfoResp extends ShopInfo {}
+interface ShopInfoResp extends ShopInfo {
+}
 
 /**=====母店下子店列表=====**/
 
@@ -46,7 +47,8 @@ interface ShopListReq {
 }
 
 //[响应]
-interface ShopListResp extends Pagination<Array<ShopInfo>> {}
+interface ShopListResp extends Pagination<Array<ShopInfo>> {
+}
 
 /**=====母店下子店列表=====**/
 
@@ -56,7 +58,8 @@ interface SubShopListReq extends Omit<ShopListReq, 'shopType'>, PaginationReq {
 }
 
 //[响应]
-interface SubShopListResp extends ShopListResp {}
+interface SubShopListResp extends ShopListResp {
+}
 
 /**=====店铺商品=====**/
 //[请求]
@@ -66,7 +69,8 @@ interface ShopGoodsListReq extends PaginationReq {
 }
 
 //[响应]
-interface GoodsListResp extends Pagination<Array<GoodsInfo>> {}
+interface GoodsListResp extends Pagination<Array<GoodsInfo>> {
+}
 
 //[请求]
 interface GetShopGoodsInfoReq {
@@ -114,4 +118,47 @@ interface SyncUserShopGoodsCarGoodsReq {
 //[请求]
 interface ClearUserShopGoodsCarReq {
 	shopId: number;
+}
+
+//[请求]购买商品
+interface BuyGoodsReq {
+	goodsId: number;
+	goodsName: string;
+	buyCount: number;
+	originPrice: number;
+	sellPrice: number;
+}
+
+//[请求]创建订单
+interface CreateOrderReq {
+	shopId: number; // 店铺id
+	serviceShopId: number;// 服务点id(母店id)
+	goodsList: BuyGoodsReq[];// 购买商品列表
+	totalAmount: number;// 订单总金额
+	payAmount: number;// 订单应付金额
+	payMethod: number;// 支付方式: 1微信
+	remarks?: string;// 备注
+	deliveryType: number;// 配送类型: 1服务点自提 2送货上门
+	receiverName: string;// 接收人名称
+	receiverPhone: string;// 接收人手机号
+	receiverProvince?: string;// 省份,deliveryType=2时,为必传
+	receiverCity?: string;// 城市,deliveryType=2时,为必传
+	receiverDistrict?: string;// 区域,deliveryType=2时,为必传
+	receiverAddress?: string;// 详细地址,deliveryType=2时,为必传
+	receiverLongitude?: number;// 经度,deliveryType=2时,为必传
+	receiverLatitude?: number;// 纬度,deliveryType=2时,为必传
+}
+
+//[响应]发起支付需要的信息
+interface PaymentInfoResp {
+	timeStamp: string;
+	nonceStr: string;
+	package: string;
+	signType: 'MD5' | 'HMAC-SHA256' | 'RSA';
+	paySign: string;
+}
+
+//[响应]创建的订单信息
+interface CreateOrderResp extends OrderInfo {
+	paymentInfo: PaymentInfoResp;
 }

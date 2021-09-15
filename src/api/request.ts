@@ -262,7 +262,7 @@ class HttpRequest {
 
 export const httpRequest = new HttpRequest(
 	{
-		baseUrl: 'http://192.168.0.132:8888',
+		baseUrl: 'https://rgchn.com',
 		timeout: 5 * 1000
 	},
 	{

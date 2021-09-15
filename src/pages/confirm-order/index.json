@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index"
+  }
+}

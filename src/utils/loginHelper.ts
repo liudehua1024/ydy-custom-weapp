@@ -93,7 +93,7 @@ export class MyLoginHelper implements LoginHelper {
 	private login(opt: LoginOptions, req: LoginReq) {
 		this.apiCommand.wxAuthLogin({
 			req,
-			custom: { isShowLoading: !opt.silent },
+			custom: { isShowLoading: !opt.silent, isShowErrMsgToast: false },
 			callback: {
 				success: (res) => {
 					this.setLoginState(res.data);

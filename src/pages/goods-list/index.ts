@@ -156,17 +156,18 @@ Page(
 			});
 		},
 		doAnim(goodsId: number, change: number, countInfo: UserShopGoodsCarResp) {
-			const { goodsCarPos } = this.data;
+			const { scrollTop, goodsCarPos } = this.data;
 			const goodsCard = this.selectComponent('#goods-' + goodsId);
 			const top = goodsCarPos.y + goodsCarPos.height / 2;
 			const left = goodsCarPos.x + goodsCarPos.width / 2;
 
 			const opt = {
+				scrollTop: scrollTop,
 				opacity: change > 0 ? 0 : 1,
-				top: top + this.data.scrollTop,
+				top: top,
 				left: left,
-				width: 20,
-				height: 20
+				width: goodsCarPos.width,
+				height: goodsCarPos.height
 			} as GoodsCarAnimOption;
 
 			goodsCard.startAnim(opt, () => {

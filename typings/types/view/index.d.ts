@@ -30,6 +30,7 @@ interface GoodsCarPosInfo {
 }
 
 interface GoodsCarAnimOption {
+	scrollTop: number;
 	opacity: number;
 	width: number;
 	height: number;
