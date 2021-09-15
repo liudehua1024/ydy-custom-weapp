@@ -14,7 +14,7 @@ Component({
 		recordList: [] as Array<GoodsCarGoodsInfo>
 	},
 	$eventBusListeners: {
-		'goodsCarGoodsList': function (evt: EventBusData<UserShopGoodsCarResp>) {
+		'goodsCarGoodsList': function(evt: EventBusData<UserShopGoodsCarResp>) {
 			if (!wx.$loginHelper.checkLogin()) return;
 			const { recordList } = evt.data;
 			let len = recordList.length;
@@ -28,7 +28,8 @@ Component({
 		}
 	},
 	lifetimes: {
-		ready() {}
+		ready() {
+		}
 	},
 	methods: {
 		onClearGoods(_: TouchEvent) {
@@ -47,6 +48,19 @@ Component({
 		toGoodsInfoPage(evt: TouchEvent) {
 			const { item } = evt.currentTarget.dataset;
 			wx.$router.to({ name: 'goods-info', params: item }).then();
+		},
+		toConfirmOrderPage(_: TouchEvent) {
+			const { shopId, totalBuyCount, totalOriginPrice, totalSellPrice, totalReducedPrice, recordList } = this.data;
+			wx.$eventBus.pushStickEvent('needConfirmOrderInfo', {
+				shopId,
+				totalBuyCount,
+				totalOriginPrice,
+				totalSellPrice,
+				totalReducedPrice,
+				goodsList: recordList
+			} as ConfirmOrderInfo);
+
+			wx.$router.to({ name: 'confirm-order' }).then();
 		},
 		syncUserShopGoodsCarGoods(goodsId: number, buyCount: number, change: number) {
 			const loadingTitle = change > 0 ? '加入购物车' : '移出购物车';

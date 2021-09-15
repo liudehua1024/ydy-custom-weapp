@@ -19,5 +19,9 @@ export const routes: Array<Route> = [
 	{
 		name: 'goods-car',
 		url: '/pages/goods-car/index'
+	},
+	{
+		name: 'confirm-order',
+		url: '/pages/confirm-order/index'
 	}
 ];

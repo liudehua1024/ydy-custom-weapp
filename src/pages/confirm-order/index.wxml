@@ -1,0 +1,3 @@
+<page-root>
+    <view class="flex-center submit-btn" bind:tap="onSubmitOrder">提交</view>
+</page-root>

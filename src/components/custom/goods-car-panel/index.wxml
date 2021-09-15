@@ -29,6 +29,6 @@
                 <price value="{{totalOriginPrice}}" delLine color="#999999" unit="¥" size="32"/>
             </block>
         </view>
-        <view class="confirm_order_btn">去结算</view>
+        <view class="confirm_order_btn" bind:tap="toConfirmOrderPage">去结算</view>
     </view>
 </view>
