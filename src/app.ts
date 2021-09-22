@@ -3,7 +3,7 @@ import { injection } from '@/utils/injection';
 
 App<IAppOption>({
 	globalData: {
-		curShopInfo: {} as ShopInfo,
+		serviceShop: {} as ShopInfo,
 		screenConfig: {} as ScreenConfig,
 		navBarConfig: {} as NavBarConfig
 	},
@@ -12,6 +12,7 @@ App<IAppOption>({
 		injection();
 		this.initConfig();
 		wx.$loginHelper.autoLogin();
+		
 	},
 	initConfig(): void {
 		const systemInfo = wx.getSystemInfoSync();

@@ -1,18 +1,18 @@
 //确认订单信息
 interface ConfirmOrderInfo {
-	shopId: number;
+	shopInfo: ShopInfo;
 	totalBuyCount: number;
 	totalOriginPrice: number;
 	totalSellPrice: number;
 	totalReducedPrice: number;
-	goodsList: GoodsCarGoodsInfo[];
+	goodsList: OrderGoodsInfo[];
 }
 
 
 //订单包含的商品信息
 interface OrderGoodsInfo {
-	recordId: number;         // 记录id
-	orderSn: string;          // 所属订单订单号
+	recordId: number;        	// 记录id
+	orderId: number; 					// 所属订单id
 	goodsId: number;          // 商品id
 	buyCount: number;         // 购买数量
 	goodsOriginPrice: number; // 原价,商品信息快照

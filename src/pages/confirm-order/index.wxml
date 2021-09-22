@@ -1,3 +1,43 @@
 <page-root>
-    <view class="flex-center submit-btn" bind:tap="onSubmitOrder">提交</view>
+    <scroll-view class="confirm-order_container" scroll-y="{{true}}">
+        <view class="head_bg"></view>
+        <view class="delivery_tab_container">
+            <view class="tab_title_container {{defDeliveryType===1? 'checked_left':'checked_right'}}">
+                <view class="^flex-center tab_title left" data-type="{{1}}" bind:tap="onChooseDeliveryType">预约自提</view>
+                <view class="^flex-center tab_title right" data-type="{{2}}" bind:tap="onChooseDeliveryType">送货上门</view>
+                <view class="normal_bg"></view>
+            </view>
+            <view wx:if="{{defDeliveryType===1}}" class="tab_content_container_left">
+                <ellip-text class="service_name">{{serviceShop.shopName;}}</ellip-text>
+                <ellip-text class="service_address" maxLine="2">{{serviceShop.address;}}</ellip-text>
+                <view class="aog_time_block">
+                    <view>到货时间</view>
+                    <view class="aog_time">{{util.convertAogTimeStr(shopInfo.aogIntervalDay, shopInfo.aogTime);}}</view>
+                </view>
+            </view>
+            <view wx:if="{{defDeliveryType===2}}" class="tab_content_container_right">
+
+            </view>
+        </view>
+        <view class="order_info_container">
+            <ellip-text class="shop_name">{{shopInfo.shopName;}}</ellip-text>
+            <view class="line"></view>
+            <view class="order_goods_list_block {{expandGoodsList?'expand':''}}">
+                <block wx:for="{{needConfirmOrderInfo.goodsList}}">
+                    <order-goods-card goodsInfo="{{item}}"></order-goods-card>
+                </block>
+            </view>
+            <view wx:if="{{needConfirmOrderInfo.goodsList.length > 3}}" class="expand_goods_list_btn {{expandGoodsList?'':'expand_btn'}}" bind:tap="onToggleExpand">
+                <block wx:if="{{expandGoodsList}}">
+                    点击收起<my-icon name="arrow-up" size="24rpx" style="margin-left:10rpx;" />
+                </block>
+                <block wx:else>
+                    展开更多<my-icon name="arrow-down" size="24rpx" style="margin-left:10rpx;" />
+                </block>
+            </view>
+            <view class="line"></view>
+        </view>
+        <view class="receiver_container"></view>
+    </scroll-view>
 </page-root>
+<wxs src="./index.wxs" module="util"></wxs>

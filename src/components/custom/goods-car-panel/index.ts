@@ -3,7 +3,7 @@ import { componentBehavior } from '@/components/behavior';
 Component({
 	behaviors: [componentBehavior],
 	properties: {
-		shopId: { type: Number, value: 0 }
+		shopInfo: { type: Object, value: {} as ShopInfo }
 	},
 	data: {
 		listHeight: '',
@@ -14,12 +14,15 @@ Component({
 		recordList: [] as Array<GoodsCarGoodsInfo>
 	},
 	$eventBusListeners: {
+		'enterShop': function(evt: EventBusData<ShopInfo>) {
+			this.setData({ shopInfo: evt.data });
+		},
 		'goodsCarGoodsList': function(evt: EventBusData<UserShopGoodsCarResp>) {
 			if (!wx.$loginHelper.checkLogin()) return;
 			const { recordList } = evt.data;
 			let len = recordList.length;
-			if (len > 4) len = 4;
-			const height = len * 180 + (len - 1) * 2;
+			if (len > 5) len = 5;
+			const height = len * 160 + (len - 1) * 2;
 			const data = {
 				...evt.data,
 				listHeight: wx.$viewHelper.disposeSizeStyle(height)
@@ -50,23 +53,38 @@ Component({
 			wx.$router.to({ name: 'goods-info', params: item }).then();
 		},
 		toConfirmOrderPage(_: TouchEvent) {
-			const { shopId, totalBuyCount, totalOriginPrice, totalSellPrice, totalReducedPrice, recordList } = this.data;
+			const { shopInfo, totalBuyCount, totalOriginPrice, totalSellPrice, totalReducedPrice, recordList } = this.data;
+
+			const goodsList = recordList.map(value => {
+				return {
+					goodsId: value.goodsId,
+					goodsName: value.name,
+					goodsCoverImg: value.coverImg,
+					goodsSpec: value.goodsSpec,
+					goodsDesc: value.goodsDesc,
+					goodsOriginPrice: value.originPrice,
+					goodsSellPrice: value.sellPrice,
+					buyCount: value.buyCount
+				} as OrderGoodsInfo;
+			});
+
+
 			wx.$eventBus.pushStickEvent('needConfirmOrderInfo', {
-				shopId,
+				shopInfo,
 				totalBuyCount,
 				totalOriginPrice,
 				totalSellPrice,
 				totalReducedPrice,
-				goodsList: recordList
+				goodsList
 			} as ConfirmOrderInfo);
 
 			wx.$router.to({ name: 'confirm-order' }).then();
 		},
 		syncUserShopGoodsCarGoods(goodsId: number, buyCount: number, change: number) {
 			const loadingTitle = change > 0 ? '加入购物车' : '移出购物车';
-			const { shopId } = this.data;
+			const { shopInfo } = this.data;
 			this.$api?.syncUserShopGoodsCarGoods({
-				req: { shopId, goodsId, buyCount },
+				req: { shopId: shopInfo.shopId, goodsId, buyCount },
 				custom: { isShowLoading: true, loadingOpt: { title: loadingTitle } },
 				callback: {
 					success: (res) => {
@@ -76,9 +94,9 @@ Component({
 			});
 		},
 		clearUserShopGoodsCar() {
-			const { shopId } = this.data;
+			const { shopInfo } = this.data;
 			this.$api?.clearUserShopGoodsCar({
-				req: { shopId },
+				req: { shopId: shopInfo.shopId },
 				custom: {
 					isShowLoading: true,
 					loadingOpt: { title: '清空购物车...' },
@@ -87,6 +105,7 @@ Component({
 				callback: {
 					success: () => {
 						wx.$eventBus.pushStickEvent('goodsCarGoodsList', {
+							shopInfo,
 							totalBuyCount: 0,
 							totalOriginPrice: 0.0,
 							totalSellPrice: 0.0,

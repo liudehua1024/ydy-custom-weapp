@@ -42,102 +42,102 @@ function clear() {
 
 function init() {
 	return gulp
-		.src(pagesPath)
-		.on('data', function (data) {
-			const dirName = pathUtil.relative(pagesDir, data.dirname);
-			if (pageNameArr.indexOf(dirName) === -1) {
-				pageNameArr.push(dirName);
+	.src(pagesPath)
+	.on('data', function(data) {
+		const dirName = pathUtil.relative(pagesDir, data.dirname);
+		if (pageNameArr.indexOf(dirName) === -1) {
+			pageNameArr.push(dirName);
+		}
+	})
+	.on('end', function() {
+		pageNameArr.sort((a, b) => {
+			switch (indexPageName) {
+				case a:
+					return -1;
+				case b:
+					return 1;
+				default:
+					return 0;
 			}
-		})
-		.on('end', function () {
-			pageNameArr.sort((a, b) => {
-				switch (indexPageName) {
-					case a:
-						return -1;
-					case b:
-						return 1;
-					default:
-						return 0;
-				}
-			});
 		});
+	});
 }
 
 function copyAppJson() {
 	return gulp
-		.src(appConfigPath)
-		.pipe(changed(dist))
-		.pipe(
-			mergeJson({
-				filename: 'app.json',
-				edit: function (jsonObj) {
-					delete jsonObj.pages;
-					jsonObj = Object.assign(
-						{ pages: pageNameArr.map((value) => 'pages/' + value + '/index') },
-						jsonObj
-					);
-					return jsonObj;
-				}
-			})
-		)
-		.pipe(
-			rename({
-				basename: 'app'
-			})
-		)
-		.pipe(gulp.dest(dist));
+	.src(appConfigPath)
+	.pipe(changed(dist))
+	.pipe(
+		mergeJson({
+			filename: 'app.json',
+			edit: function(jsonObj) {
+				delete jsonObj.pages;
+				jsonObj = Object.assign(
+					{ pages: pageNameArr.map((value) => 'pages/' + value + '/index') },
+					jsonObj
+				);
+				return jsonObj;
+			}
+		})
+	)
+	.pipe(
+		rename({
+			basename: 'app'
+		})
+	)
+	.pipe(gulp.dest(dist));
 }
 
 //复制不包含less/ts的文件
 function compileCopy() {
 	return gulp
-		.src(copyPath, option)
-		.pipe(replace(';}}', '}}'))
-		.pipe(gulp.dest(dist, { overwrite: true }));
+	.src(copyPath, option)
+	.pipe(replace(';}}', '}}'))
+	.pipe(gulp.dest(dist, { overwrite: true }));
 }
 
 //复制不包含less和图片的文件(只改动有变动的文件）
 function compileCopyChange() {
 	return gulp
-		.src(copyPath, option)
-		.pipe(changed(dist))
-		.pipe(replace('}}', '}}'))
-		.pipe(gulp.dest(dist));
+	.src(copyPath, option)
+	.pipe(changed(dist))
+	.pipe(replace(';}}', '}}'))
+	.pipe(gulp.dest(dist));
 }
 
 function compileLess() {
 	return gulp
-		.src(lessPath)
-		.pipe(less())
-		.pipe(cssmin())
-		.pipe(
-			rename((path) => {
-				path.extname = '.wxss';
-			})
-		)
-		.pipe(gulp.dest(dist));
+	.src(lessPath)
+	.pipe(less())
+	.pipe(cssmin())
+	.pipe(
+		rename((path) => {
+			path.extname = '.wxss';
+		})
+	)
+	.pipe(gulp.dest(dist));
 }
 
 //编译less(只改动有变动的文件）
 function compileLessChange() {
 	return gulp
-		.src(lessPath)
-		.pipe(changed(dist))
-		.pipe(less())
-		.pipe(cssmin())
-		.pipe(
-			rename((path) => {
-				path.extname = '.wxss';
-			})
-		)
-		.pipe(gulp.dest(dist));
+	.src(lessPath)
+	.pipe(changed(dist))
+	.pipe(less())
+	.pipe(cssmin())
+	.pipe(
+		rename((path) => {
+			path.extname = '.wxss';
+		})
+	)
+	.pipe(gulp.dest(dist));
 }
 
 function compileTs() {
 	return gulp
-		.src(tsPath)
-		.pipe(babel()) // 使用babel编译ts
-		.pipe(gulp.dest(dist));
+	.src(tsPath)
+	.pipe(babel()) // 使用babel编译ts
+	.pipe(gulp.dest(dist));
 }
 
 function compileTsChange() {

@@ -108,7 +108,7 @@
             bind:clickoverlay="closeGoodsCarPanel"
             custom-style="background:none"
     >
-        <goods-car-panel class="goods_car_panel_container" shopId="{{shopId}}"></goods-car-panel>
+        <goods-car-panel class="goods_car_panel_container"></goods-car-panel>
     </page-container>
 </page-root>
 <wxs src="./index.wxs" module="util"></wxs>

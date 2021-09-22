@@ -1,6 +1,8 @@
 Component({
 	externalClasses: ['my-class'],
-	properties: {},
+	properties: {
+		goodsInfo: {type: Object, value: {} as OrderGoodsInfo }
+	},
 	data: {
 		monthSales: 0,
 		counterSize: 40,

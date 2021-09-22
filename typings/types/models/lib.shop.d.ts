@@ -10,6 +10,12 @@ interface ShopSalesInfo {
 	yearSales: number;
 }
 
+// 店铺到货时间
+interface ShopAogInfo {
+	aogIntervalDay?: number;
+	aogTime?: number;
+}
+
 interface ShopBaseInfo {
 	shopId: number; // 店铺Id
 	shopName: string; // 店铺名称
@@ -36,7 +42,7 @@ interface ShopBaseInfo {
 	shopTitleImgUrl: string; // 店面招牌图片地址
 }
 
-interface ShopInfo extends ShopBaseInfo {
+interface ShopInfo extends ShopBaseInfo, ShopAogInfo {
 	shopSalesInfo?: ShopSalesInfo; // 店铺销量信息
 	shopPageConfigList?: Array<ShopPageConfig>; // 店铺页面配置信息
 }

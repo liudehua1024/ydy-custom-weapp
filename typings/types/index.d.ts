@@ -5,7 +5,7 @@
 /// <reference path="./utils/index.d.ts" />
 
 interface IGlobalData {
-	curShopInfo: ShopInfo;
+	serviceShop: ShopInfo; // 当前母店(服务点)
 	screenConfig: ScreenConfig;
 	navBarConfig: NavBarConfig;
 }
@@ -47,15 +47,13 @@ interface NavBarConfig {
 }
 
 interface GlobalConstants {
-	curShopId: number;
+	serviceShopId: number;
 	tabBarHeight: number;
 }
 
 interface HandlePageOption {
-	<
-		TData extends WxPage.DataOption = WxPage.DataOption,
-		TCustom extends WxPage.CustomOption = WxPage.CustomOption
-	>(
+	<TData extends WxPage.DataOption = WxPage.DataOption,
+		TCustom extends WxPage.CustomOption = WxPage.CustomOption>(
 		opt: WxPage.Options<TData, TCustom>
 	): WechatMiniprogram.Page.Options<IAnyObject, WxPage.CustomOption>;
 }

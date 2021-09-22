@@ -9,6 +9,13 @@
             showBack="{{showBack}}"
             backMode="{{backMode}}"
             bind:tap="onNavBarClick" />
-    <slot></slot>
+    <block wx:if="{{immerse}}">
+        <slot></slot>
+    </block>
+    <block wx:else>
+        <view class="content_container">
+            <slot></slot>
+        </view>
+    </block>
     <view wx:if="{{showMask}}" class="^page__mask" bind:tap="onMaskClick"></view>
 </view>

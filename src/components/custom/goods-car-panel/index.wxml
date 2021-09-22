@@ -23,10 +23,10 @@
         </badge>
         <view class="total_price_block">
             <price class="total_sell_price" value="{{totalSellPrice}}" unit="¥" unitMode="small" smallRate="0.8"
-                   size="40"/>
+                   size="38"/>
             <block wx:if="{{totalReducedPrice}}">
                 <view style="height:5rpx;width:5rpx;"></view>
-                <price value="{{totalOriginPrice}}" delLine color="#999999" unit="¥" size="32"/>
+                <price value="{{totalOriginPrice}}" delLine color="#999999" unit="¥" size="28"/>
             </block>
         </view>
         <view class="confirm_order_btn" bind:tap="toConfirmOrderPage">去结算</view>

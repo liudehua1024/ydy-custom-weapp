@@ -21,6 +21,7 @@ interface LoginResp extends UserInfo {
 //[请求]
 interface ShopInfoReq {
 	shopId: number; // 店铺id
+	serviceShopId?: number; // 母店(服务点)id
 	getShopPageConfig?: number; // 是否获取店铺页面配置信息
 }
 
@@ -149,14 +150,46 @@ interface CreateOrderReq {
 	receiverLatitude?: number;// 纬度,deliveryType=2时,为必传
 }
 
-//[响应]发起支付需要的信息
-interface PaymentInfoResp {
+//[请求]提交订单
+interface SubmitOrderReq {
+	shopId: number; // 店铺id
+	serviceShopId: number;// 服务点id(母店id)
+	goodsList: BuyGoodsReq[];// 购买商品列表
+	totalAmount: number;// 订单总金额
+	payAmount: number;// 订单应付金额
+	remarks?: string;// 备注
+	deliveryType: number;// 配送类型: 1服务点自提 2送货上门
+	receiverName: string;// 接收人名称
+	receiverPhone: string;// 接收人手机号
+	receiverProvince?: string;// 省份,deliveryType=2时,为必传
+	receiverCity?: string;// 城市,deliveryType=2时,为必传
+	receiverDistrict?: string;// 区域,deliveryType=2时,为必传
+	receiverAddress?: string;// 详细地址,deliveryType=2时,为必传
+	receiverLongitude?: number;// 经度,deliveryType=2时,为必传
+	receiverLatitude?: number;// 纬度,deliveryType=2时,为必传
+}
+
+//[响应]订单提交信息
+interface SubmitOrderResp extends OrderInfo {}
+
+//[请求]支付订单(获取订单预支付信息)
+interface PayOrderReq {
+	orderId: number; // 订单id
+	payMethod: number; // 支付方式
+	payAmount: number; // 支付金额
+}
+
+//[响应]微信预支付信息
+interface WxPaymentInfoResp {
 	timeStamp: string;
 	nonceStr: string;
 	package: string;
 	signType: 'MD5' | 'HMAC-SHA256' | 'RSA';
 	paySign: string;
 }
+
+//[响应]订单预支付信息
+type PaymentInfoResp = WxPaymentInfoResp;
 
 //[响应]创建的订单信息
 interface CreateOrderResp extends OrderInfo {

@@ -52,7 +52,7 @@
             bind:clickoverlay="closeGoodsCarPanel"
             custom-style="background:none"
     >
-        <goods-car-panel class="goods_car_panel_container" shopId="{{shopId}}"
+        <goods-car-panel class="goods_car_panel_container"
                          bind:triggerClosePanel="closeGoodsCarPanel"></goods-car-panel>
     </page-container>
 </page-root>

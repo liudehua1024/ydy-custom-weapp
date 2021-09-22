@@ -8,9 +8,9 @@ import { MyLoginHelper } from '@/utils/loginHelper';
 import { toastUtils } from '@/utils/toastUtils';
 import { arrayUtils, isUtils, numUtils, strUtils, viewHelper } from '@/utils/utils';
 
-const injectionContent = () => {
+const injectionConstants = () => {
 	wx.constants = {
-		curShopId: 10,
+		serviceShopId: 10,
 		tabBarHeight: 110
 	};
 };
@@ -48,7 +48,7 @@ const injectionUtils = () => {
 };
 
 export const injection = () => {
-	injectionContent();
+	injectionConstants();
 	injectionFun();
 	injectionUtils();
 };
