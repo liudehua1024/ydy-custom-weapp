@@ -22,7 +22,7 @@ const option = {
 const appConfigPath = ['src/app.json'];
 
 // 除了less/ts外全部复制
-const copyPath = ['src/**/*', '!src/app.json', '!src/**/*.less', '!src/**/*.ts'];
+const copyPath = ['src/**/*', '!src/app.json', '!src/**/*.less', '!src/**/*.ts', '!src/**/*.ts', '!src/**/*_temp.png'];
 
 const pagesDir = 'src/pages';
 const pagesPath = pagesDir + '/**/index.ts';
