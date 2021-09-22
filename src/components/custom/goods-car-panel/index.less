@@ -51,7 +51,8 @@
   &__floor_block {
     position: relative;
     width: 100%;
-    padding: unit(20, rpx) unit(20, rpx);
+    height: unit(100, rpx);
+    padding: 0 unit(20, rpx);
     background: #ffffff;
     display: flex;
     flex-flow: row nowrap;
@@ -59,8 +60,10 @@
     justify-content: flex-start;
 
     .total_count_container {
-      width: unit(90, rpx);
-      height: unit(90, rpx);
+      position: relative;
+      top: unit(-20, rpx);
+      width: unit(100, rpx);
+      height: unit(100, rpx);
 
       .badge_align {
         top: unit(-8, rpx);
@@ -99,7 +102,7 @@
 
     .confirm_order_btn {
       width: 30%;
-      height: unit(60, rpx);
+      height: unit(68, rpx);
       border-radius: unit(80, rpx);
       background: linear-gradient(to right, #FA4515, #FA4515);
       display: flex;

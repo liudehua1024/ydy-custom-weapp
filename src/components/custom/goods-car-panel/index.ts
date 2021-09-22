@@ -21,8 +21,8 @@ Component({
 			if (!wx.$loginHelper.checkLogin()) return;
 			const { recordList } = evt.data;
 			let len = recordList.length;
-			if (len > 5) len = 5;
-			const height = len * 160 + (len - 1) * 2;
+			if (len > 4) len = 4;
+			const height = len * 180 + (len - 1) * 2;
 			const data = {
 				...evt.data,
 				listHeight: wx.$viewHelper.disposeSizeStyle(height)

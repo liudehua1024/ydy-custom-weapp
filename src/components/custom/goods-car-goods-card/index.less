@@ -1,7 +1,8 @@
 .goods-car-goods-card__& {
   &container {
+    position: relative;
     width: 100%;
-    height: unit(160, rpx);
+    height: unit(180, rpx);
     padding: unit(20, rpx) unit(24, rpx);
     background: white;
     display: flex;
@@ -22,7 +23,6 @@
     }
 
     .goods_info_block {
-      position: relative;
       flex: 1;
       width: 0;
       margin-left: unit(34, rpx);
@@ -35,12 +35,12 @@
       .goods_name {
         color: black;
         font-weight: 600;
-        font-size: unit(30, rpx);
+        font-size: unit(32, rpx);
       }
 
       .goods_desc {
         color: gray;
-        font-size: unit(22, rpx);
+        font-size: unit(24, rpx);
         line-height: unit(24, rpx);
         margin-top: unit(6, rpx);
       }
@@ -97,15 +97,16 @@
           }
         }
       }
+    }
 
-      .bottom_line {
-        position: absolute;
-        bottom: unit(-20, rpx);
-        width: 100%;
-        height: 0.5px;
-        background: #F0F0F0;
-        z-index: 2;
-      }
+    .bottom_line {
+      position: absolute;
+      bottom: 0;
+      left: unit(144, rpx);
+      right: unit(24, rpx);
+      height: unit(1, rpx);
+      background: #F7F7F7;
+      z-index: 9999;
     }
   }
 }
