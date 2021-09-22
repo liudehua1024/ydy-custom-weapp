@@ -12,7 +12,8 @@ Component({
 		isLoadEnd: false
 	},
 	methods: {
-		onShow() {},
+		onShow() {
+		},
 		// 被第一次展示时
 		onFirstShow() {
 			this.onRefresh({}, true);
@@ -36,7 +37,7 @@ Component({
 		},
 		getSubShopList(showLoading = false) {
 			const req: SubShopListReq = {
-				mId: wx.constants.curShopId,
+				mId: wx.constants.serviceShopId,
 				page: this.nextPage
 			};
 

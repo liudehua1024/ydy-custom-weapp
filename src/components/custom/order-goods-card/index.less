@@ -1,7 +1,8 @@
 .order-goods-card__& {
   &container {
     width: 100%;
-    padding: unit(13, rpx) unit(36, rpx) unit(13, rpx) unit(26, rpx);
+    height: unit(160, rpx);
+    padding: unit(20, rpx) 0;
     background: white;
     display: flex;
     flex-flow: row nowrap;
@@ -10,8 +11,8 @@
     overflow: hidden;
 
     .goods_logo_block {
-      width: unit(100, rpx);
-      height: unit(100, rpx);
+      width: unit(120, rpx);
+      height: unit(120, rpx);
 
       .goods_logo {
         width: 100%;
@@ -24,7 +25,7 @@
       flex: 1;
       width: 0;
       margin-left: unit(30, rpx);
-      height: unit(120, rpx);
+      height: 100%;
       display: flex;
       flex-flow: column nowrap;
       align-items: stretch;
@@ -77,8 +78,12 @@
 
       .count_block {
         margin-top: unit(6, rpx);
-        font-size: unit(24, rpx);
+        font-size: unit(26, rpx);
         color: #999999;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: flex-start;
       }
 
     }

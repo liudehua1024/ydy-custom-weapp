@@ -80,10 +80,16 @@ export class ApiCommand extends RequestManager implements ApiRequest {
 		this.sendRequest('POST', '/api/auth/buyer/shop/goodsCar/clear', config);
 	}
 
-	/**创建(提交)订单*/
-	createOrder(config: CustomConfigReq<CreateOrderReq, CreateOrderResp>): void {
+	/**提交订单*/
+	submitOrder(config: CustomConfigReq<SubmitOrderReq, SubmitOrderResp>): void {
 		config.custom = Object.assign({}, config.custom, { useToken: true });
-		this.sendRequest('POST', '/api/auth/buyer/order/create', config);
+		this.sendRequest('POST', '/api/auth/buyer/order/submit', config);
+	}
+
+	/**支付订单(获取订单预支付信息)*/
+	payOrder(config: CustomConfigReq<PayOrderReq, PaymentInfoResp>): void {
+		config.custom = Object.assign({}, config.custom, { useToken: true });
+		this.sendRequest('POST', '/api/auth/buyer/order/pay', config);
 	}
 
 	private handlePaginationReq<T extends PaginationReq>(params: T): T {

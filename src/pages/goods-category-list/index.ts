@@ -19,13 +19,13 @@ Page(
 			showGoodsCarPanel: false
 		},
 		$eventBusListeners: {
-			'goodsCarPosChange': function (evt: EventBusData<GoodsCarPosInfo>) {
+			'goodsCarPosChange': function(evt: EventBusData<GoodsCarPosInfo>) {
 				const { data } = evt;
 				this.setData({
 					goodsCarPos: data
 				});
 			},
-			'goodsCarGoodsList': function (evt: EventBusData<UserShopGoodsCarResp>) {
+			'goodsCarGoodsList': function(evt: EventBusData<UserShopGoodsCarResp>) {
 				if (!wx.$loginHelper.checkLogin()) return;
 				const { showGoodsCarPanel } = this.data;
 				let { totalBuyCount } = evt.data;
@@ -34,7 +34,7 @@ Page(
 					showGoodsCarPanel: showGoodsCarPanel && !totalBuyCount
 				});
 			},
-			'loginStateChange': function (evt: EventBusData<boolean>) {
+			'loginStateChange': function(evt: EventBusData<boolean>) {
 				if (evt.data) {
 					this.setData({ showGoodsCarBtn: true });
 					this.getGoodsCarGoodsList();
@@ -60,7 +60,7 @@ Page(
 			this.initData(Object.assign({} as ShopInfo, query));
 		},
 		onUnload(): void | Promise<void> {
-			wx.$eventBus.removeStickEventData('goodsCarPosChange', 'goodsCarGoodsList');
+			wx.$eventBus.removeStickEventData('enterShop', 'goodsCarPosChange', 'goodsCarGoodsList');
 		},
 		initData(shopInfo: ShopInfo) {
 			const { shopId, shopSalesInfo, shopTags } = Object.assign(
@@ -73,9 +73,11 @@ Page(
 
 			this.setData({ shopId, shopInfo, monthSales, tagArr });
 
-			if (shopId !== wx.constants.curShopId) {
+			if (shopId !== wx.constants.serviceShopId) { // 子店
 				this.getShopInfo();
-			} else {
+			} else { // 母店
+				// 发送进入店铺事件消息
+				wx.$eventBus.pushStickEvent('enterShop', shopInfo);
 				this.getGoodsCategoryList({ level: 1 });
 			}
 		},
@@ -89,7 +91,7 @@ Page(
 		closeGoodsCarPanel() {
 			this.setData({ showGoodsCarPanel: false });
 		},
-		onGoodsCarPosChange: function (goodsCarPos: GoodsCarPosInfo) {
+		onGoodsCarPosChange: function(goodsCarPos: GoodsCarPosInfo) {
 			wx.$eventBus.pushStickEvent('goodsCarPosChange', goodsCarPos);
 		},
 		onListRootScroll(evt: TouchEvent) {
@@ -136,11 +138,13 @@ Page(
 		getShopInfo() {
 			const { shopId } = this.data;
 			this.$api?.getShopInfo({
-				req: { shopId: shopId },
+				req: { shopId: shopId, serviceShopId: wx.constants.serviceShopId },
 				callback: {
 					success: (res: ResponseResult<ShopInfoResp>) => {
 						const shopInfo = res.data;
 						this.setData({ shopInfo });
+						// 发送进入店铺事件消息
+						wx.$eventBus.pushStickEvent('enterShop', shopInfo);
 						this.getGoodsCategoryList({ level: 1 });
 					}
 				}

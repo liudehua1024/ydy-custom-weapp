@@ -1,23 +1,26 @@
 <view class="order-goods-card__container my-class">
     <view class="goods_logo_block">
-        <image class="goods_logo" mode="scaleToFill"
-               src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F878a6c57bed136d9d176a6eb8289a04787b126bf.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1625048760&t=fb3682f3fc9e70ba60e1e6716fd423b7"/>
+        <image class="goods_logo" mode="scaleToFill" src="{{goodsInfo.goodsCoverImg}}"/>
     </view>
     <view class="buy_info_block">
         <view class="goods_info_block">
             <view class="base_info_block">
-                <view class="discount_tag">折</view>
-                <ellip-text class="goods_name">商品名称</ellip-text>
+                <block wx:if="{{goodsInfo.goodsOriginPrice !== goodsInfo.goodsSellPrice}}">
+                    <view class="discount_tag">折</view>
+                </block>
+                <ellip-text class="goods_name">{{goodsInfo.goodsName}}</ellip-text>
             </view>
             <view class="price_info_block">
-                <price my-class="original_price" value="{{price}}" unit="¥" size="28" smallSize="24" unitMode="small"
-                       color="#848587" delLine/>
-                <price value="{{price}}" unit="¥" size="30" smallSize="24" unitMode="small" color="#2D2D2D"/>
+                <block wx:if="{{goodsInfo.goodsOriginPrice !== goodsInfo.goodsSellPrice}}">
+                    <price my-class="original_price" value="{{goodsInfo.goodsOriginPrice}}" unit="¥" size="28"
+                           smallSize="24"
+                           unitMode="small"
+                           color="#848587" delLine/>
+                </block>
+                <price value="{{goodsInfo.goodsSellPrice}}" unit="¥" size="30" smallSize="24" unitMode="small"
+                       color="#2D2D2D"/>
             </view>
         </view>
-        <view class="count_block">
-            <text>×</text>
-            <text>3</text>
-        </view>
+        <view class="count_block">x {{goodsInfo.buyCount}}</view>
     </view>
 </view>

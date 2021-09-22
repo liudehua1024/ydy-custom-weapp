@@ -12,11 +12,11 @@ Page(
 		},
 		init() {
 			this.$api?.getShopInfo({
-				req: { shopId: wx.constants.curShopId },
+				req: { shopId: wx.constants.serviceShopId },
 				callback: {
 					success: (res) => {
 						const globalData = wx.$getAppGlobalData();
-						Object.assign(globalData, { curShopInfo: res.data });
+						Object.assign(globalData, { serviceShop: res.data });
 						this.initTabBar();
 					}
 				}
@@ -51,7 +51,7 @@ Page(
 		onSwitch(evt: TouchEvent) {
 			const { curSelectedName, oldSelectedName } = evt.detail;
 			if (curSelectedName === 'goods-category-list') {
-				this.toGoodsListPage(wx.$getAppGlobalData().curShopInfo);
+				this.toGoodsListPage(wx.$getAppGlobalData().serviceShop);
 				setTimeout(() => {
 					// 跳转界面不
 					this.setData({

@@ -42,6 +42,9 @@ interface ApiRequest extends HttpRequestManager {
 	/**清除购物车*/
 	clearUserShopGoodsCar(config: CustomConfigReq<ClearUserShopGoodsCarReq, void>): void;
 
-	/**创建订单*/
-	createOrder(config: CustomConfigReq<CreateOrderReq, CreateOrderResp>): void;
+	/**提交订单*/
+	submitOrder(config: CustomConfigReq<SubmitOrderReq, SubmitOrderResp>): void;
+
+	/**支付订单(获取订单预支付信息)*/
+	payOrder(config: CustomConfigReq<PayOrderReq, PaymentInfoResp>): void;
 }
