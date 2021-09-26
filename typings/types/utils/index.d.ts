@@ -31,7 +31,14 @@ interface NumberUtils {
 
 	strToNumber(numStr: string): number;
 
-	sum(num1: number, num2: number, fractionDigits?: number): string;
+	/**获取有效小数位数(不计算补0)*/
+	decimalsLen(num: number): number;
+
+	/**计算两个数之和(避免小数精度丢失)*/
+	sum(num1: number, num2: number): number;
+
+	/**计算两个数之积(避免小数精度丢失)*/
+	multiplication(num1: number, num2: number): number;
 }
 
 interface ArrayUtils {

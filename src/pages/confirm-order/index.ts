@@ -7,7 +7,8 @@ Page(
 			aogDayStr: '',
 			aogTimeStr: '',
 			needConfirmOrderInfo: {} as ConfirmOrderInfo,
-			expandGoodsList: false
+			expandGoodsList: false,
+			remarks: '',
 		},
 		$eventBusListeners: {
 			// 需要确认的订单信息

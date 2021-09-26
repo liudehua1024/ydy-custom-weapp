@@ -1,5 +1,5 @@
 export const isUtils: IsUtils = {
-	isNumber: function (num: any): num is number {
+	isNumber: function(num: any): num is number {
 		switch (typeof num) {
 			case 'number':
 			case 'bigint':
@@ -9,16 +9,16 @@ export const isUtils: IsUtils = {
 		}
 		return false;
 	},
-	isString: function (arg: any): arg is string {
+	isString: function(arg: any): arg is string {
 		return typeof arg === 'string';
 	},
-	isObject: function (obj: any): obj is Object {
+	isObject: function(obj: any): obj is Object {
 		return typeof obj === 'object';
 	},
-	isFun: function (fun: any): fun is Function {
+	isFun: function(fun: any): fun is Function {
 		return typeof fun === 'function';
 	},
-	isArray: function (arr: any): arr is any[] {
+	isArray: function(arr: any): arr is any[] {
 		return Array.isArray(arr);
 	},
 	isEmpty(arg: any): boolean {
@@ -84,24 +84,58 @@ export const numUtils: NumberUtils = {
 	strToInt(numStr: string): number {
 		return this.toInt(Number(numStr));
 	},
-	sum(num1: number, num2: number, fractionDigits = 2): string {
-		const numStr1 = numUtils.fixed(num1, fractionDigits).replace('.', '');
-		const numStr2 = numUtils.fixed(num2, fractionDigits).replace('.', '');
+	decimalsLen(num: number): number {
+		const numStr = String(num);
+		const dotIndex = numStr.indexOf('.');
+		if (dotIndex === -1) {
+			return 0;
+		}
+
+		let i = numStr.length - 1;
+		for (; i > dotIndex; i--) {
+			if (numStr.charAt(i) !== '0') {
+				break;
+			}
+		}
+
+		return i - dotIndex;
+	},
+	sum(num1: number, num2: number): number {
+		const maxDecimalsLen = Math.max(this.decimalsLen(num1), this.decimalsLen(num2));
+		const numStr1 = numUtils.fixed(num1, maxDecimalsLen).replace('.', '');
+		const numStr2 = numUtils.fixed(num2, maxDecimalsLen).replace('.', '');
 
 		let sumStr = (Number(numStr1) + Number(numStr2)).toString();
 		let len = sumStr.length;
-		if (len > fractionDigits) {
-			sumStr = strUtils.insertStr(sumStr, len - fractionDigits, '.');
-			len = fractionDigits;
-		} else {
-			sumStr = '0.' + sumStr;
+		if (len < maxDecimalsLen) { // 位数不足,需要前补0
+			sumStr = strUtils.insertStr(sumStr, 0, strUtils.repeatStr('0', maxDecimalsLen - len));
+			len = maxDecimalsLen;
 		}
 
-		if (len < fractionDigits) {
-			sumStr += strUtils.repeatStr('0', fractionDigits - len + 1);
+		// 插入小数点,还原为小数
+		sumStr = strUtils.insertStr(sumStr, len - maxDecimalsLen, '.');
+		len += 1;
+
+		return Number(sumStr);
+	},
+	multiplication(num1: number, num2: number): number {
+		let maxDecimalsLen = Math.max(this.decimalsLen(num1), this.decimalsLen(num2));
+		const numStr1 = numUtils.fixed(num1, maxDecimalsLen).replace('.', '');
+		const numStr2 = numUtils.fixed(num2, maxDecimalsLen).replace('.', '');
+		maxDecimalsLen = maxDecimalsLen * 2; // 乘法位数会变双倍
+
+		let productStr = (Number(numStr1) * Number(numStr2)).toString();
+		let len = productStr.length;
+
+		if (len < maxDecimalsLen) { // 位数不足,需要前补0
+			productStr = strUtils.insertStr(productStr, 0, strUtils.repeatStr('0', maxDecimalsLen - len));
+			len = maxDecimalsLen;
 		}
 
-		return sumStr;
+		// 插入小数点,还原为小数
+		productStr = strUtils.insertStr(productStr, len - maxDecimalsLen, '.');
+
+		return Number(productStr);
 	}
 };
 
@@ -124,14 +158,14 @@ export const arrayUtils: ArrayUtils = {
 };
 
 export const viewHelper: ViewHelper = {
-	disposeSizeStyle: function (size: number | string, defUnit: 'px' | 'rpx' = 'rpx'): string {
+	disposeSizeStyle: function(size: number | string, defUnit: 'px' | 'rpx' = 'rpx'): string {
 		let sizeStr = size + '';
 		if (isUtils.isNumber(size)) {
 			sizeStr += defUnit;
 		}
 		return sizeStr;
 	},
-	toCssStyleString: function (styleObj: Record<string, string | number | undefined>): string {
+	toCssStyleString: function(styleObj: Record<string, string | number | undefined>): string {
 		let styleStr = '';
 		Object.keys(styleObj).forEach((key) => {
 			const val = styleObj[key];

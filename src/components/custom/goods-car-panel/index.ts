@@ -73,8 +73,8 @@ Component({
 				shopInfo,
 				totalBuyCount,
 				totalOriginPrice,
-				totalSellPrice,
 				totalReducedPrice,
+				payAmount: totalSellPrice,
 				goodsList
 			} as ConfirmOrderInfo);
 

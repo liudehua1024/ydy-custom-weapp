@@ -27,17 +27,48 @@
                     <order-goods-card goodsInfo="{{item}}"></order-goods-card>
                 </block>
             </view>
-            <view wx:if="{{needConfirmOrderInfo.goodsList.length > 3}}" class="expand_goods_list_btn {{expandGoodsList?'':'expand_btn'}}" bind:tap="onToggleExpand">
+            <view wx:if="{{needConfirmOrderInfo.goodsList.length > 3}}"
+                  class="expand_goods_list_btn {{expandGoodsList?'':'expand_btn'}}" bind:tap="onToggleExpand">
                 <block wx:if="{{expandGoodsList}}">
-                    点击收起<my-icon name="arrow-up" size="24rpx" style="margin-left:10rpx;" />
+                    点击收起
+                    <my-icon name="arrow-up" size="24rpx" style="margin-left:10rpx"/>
                 </block>
                 <block wx:else>
-                    展开更多<my-icon name="arrow-down" size="24rpx" style="margin-left:10rpx;" />
+                    展开更多
+                    <my-icon name="arrow-down" size="24rpx" style="margin-left:10rpx"/>
                 </block>
             </view>
             <view class="line"></view>
+            <view class="total_amount_container">
+                <block wx:if="{{needConfirmOrderInfo.totalReducedPrice>0}}">
+                    <text>已优惠</text>
+                    <price value="{{needConfirmOrderInfo.totalReducedPrice}}"
+                           unit="¥"
+                           size="32"
+                           unitMode="small"
+                           smallSize="26"
+                           color="red"
+                           style="margin:0 30rpx 0 10rpx"/>
+                </block>
+                <text style="margin-right:10rpx">小计</text>
+                <price value="{{needConfirmOrderInfo.payAmount}}"
+                       unit="¥"
+                       size="38"
+                       unitMode="small"
+                       smallSize="28"/>
+            </view>
         </view>
-        <view class="receiver_container"></view>
+        <view class="receiver_container">
+            <view class="info_block">
+                <text class="hint_text">备注</text>
+                <ellip-text>{{remarks?remarks:'无'}}</ellip-text>
+                <my-icon class="arrow_right" name="arrow-right" size="22rpx"/>
+            </view>
+            <view class="info_block">
+                <text class="hint_text">收件人</text>
+                <my-icon class="arrow_right" name="arrow-right" size="22rpx"/>
+            </view>
+        </view>
     </scroll-view>
 </page-root>
 <wxs src="./index.wxs" module="util"></wxs>
