@@ -3,8 +3,8 @@ interface ConfirmOrderInfo {
 	shopInfo: ShopInfo;
 	totalBuyCount: number;
 	totalOriginPrice: number;
-	totalSellPrice: number;
 	totalReducedPrice: number;
+	payAmount: number;
 	goodsList: OrderGoodsInfo[];
 }
 
