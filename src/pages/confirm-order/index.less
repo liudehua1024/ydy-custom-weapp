@@ -131,7 +131,7 @@
   padding: unit(24, rpx) unit(30, rpx);
 
   .shop_name {
-    font-size: unit(32, rpx);
+    font-size: unit(30, rpx);
   }
 
   .line {
@@ -166,5 +166,51 @@
   .expand_btn {
     background: linear-gradient(to bottom, rgba(255, 255, 255, .6), #FFFFFF);
     margin-top: unit(-40, rpx);
+  }
+
+  .total_amount_container {
+    width: 100%;
+    margin-top: unit(24, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    color: black;
+    font-size: unit(30, rpx);
+  }
+}
+
+.receiver_container {
+  position: relative;
+  width: calc(100% - unit(60, rpx));
+  margin: unit(30, rpx);
+  border-radius: unit(20, rpx);
+  padding: unit(24, rpx) unit(60, rpx) unit(24, rpx) unit(30, rpx);
+  background: #FFFFFF;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .info_block {
+    width: 100%;
+    height: unit(80, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    color: #666666;
+    font-size: unit(30, rpx);
+
+    .hint_text {
+      color: black;
+      font-weight: 600;
+    }
+
+    .arrow_right {
+      position: absolute;
+      right: unit(30, rpx);
+    }
+
   }
 }
