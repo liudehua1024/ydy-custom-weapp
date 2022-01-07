@@ -23,12 +23,12 @@ export const eventBusBehavior = Behavior({
 			if (wx.$isUtils.isFun(this.$removeEventGroup)) this.$removeEventGroup();
 		}
 	},
-	definitionFilter: function (defFields: WxBehavior.Options) {
+	definitionFilter: function(defFields: WxBehavior.Options) {
 		const { $eventBusListeners } = defFields || {};
 		if (!wx.$isUtils.isEmpty($eventBusListeners)) {
 			const opt: WxBehavior.Options = {
 				methods: {
-					'$initBusGroup': function () {
+					'$initBusGroup': function() {
 						this.$eventBusGroup = wx.$eventBus.createEventBusGroup();
 						wx.$eventBus.registerEventBusGroup(this.$eventBusGroup);
 
@@ -53,7 +53,7 @@ export const eventBusBehavior = Behavior({
 							});
 						}
 					},
-					'$removeEventGroup': function () {
+					'$removeEventGroup': function() {
 						if (this.$eventBusGroup) {
 							wx.$eventBus.unregisterEventBusGroup(this.$eventBusGroup);
 						}
@@ -86,7 +86,7 @@ export const componentTabPageBehavior = Behavior({
 		firstShow: true
 	},
 	observers: {
-		'show': function (show: boolean) {
+		'show': function(show: boolean) {
 			if (!show) return;
 
 			if (wx.$isUtils.isFun(this.onShow)) this.onShow();
@@ -97,3 +97,28 @@ export const componentTabPageBehavior = Behavior({
 		}
 	}
 } as WxBehavior.Options);
+
+// 用于标识form表单下的子元素,不可以在Behavior下注册组件关系,否则坑逼的微信无法识别
+export const customFormFiled = Behavior({
+	externalClasses: ['filed-class'],
+	properties: {
+		name: { type: String, value: '' },
+		value: { type: String, value: '' }
+	}
+});
+
+export const customFormButton = Behavior({
+	externalClasses: ['btn-class'],
+	properties: {
+		formType: { type: String } // submit/reset
+	}
+} as WxComponent.Options);
+
+
+export const customFormRadio = Behavior({
+	behaviors: [customFormFiled],
+	properties: {
+		checked: { type: Boolean, value: false }
+	}
+});
+

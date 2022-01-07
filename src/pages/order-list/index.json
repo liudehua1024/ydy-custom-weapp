@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "list-view": "../../components/custom/list-view/index",
+    "order-card": "../../components/custom/order-card/index",
+    "load-more": "../../components/custom/load-more/index"
+  }
+}

@@ -1,7 +1,7 @@
 while getopts "t:d:" opt; do
   case "$opt" in
   t)
-    srcDir=$(pwd)/"$OPTARG"
+    srcDir="$OPTARG"
     ;;
   d)
     destDir="$OPTARG"

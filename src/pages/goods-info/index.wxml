@@ -8,7 +8,7 @@
             <ellip-text maxLine="2">{{goodsInfo.name}}</ellip-text>
         </view>
         <view class="goods_sales">
-            月销量{{goodsInfo.monthSales}}
+<!--            月销量{{goodsInfo.monthSales}}-->
             库存{{goodsInfo.stock}}
         </view>
         <scroll-view class="tag_scroll" scroll-x enhanced show-scrollbar="{{false}}">

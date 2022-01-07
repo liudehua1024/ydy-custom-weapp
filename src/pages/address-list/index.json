@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "list-view": "../../components/custom/list-view/index",
+    "address-card": "../../components/custom/address-card/index"
+  }
+}

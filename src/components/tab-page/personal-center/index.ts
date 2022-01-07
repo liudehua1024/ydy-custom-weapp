@@ -11,12 +11,13 @@ Component({
 		isLogin: false
 	},
 	$eventBusListeners: {
-		'loginStateChange': function () {
+		'loginStateChange': function() {
 			this.showUserInfo();
 		}
 	},
 	lifetimes: {
-		created() {}
+		created() {
+		}
 	},
 	methods: {
 		onShow() {
@@ -39,6 +40,19 @@ Component({
 					isLogin: !!loginInfo && !!loginInfo.token
 				});
 			}
+		},
+		onToOrderList(evt: TouchEvent) {
+			const { status } = Object.assign({ status: 0 }, evt.mark);
+			const { shopId } = wx.$getAppGlobalData().serviceShop;
+			wx.$router.to({
+				name: 'order-list', params: {
+					serviceShopId: shopId,
+					searchStatus: status
+				}
+			}).then();
+		},
+		onManagerAddress() {
+			wx.$router.to('address-list').then();
 		}
 	}
 });

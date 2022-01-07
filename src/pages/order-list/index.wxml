@@ -1,0 +1,23 @@
+<page-root>
+    <list-view class="list_container"
+               enableRefresher="{{true}}"
+               refreshState="{{refreshState}}"
+               loadingState="{{loadingState}}"
+               enableLoadMore="{{hasNextPage}}"
+               bind:onRefresh="onRefresh"
+               bind:onLoadMore="onLoadMore"
+               model:scroll-top="{{scrollTop}}">
+        <view class="content_container">
+            <block wx:for="{{orderList}}" wx:key="index">
+                <order-card class="address_card_block"
+                            model:info="{{item}}"
+                            mark:info="{{item}}"
+                            bind:toOrderInfo="onToOrderInfo"
+                            bind:toShopInfo="onToShopInfo" />
+                <view style="width:100%;height:20rpx"/>
+            </block>
+        </view>
+        <load-more slot="list-bottom" wx:if="{{hasNextPage||isLoadEnd}}" loadingState="{{hasNextPage}}"
+                   loadEndState="{{isLoadEnd}}"></load-more>
+    </list-view>
+</page-root>

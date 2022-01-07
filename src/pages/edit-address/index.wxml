@@ -1,0 +1,98 @@
+<page-root>
+    <map id="mapId" class="map" setting="{{mapSetting}}" markers="{{[mapMarker]}}" wx:if="{{mapMarker.longitude!==undefined}}" bind:tap="onChooseLocation"/>
+    <view class="choose_location_container" bind:tap="onChooseLocation">
+        <view class="info" wx:if="{{inputLocation.city}}">
+            <view class="address">
+                <ellip-text>{{inputLocation.address;}}</ellip-text>
+            </view>
+            <view class="full_district">{{inputLocation.province;}}{{inputLocation.city;}}{{inputLocation.district;}}
+            </view>
+            <my-icon class="icon_arrow" name="arrow-right" size="32" color="#CDCDCD"/>
+        </view>
+        <view class="location_placeholder" wx:else>
+            <my-icon name="location" size="30"/>
+            <view style="height:1px;width:6rpx"></view>
+            <view>点击选择收货地址</view>
+        </view>
+    </view>
+    <form style="width:100%" bind:submit="onSubmit">
+        <input name="id" value="{{addressId}}" style="display:none;"/>
+        <view class="edit_info_container">
+            <view class="info_block">
+                <view class="hint_text">门牌号</view>
+                <input id="homeAddress"
+                       name="homeAddress"
+                       class="input_info"
+                       type="text"
+                       confirm-type="done"
+                       maxlength="100"
+                       placeholder="详细地址，例1层101室"
+                       model:value="{{inputHomeAddress}}"/>
+                <view wx:if="{{inputHomeAddress}}" id="homeAddressClear" class="clear_btn flex-center"
+                      bind:tap="onClear">
+                    <my-icon name="close" size="40" color="#B6B6B6"></my-icon>
+                </view>
+            </view>
+            <view class="line"/>
+            <view class="info_block">
+                <view class="hint_text">联系人</view>
+                <input id="receiverName"
+                       name="receiverName"
+                       class="input_info"
+                       type="text"
+                       confirm-type="done"
+                       maxlength="10"
+                       placeholder="请输入收货人名称"
+                       model:value="{{inputReceiverName}}"/>
+                <view wx:if="{{inputReceiverName}}" id="receiverNameClear" class="clear_btn flex-center"
+                      bind:tap="onClear">
+                    <my-icon name="close" size="40" color="#B6B6B6"></my-icon>
+                </view>
+                <view style="height:1px;width:30rpx;"></view>
+                <radio-group name="gender" class="gender_radio_group_block" bind:change="onRadioChange">
+                    <block wx:for="{{['先生','女士']}}" wx:key="index">
+                        <view wx:if="{{index > 0}}" style="height:1px;width:20rpx;"></view>
+                        <label class="gender_radio_block">
+                            <radio id="gender_man" value="{{index+1}}" checked="{{genderCheckStates[index]}}"
+                                   style="width:0;height:0;overflow:hidden;"/>
+                            <my-icon name="{{genderCheckStates[index]?'radio-selected':'radio-unselect'}}"
+                                     color="{{genderCheckStates[index]?'red':'#DBDBDB'}}" size="40"/>
+                            <view style="height:1px;width:6rpx;"></view>
+                            <text>{{item;}}</text>
+                        </label>
+                    </block>
+                </radio-group>
+            </view>
+            <view class="line"/>
+            <view class="info_block">
+                <view class="hint_text">手机号</view>
+                <input id="phoneNumber"
+                       name="phoneNumber"
+                       class="input_info"
+                       type="text"
+                       confirm-type="done"
+                       maxlength="11"
+                       placeholder="请输入收货手机号"
+                       model:value="{{inputPhoneNumber}}"/>
+                <view wx:if="{{inputPhoneNumber}}" id="phoneNumberClear" class="clear_btn flex-center"
+                      bind:tap="onClear">
+                    <my-icon name="close" size="40" color="#B6B6B6"></my-icon>
+                </view>
+            </view>
+            <view class="line"/>
+            <view class="info_block">
+                <view class="hint_text">默认地址</view>
+                <view class="input_info"></view>
+                <checkbox-group name="defTag" class="def_tag_checkbox_group_block">
+                    <label>
+                        <checkbox value="{{1}}" model:checked="{{defTagCheckState}}"
+                                  style="width:0;height:0;overflow:hidden;"/>
+                        <my-icon name="{{defTagCheckState?'radio-selected':'radio-unselect'}}"
+                                 color="{{defTagCheckState?'red':'#DBDBDB'}}" size="40"/>
+                    </label>
+                </checkbox-group>
+            </view>
+        </view>
+        <button class="save_btn_block" form-type="submit">保存</button>
+    </form>
+</page-root>

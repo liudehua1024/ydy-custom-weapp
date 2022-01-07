@@ -1,0 +1,7 @@
+<label>
+    <radio value="{{value}}"
+           checked="{{checked}}"
+           disabled="{{disabled}}"/>
+    <my-icon name="{{checked?'radio_selected':'radio_unselect'}}" size="{{iconSize}}" color="{{iconColor}}"/>
+    <slot/>
+</label>

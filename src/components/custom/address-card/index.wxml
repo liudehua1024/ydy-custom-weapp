@@ -1,0 +1,48 @@
+<view class="address-card__container">
+    <view class="address_info_container">
+        <view class="name_img_block">
+            {{util.firstName(info.receiverName);}}
+        </view>
+        <view class="info_block">
+            <view class="receiver_info">
+                <ellip-text class="receiver_name">{{info.receiverName;}}</ellip-text>
+                <view class="gender">{{info.gender == 1 ? '先生' : '女士'}}</view>
+                <text class="phone_number">{{info.phoneNumber;}}</text>
+            </view>
+            <view class="full_address_info">
+                <ellip-text maxLine="2">
+                    {{info.province + ' ' + info.city + ' ' + info.district + ' ' + info.address + info.homeAddress;}}
+                </ellip-text>
+            </view>
+        </view>
+        <view class="edit_btn" catch:tap="onModifyAddress">
+            <my-icon name="edit" size="40" color="#999999"/>
+        </view>
+    </view>
+    <view class="line"/>
+    <view class="operation_container" catch:tap="onClick">
+        <checkbox-group class="def_tag_checkbox_group_block" catch:change="onDefTagChange">
+            <label>
+                <checkbox value="{{1}}" model:checked="{{defTagCheckState}}" style="width:0;height:0;overflow:hidden;"/>
+                <my-icon name="{{defTagCheckState?'radio-selected':'radio-unselect'}}"
+                         color="{{defTagCheckState?'red':'#999999'}}" size="40"/>
+                <view style="height:1px;width:20rpx;"></view>
+                <text>默认地址</text>
+            </label>
+        </checkbox-group>
+        <view class="del_btn" catch:tap="onDelAddress">
+            <text>删除</text>
+        </view>
+    </view>
+</view>
+<wxs module="util">
+    function firstName(name) {
+        if (name) {
+            return name[0];
+        }
+
+        return '';
+    }
+
+    module.exports = { firstName: firstName };
+</wxs>

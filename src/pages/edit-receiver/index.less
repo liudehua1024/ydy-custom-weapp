@@ -1,0 +1,89 @@
+.edit_info_container {
+  background: white;
+  margin-top: unit(20, rpx);
+
+  .info_block {
+    width: 100%;
+    height: unit(100, rpx);
+    padding: 0 unit(20, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: unit(28, rpx);
+
+    .hint_text {
+      color: #2D2D2D;
+    }
+
+    .must_flag {
+      height: unit(56, rpx);
+      margin-left: unit(10, rpx);
+      color: #d1121a;
+    }
+
+    .input_info {
+      width: 0;
+      height: unit(60, rpx);
+      padding-right: unit(40, rpx);
+      flex-grow: 1;
+      margin-left: unit(40, rpx);
+      color: black;
+    }
+
+    .clear_btn {
+      width: unit(60, rpx);
+      height: unit(60, rpx);
+    }
+  }
+
+  .line {
+    width: calc(100% - unit(20, rpx));
+    margin-left: unit(20, rpx);
+    background: #F0F0F0;
+    height: unit(2, rpx);
+    z-index: 1;
+  }
+
+  .def_receiver_switch_block {
+    position: relative;
+    width: 100%;
+    height: unit(140, rpx);
+    padding: 0 unit(20, rpx);
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+
+    .hint_text {
+      color: #2D2D2D;
+      font-size: unit(28, rpx);
+    }
+
+    .tip_text {
+      margin-top: unit(10, rpx);
+      color: #999999;
+      font-size: unit(22, rpx);
+    }
+
+    .switch_btn {
+      position: absolute;
+      right: unit(20, rpx);
+      top: unit(40, rpx);
+      width: unit(100, rpx);
+      height: unit(60, rpx);
+    }
+  }
+}
+
+.save_btn_block {
+  position: absolute;
+  bottom: unit(20, rpx);
+  margin: 0 unit(20, rpx);
+  width: calc(100% - unit(40, rpx));
+  height: unit(80, rpx);
+  border-radius: unit(40, rpx);
+  background: #D1121A;
+  font-size: unit(30, rpx);
+  color: white;
+}

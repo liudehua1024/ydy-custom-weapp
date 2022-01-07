@@ -46,7 +46,7 @@ Page(
 						showGoodsCarPanel: false
 					});
 				}
-			}
+			},
 		},
 		onLoad(query) {
 			if (!query || !query.hasOwnProperty('shopId') || !query.shopId) {
@@ -110,9 +110,9 @@ Page(
 			this.getShopGoodsList();
 		},
 		getShopGoodsList(showLoading = false) {
-			const { shopId } = this.data;
+			const { shopId, cateId } = this.data;
 			this.$api?.getShopGoodsList({
-				req: { shopId: shopId, cateId: 0, page: this.nextPage },
+				req: { shopId: shopId, cateId: cateId, page: this.nextPage },
 				custom: {
 					isShowLoading: showLoading
 				},

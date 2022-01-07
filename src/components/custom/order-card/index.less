@@ -1,0 +1,110 @@
+.order-card__container {
+  width: 100%;
+  padding: unit(20, rpx);
+  font-size: unit(28, rpx);
+  border-radius: unit(20, rpx);
+  background: white;
+
+  .head_block {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .shop_info_block {
+      width: 0;
+      flex-grow: 1;
+      display: flex;
+      flex-flow: row nowrap;
+
+      .shop_logo_block {
+        width: unit(90, rpx);
+        height: unit(90, rpx);
+        border-radius: unit(14, rpx);
+      }
+
+      .info_block {
+        width: 100%;
+        margin-left: unit(20, rpx);
+        margin-right: unit(20, rpx);
+        display: flex;
+        flex-flow: column nowrap;
+
+        .shop_name_block {
+          width: 100%;
+          display: flex;
+          flex-flow: row;
+          align-items: center;
+          line-height: unit(36, rpx);
+
+          .shop_name {
+            max-width: calc(100% - unit(50, rpx));
+            margin-right: unit(20, rpx);
+            font-size: unit(32, rpx);
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .order_status_block {
+      width: unit(100, rpx);
+      font-size: unit(32, rpx);
+      color: #595959;
+      text-align: right;
+      line-height: unit(36, rpx);
+    }
+  }
+
+  .content_block {
+    width: 100%;
+    position: relative;
+    margin-top: unit(20, rpx);
+
+    .goods_scroll_block {
+      width: 100%;
+      height: unit(160, rpx);
+      display: flex;
+      flex-flow: row nowrap;
+
+      .goods_list_block {
+        width: fit-content;
+        height: 100%;
+        display: flex;
+
+        .goods_info_block {
+          width: unit(200, rpx);
+          height: 100%;
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+
+          .goods_logo_block {
+            width: 100%;
+            height: unit(120, rpx);
+            border-radius: unit(20, rpx);
+            overflow: hidden;
+          }
+
+          .goods_name_block {
+            color: #595959;
+            line-height: unit(40, rpx);
+          }
+        }
+      }
+    }
+
+    .order_count_info {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      min-width: unit(120, rpx);
+      height: unit(160, rpx);
+      background: rgba(255, 255, 255, 0.8);
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-end;
+      justify-content: center;
+      color: #595959;
+    }
+  }
+}

@@ -76,7 +76,8 @@ export class RouterManager implements Router {
 	pop(delta: number = 1): Promise<any> {
 		const len = this.getRouteStack().length;
 		if (delta <= 0 || len <= 1) {
-			return new Promise(() => {});
+			return new Promise(() => {
+			});
 		} else if (delta > len) {
 			delta = len;
 		}
@@ -86,7 +87,8 @@ export class RouterManager implements Router {
 
 	popTo(to: string | ToRouteOption, toBeforePage: boolean = false): Promise<any> {
 		const route = this.getRoute(to);
-		if (!route) return new Promise(() => {});
+		if (!route) return new Promise(() => {
+		});
 		const stack = this.getRouteStack();
 		let index = stack.findIndex((value) => {
 			return value.url === route?.url;
@@ -100,7 +102,11 @@ export class RouterManager implements Router {
 	getRouteStack(): Route[] {
 		const sysRouteStack = RouterManager.getSysRouteStack();
 		return sysRouteStack.map<Route>((value) => {
-			const route = this.getRoute({ url: value.route });
+			let url = value.route;
+			if (!url.startsWith('/')) {
+				url = `/${url}`;
+			}
+			const route = this.getRoute({ url });
 			return route ? route : ({} as Route);
 		});
 	}
@@ -113,10 +119,37 @@ export class RouterManager implements Router {
 		return undefined;
 	}
 
+	toPlugin(to: ToPluginOption | string): void {
+		if (typeof to === 'string') {
+			to = { name: to };
+		}
+
+		if (!to.url && to.name) { // 只有名称,直接前往插件的index
+			to.url = `plugin://${to.name}/index`;
+		}
+
+		if (!to.url) {
+			return;
+		}
+
+		const { params } = to;
+		if (params) {
+			let paramsStr = '';
+			Object.keys(params).forEach((key) => {
+				const val = params[key];
+				paramsStr += `${paramsStr.length > 0 ? '&' : ''}${key}=${wx.$strUtils.toString(val)}`;
+			});
+			to.url += `?${paramsStr}`;
+		}
+		wx.navigateTo({ url: to.url }).then();
+	}
+
 	private static getSysRouteStack(): Array<WxPage.Instance> {
-		const stack = getCurrentPages();
-		if (wx.$isUtils.isArray(stack)) {
-			return stack;
+		// 获取已打开的页面数组
+		const pageArr = getCurrentPages();
+		if (wx.$isUtils.isArray(pageArr)) {
+			// 页面数组反序后才是页面堆栈
+			return pageArr.reverse();
 		}
 		return [];
 	}

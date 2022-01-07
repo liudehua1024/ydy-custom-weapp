@@ -71,7 +71,9 @@ interface GlobalUtils {
 	$strUtils: StrUtils;
 	$numUtils: NumberUtils;
 	$arrayUtils: ArrayUtils;
+	$dateUtils: DateUtils;
 	$viewHelper: ViewHelper;
+	$privacyHelper: PrivacyHelper;
 	$toastUtils: ToastUtils;
 	$eventBus: IEventBusManager;
 	$dialogUtils: DialogUtils;

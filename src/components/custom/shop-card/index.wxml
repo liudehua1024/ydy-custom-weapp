@@ -5,9 +5,9 @@
     <view class="shop_info_block">
         <ellip-text class="shop_name">{{shopInfo.shopName}}</ellip-text>
         <view class="shop_month_sales">
-            <block wx:if="{{monthSales <= 0}}">
-                月销量 {{monthSales}}
-            </block>
+<!--            <block wx:if="{{monthSales <= 0}}">-->
+<!--                月销量 {{monthSales}}-->
+<!--            </block>-->
         </view>
         <view class="other_block">
             <scroll-view class="tag_scroll_block" scroll-x="{{true}}">

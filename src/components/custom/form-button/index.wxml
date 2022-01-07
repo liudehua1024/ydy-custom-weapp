@@ -1,0 +1,16 @@
+<button class="filed-class"
+        size="{{size}}"
+        type="{{type}}"
+        plain="{{plain}}"
+        disabled="{{disabled}}"
+        loading="{{loading}}"
+        form-type="{{formType}}"
+        open-type="{{openType}}"
+        hover-class="{{hoverClass}}"
+        hover-stop-propagation="{{hoverStopPropagation}}"
+        hover-start-time="{{hoverStartTime}}"
+        hover-stay-time="{{hoverStayTime}}"
+        lang="{{lang}}"
+        bind:tap="onClick">
+    <slot/>
+</button>

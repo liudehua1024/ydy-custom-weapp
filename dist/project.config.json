@@ -35,11 +35,14 @@
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
-    "showES6CompileOption": false
+    "disableUseStrict": false,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false,
+    "minifyWXML": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.0",
-  "appid": "wxcf87b2d86683848d",
+  "appid": "wx8e2a8c7ec0cd59ba",
   "projectname": "ydy-custom-weapp",
   "cloudfunctionTemplateRoot": "",
   "watchOptions": {

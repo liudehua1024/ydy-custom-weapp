@@ -116,7 +116,7 @@ Component({
 			if (backMode === 'default') {
 				wx.$router.pop(1).then();
 			} else {
-				this.triggerEvent('onBack');
+				this.triggerEvent('back', {}, { bubbles: true, capturePhase: true, composed: true });
 			}
 		}
 	}

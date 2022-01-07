@@ -1,0 +1,124 @@
+.map {
+  width: 100%;
+  height: unit(260, rpx);
+  z-index: 1;
+}
+
+.choose_location_container {
+  width: calc(100% - unit(40, rpx));
+  margin: unit(20, rpx) unit(20, rpx) 0;
+  background: white;
+  border-radius: unit(20, rpx);
+  font-size: unit(28, rpx);
+  z-index: 2;
+  overflow: hidden;
+
+  .info {
+    width: 100%;
+    min-height: unit(80, rpx);
+    padding: unit(20, rpx) unit(50, rpx) unit(20, rpx) unit(20, rpx);
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+
+    .full_district {
+      font-size: unit(26, rpx);
+      color: #999999;
+    }
+
+    .icon_arrow {
+      position: absolute;
+      right: unit(40, rpx);
+    }
+  }
+
+  .location_placeholder {
+    width: 100%;
+    min-height: unit(80, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    color: #d1121a;
+  }
+}
+
+.edit_info_container {
+  width: calc(100% - unit(40, rpx));
+  margin: unit(20, rpx);
+  border-radius: unit(20, rpx);
+  background: white;
+
+  .info_block {
+    width: 100%;
+    height: unit(100, rpx);
+    padding: 0 unit(20, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: unit(28, rpx);
+
+    .hint_text {
+      min-width: unit(120, rpx);
+      font-weight: bold;
+      color: #2D2D2D;
+    }
+
+    .input_info {
+      width: 0;
+      height: unit(60, rpx);
+      flex-grow: 1;
+      color: black;
+    }
+
+    .clear_btn {
+      width: unit(60, rpx);
+      height: unit(60, rpx);
+    }
+
+    .gender_radio_group_block {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-start;
+      justify-content: center;
+      line-height: unit(28, rpx);
+
+      .gender_radio_block {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .def_tag_checkbox_group_block {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-start;
+      justify-content: center;
+      line-height: unit(28, rpx);
+    }
+  }
+
+  .line {
+    width: calc(100% - unit(160, rpx));
+    margin: 0 unit(20, rpx) 0 unit(140, rpx);
+    background: #F0F0F0;
+    height: 1px;
+    z-index: 1;
+  }
+}
+
+.save_btn_block {
+  position: absolute;
+  bottom: unit(20, rpx);
+  margin: 0 unit(20, rpx);
+  width: calc(100% - unit(40, rpx));
+  height: unit(80, rpx);
+  border-radius: unit(40, rpx);
+  background: #D1121A;
+  font-size: unit(30, rpx);
+  color: white;
+}

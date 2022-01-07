@@ -1,0 +1,196 @@
+.order_status_container {
+  width: 100%;
+  background: red;
+  padding: unit(20, rpx) unit(30, rpx);
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  .order_status {
+    font-size: unit(36, rpx);
+    font-weight: bold;
+    color: white;
+
+    .count_time {
+      width: max-content;
+    }
+  }
+}
+
+.order_container {
+  width: 100%;
+  height: 0;
+  flex-grow: 1;
+}
+
+.not_payment_info_block, .cancel_info_block {
+  width: calc(100% - unit(60, rpx));
+  margin: unit(20, rpx) unit(30, rpx) 0 unit(30, rpx);
+  background: #FFFFFF;
+  border-radius: unit(20, rpx);
+  font-size: unit(28, rpx);
+  color: #595959;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: unit(24, rpx) unit(30, rpx);
+}
+
+.not_payment_info_block {
+
+  .btn_block {
+    width: 100%;
+    margin-top: unit(20, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+
+    .btn {
+      width: 40%;
+      height: unit(52, rpx);
+      border-radius: unit(26, rpx);
+      font-size: unit(28, rpx);
+    }
+
+    .cancel_btn {
+      background: #DDDDDD;
+      color: #999999;
+    }
+
+    .payment_btn {
+      background: #D1121A;
+      color: white;
+    }
+  }
+}
+
+.cancel_info_block {
+  flex-flow: row nowrap;
+}
+
+.line {
+  margin-top: unit(20, rpx);
+  width: 100%;
+  height: unit(1, rpx);
+  background: #F3F3F3;
+}
+
+.order_goods_info_container {
+  width: calc(100% - unit(60, rpx));
+  margin: unit(30, rpx) unit(30, rpx) 0 unit(30, rpx);
+  background: #FFFFFF;
+  border-radius: unit(20, rpx);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: unit(24, rpx) unit(30, rpx);
+
+  .shop_name {
+    font-size: unit(28, rpx);
+    font-weight: bold;
+  }
+
+  .order_goods_list_block {
+    max-height: calc(unit(140*3, rpx) + unit(20, rpx));
+    margin-top: unit(20, rpx);
+    overflow: hidden;
+  }
+
+  .expand {
+    height: fit-content;
+    max-height: unset;
+  }
+
+  .expand_goods_list_btn {
+    width: 100%;
+    height: unit(48, rpx);
+    margin: 0 auto;
+    background: none;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    font-size: unit(24, rpx);
+    color: #999999;
+  }
+
+  .expand_btn {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, .6), #FFFFFF);
+    margin-top: unit(-40, rpx);
+  }
+
+  .total_amount_container {
+    width: 100%;
+    margin-top: unit(24, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    color: black;
+    font-size: unit(30, rpx);
+  }
+}
+
+.delivery_info_container, .order_other_info_container {
+  width: calc(100% - unit(60, rpx));
+  margin: unit(30, rpx) 0 unit(30, rpx) unit(30, rpx);
+  border-radius: unit(20, rpx);
+  background: white;
+  padding: 0 unit(30, rpx);
+  font-size: unit(28, rpx);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .title {
+    width: 100%;
+    height: unit(60, rpx);
+    margin-top: unit(20, rpx);
+    font-weight: bold;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .info_block {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: unit(20, rpx) 0;
+
+    .hint_text {
+      width: unit(120, rpx);
+      color: #2D2D2D;
+      font-weight: bold;
+    }
+
+    .info {
+      width: 0;
+      flex-grow: 1;
+      margin: 0 unit(10, rpx) 0 unit(20, rpx);
+      color: #848587;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .receiver_address_info {
+      flex-flow: column nowrap;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+  }
+}
+
+
+.order_other_info_container {
+}

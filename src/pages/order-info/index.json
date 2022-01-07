@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "ellip-text": "../../components/custom/ellip-text/index",
+    "order-goods-card": "../../components/custom/order-goods-card/index",
+    "my-icon": "../../components/custom/icon/index",
+    "price": "../../components/custom/price/index",
+    "count-down": "../../components/custom/count-down/index"
+  }
+}

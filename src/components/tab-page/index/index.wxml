@@ -7,6 +7,15 @@
         bind:onRefresh="onRefresh"
         bind:onLoadMore="onLoadMore">
     <view>
+        <divider
+                my-class="load-end-class"
+                line-class="load-end-line-class"
+                height="60rpx"
+                lineHeight="2"
+                size=""
+                color=""
+                content="商品分类"/>
+
         <block wx:for="{{subShopList}}" wx:key="index">
             <shop-card my-class="shop_card_container"
                        click-class="shop_card_item_click"

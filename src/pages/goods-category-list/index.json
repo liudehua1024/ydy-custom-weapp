@@ -5,6 +5,7 @@
     "list-view": "../../components/custom/list-view/index",
     "lazy-load-image": "../../components/custom/lazy-load-image/index",
     "ellip-text": "../../components/custom/ellip-text/index",
+    "my-icon": "../../components/custom/icon/index",
     "tag": "../../components/custom/tag/index",
     "goods-car-panel": "../../components/custom/goods-car-panel/index"
   }

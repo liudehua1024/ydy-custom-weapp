@@ -1,0 +1,43 @@
+<view class="order-card__container" bind:tap="onToOrderInfo">
+    <view class="head_block">
+        <view class="shop_info_block" catch:tap="onToShopInfo">
+            <view class="shop_logo_block">
+                <lazy-load-image class="shop_logo" mode="aspectFill" src="{{info.shopInfo.shopImgUrl}}"
+                                 defaultSrc="/assets/default_img.png"/>
+            </view>
+            <view class="info_block">
+                <view class="shop_name_block">
+                    <ellip-text class="shop_name">{{info.shopInfo.shopName;}}</ellip-text>
+                    <my-icon name="arrow-right" color="#666666" size="36"/>
+                </view>
+            </view>
+        </view>
+        <view class="order_status_block">
+            <block wx:if="{{info.status==1}}">待付款</block>
+            <block wx:if="{{info.status==2}}">待配送</block>
+            <block wx:if="{{info.status==3}}">已完成</block>
+            <block wx:if="{{info.status==4}}">已取消</block>
+        </view>
+    </view>
+    <view class="content_block">
+        <scroll-view class="goods_scroll_block" scroll-x="{{true}}" catch:scroll="onClick">
+            <view class="goods_list_block">
+                <block wx:for="{{info.goodsList}}" wx:key="index">
+                    <view wx:if="{{index>0}}" style="width:20rpx;height:100%"/>
+                    <view class="goods_info_block">
+                        <view class="goods_logo_block">
+                            <lazy-load-image class="goods_logo" mode="scaleToFill" src="{{item.goodsCoverImg}}"
+                                             defaultSrc="/assets/default_img.png"/>
+                        </view>
+                        <ellip-text class="goods_name_block">{{item.goodsName;}}</ellip-text>
+                    </view>
+                </block>
+            </view>
+        </scroll-view>
+        <view class="order_count_info">
+            <price value="{{info.payAmount}}" style="font-weight:bold;" unit="¥" size="30" smallSize="24" unitMode="small"
+                   color="#2D2D2D"/>
+            <view>共 {{info.goodsList.length}} 件</view>
+        </view>
+    </view>
+</view>

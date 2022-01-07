@@ -2,7 +2,7 @@
     <view class="goods-car__head_block">
         <text>购物车</text>
         <text class="total_buy_count_block">(共{{totalBuyCount}}件商品)</text>
-        <text wx:if="{{totalReducedPrice}}" class="total_reduced_price_block">已优惠{{totalReducedPrice}}元</text>
+        <text wx:if="{{totalReducedPrice>0}}" class="total_reduced_price_block">已优惠{{totalReducedPrice}}元</text>
         <view class="clear_goods" bind:tap="onClearGoods">清空</view>
     </view>
     <list-view class="goods-car__list_container" style="height:{{listHeight}}">
@@ -24,7 +24,7 @@
         <view class="total_price_block">
             <price class="total_sell_price" value="{{totalSellPrice}}" unit="¥" unitMode="small" smallRate="0.8"
                    size="38"/>
-            <block wx:if="{{totalReducedPrice}}">
+            <block wx:if="{{totalReducedPrice>0}}">
                 <view style="height:5rpx;width:5rpx;"></view>
                 <price value="{{totalOriginPrice}}" delLine color="#999999" unit="¥" size="28"/>
             </block>

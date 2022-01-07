@@ -1,0 +1,19 @@
+<page-root>
+    <radio-group class="cancel_reason_container" bind:change="onChange">
+        <view class="title_hint">选取取消订单原因</view>
+        <block wx:for="{{reasonArr}}" wx:key="index">
+            <view class="line"></view>
+            <label class="reason_block">
+                <view class="hint_text">{{item;}}</view>
+                <radio style="width:0;height:0;overflow:hidden;" value="{{index}}" checked="{{chooseIndex==index}}"/>
+                <my-icon name="{{chooseIndex===index?'radio-selected':'radio-unselect'}}"
+                         color="{{chooseIndex===index?'red':'#DBDBDB'}}" size="40"/>
+            </label>
+        </block>
+        <view class="input_reason_block" wx:if="{{chooseIndex==reasonArr.length-1}}">
+            <textarea class="input_reason" maxlength="200" placeholder="请输入详细原因" bind:input="onInput"></textarea>
+            <view class="length_info">{{inputReason.length}}/200</view>
+        </view>
+    </radio-group>
+    <button class="submit_btn_block" bind:tap="onSubmit">保存</button>
+</page-root>

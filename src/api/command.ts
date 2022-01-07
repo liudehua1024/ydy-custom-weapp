@@ -86,10 +86,59 @@ export class ApiCommand extends RequestManager implements ApiRequest {
 		this.sendRequest('POST', '/api/auth/buyer/order/submit', config);
 	}
 
-	/**支付订单(获取订单预支付信息)*/
-	payOrder(config: CustomConfigReq<PayOrderReq, PaymentInfoResp>): void {
+	/**支付订单(生成订单预支付信息)*/
+	genOrderPaymentInfo(config: CustomConfigReq<GenOrderPaymentInfoReq, PaymentInfoResp>): void {
 		config.custom = Object.assign({}, config.custom, { useToken: true });
-		this.sendRequest('POST', '/api/auth/buyer/order/pay', config);
+		this.sendRequest('POST', '/api/auth/buyer/order/payment', config);
+	}
+
+	/**获取订单列表*/
+	getOrderList(config: CustomConfigReq<GetOrderListReq, GetOrderListResp>): void {
+		config.req = this.handlePaginationReq(config.req);
+		config.custom = Object.assign({}, config.custom, { useToken: true });
+		this.sendRequest('GET', '/api/auth/buyer/order/list', config);
+	}
+
+	/**获取订单信息*/
+	getOrderInfo(config: CustomConfigReq<GetOrderInfoReq, OrderInfo>): void {
+		config.custom = Object.assign({}, config.custom, { useToken: true });
+		this.sendRequest('GET', '/api/auth/buyer/order/info', config);
+	}
+
+	/**取消订单*/
+	cancelOrder(config: CustomConfigReq<CancelOrderReq, void>): void {
+		config.custom = Object.assign({}, config.custom, { useToken: true });
+		this.sendRequest('POST', '/api/auth/buyer/order/cancel', config);
+	}
+
+	/**获取地址列表*/
+	getUserAddressList(config: CustomConfigReq<void, GetUserAddressListResp>): void {
+		config.custom = Object.assign({}, config.custom, { useToken: true });
+		this.sendRequest('GET', '/api/auth/buyer/address/list', config);
+	}
+
+	/**获取默认地址*/
+	getUserDefAddress(config: CustomConfigReq<void, UserAddressInfo>): void {
+		config.custom = Object.assign({}, config.custom, { useToken: true });
+		this.sendRequest('GET', '/api/auth/buyer/address/def', config);
+	}
+
+	/**添加地址*/
+	addUserAddress(config: CustomConfigReq<UserAddressInfo, void>): void {
+		config.custom = Object.assign({}, config.custom, { useToken: true });
+		this.sendRequest('POST', '/api/auth/buyer/address/add', config);
+	}
+
+	/**修改地址*/
+	modifyUserAddress(config: CustomConfigReq<UserAddressInfo, void>): void {
+		config.custom = Object.assign({}, config.custom, { useToken: true });
+		this.sendRequest('POST', '/api/auth/buyer/address/edit', config);
+	}
+
+	/**删除地址*/
+	delUserAddress(config: CustomConfigReq<DelUserAddressReq, void>): void {
+		config.custom = Object.assign({}, config.custom, { useToken: true });
+		this.sendRequest('DELETE', '/api/auth/buyer/address/del', config);
 	}
 
 	private handlePaginationReq<T extends PaginationReq>(params: T): T {

@@ -21,12 +21,15 @@ interface AddressInfo {
 	city?: string; // 市
 	district?: string; // 区/县
 	address?: string; // 详细地址
-	latitude?: number; // 经度
-	longitude?: number; // 纬度
+	homeAddress?: string; // 门牌号(具体房间)
+	longitude?: number; // 经度
+	latitude?: number; // 纬度
 }
 
 interface UserAddressInfo extends AddressInfo {
+	id?: number; // 记录id
 	receiverName: string; // 收件人姓名
-	gender: number; // 性别: 1男 2女
+	gender?: number; // 性别: 1男 2女
 	phoneNumber: string;// 手机号码
+	defTag?: number; // 1默认地址
 }

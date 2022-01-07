@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "lazy-load-image": "../lazy-load-image/index",
+    "ellip-text": "../ellip-text/index",
+    "my-icon": "../icon/index",
+    "price": "../price/index"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "my-icon": "../../components/custom/icon/index"
+  }
+}

@@ -1,29 +1,74 @@
 <page-root>
+    <view class="head_bg"></view>
     <scroll-view class="confirm-order_container" scroll-y="{{true}}">
-        <view class="head_bg"></view>
-        <view class="delivery_tab_container">
-            <view class="tab_title_container {{defDeliveryType===1? 'checked_left':'checked_right'}}">
-                <view class="^flex-center tab_title left" data-type="{{1}}" bind:tap="onChooseDeliveryType">预约自提</view>
-                <view class="^flex-center tab_title right" data-type="{{2}}" bind:tap="onChooseDeliveryType">送货上门</view>
-                <view class="normal_bg"></view>
+        <view class="delivery_container">
+            <view class="delivery_tab_title">
+                <view class="title_block left_title {{deliveryType===1? 'checked':''}}"
+                      data-type="{{1}}"
+                      bind:tap="onChooseDeliveryType">
+                    <view class="title">服务点自提</view>
+                    <view class="triangle"></view>
+                </view>
+                <view class="title_block right_title {{deliveryType===2? 'checked':''}}"
+                      data-type="{{2}}"
+                      bind:tap="onChooseDeliveryType">
+                    <view class="title">外卖到家</view>
+                    <view class="triangle"></view>
+                </view>
             </view>
-            <view wx:if="{{defDeliveryType===1}}" class="tab_content_container_left">
+            <view class="delivery_tab_content left_content" wx:if="{{deliveryType===1}}">
                 <ellip-text class="service_name">{{serviceShop.shopName;}}</ellip-text>
                 <ellip-text class="service_address" maxLine="2">{{serviceShop.address;}}</ellip-text>
                 <view class="aog_time_block">
-                    <view>到货时间</view>
-                    <view class="aog_time">{{util.convertAogTimeStr(shopInfo.aogIntervalDay, shopInfo.aogTime);}}</view>
+                    <view>提货时间</view>
+                    <view class="aog_time">
+                        {{util.convertAogTimeStr(shopInfo.aogIntervalDay, shopInfo.aogTime);}} 可自提
+                    </view>
+                </view>
+                <view class="phone_number_block">
+                    <view>预留电话</view>
+                    <input id="phoneNumber"
+                           name="phoneNumber"
+                           class="input_info"
+                           type="number"
+                           confirm-type="done"
+                           maxlength="11"
+                           placeholder="点击输入收货手机号"
+                           bind:focus="onInputPhoneNumberFocusChange"
+                           bind:blur="onInputPhoneNumberFocusChange"
+                           model:value="{{inputPhoneNumber}}"/>
+                    <my-icon wx:if="{{!inputPhoneNumberFocus}}" style="margin-left:10rpx" name="edit" color="#595959"
+                             size="28rpx"/>
                 </view>
             </view>
-            <view wx:if="{{defDeliveryType===2}}" class="tab_content_container_right">
-
+            <view class="delivery_tab_content right_content" wx:else>
+                <view class="address_block">
+                    <view class="address_info" bind:tap="onChooseAddress">
+                        <view class="hint_text" wx:if="{{!addressInfo.city}}">点击选择地址</view>
+                        <ellip-text class="info" wx:else>
+                            {{addressInfo.address;}}{{addressInfo.homeAddress;}}
+                        </ellip-text>
+                        <my-icon class="arrow_right" name="arrow-right" color="#848587" size="30rpx"/>
+                    </view>
+                    <view class="receiver_info" wx:if="{{addressInfo.city}}">
+                        <ellip-text class="receiver_name">{{addressInfo.receiverName;}}</ellip-text>
+                        <view class="gender">{{addressInfo.gender == 1 ? '先生' : '女士';}}</view>
+                        <view class="phone_number">{{addressInfo.phoneNumber;}}</view>
+                    </view>
+                </view>
+                <view class="aog_time_block">
+                    <view>送货时间</view>
+                    <view class="aog_time">
+                        {{util.convertAogTimeStr(shopInfo.aogIntervalDay, shopInfo.aogTime);}} 后
+                    </view>
+                </view>
             </view>
         </view>
         <view class="order_info_container">
-            <ellip-text class="shop_name">{{shopInfo.shopName;}}</ellip-text>
+            <ellip-text class="shop_name" maxLine="1">{{shopInfo.shopName;}}</ellip-text>
             <view class="line"></view>
             <view class="order_goods_list_block {{expandGoodsList?'expand':''}}">
-                <block wx:for="{{needConfirmOrderInfo.goodsList}}">
+                <block wx:for="{{needConfirmOrderInfo.goodsList}}" wx:key="index">
                     <order-goods-card goodsInfo="{{item}}"></order-goods-card>
                 </block>
             </view>
@@ -38,37 +83,60 @@
                     <my-icon name="arrow-down" size="24rpx" style="margin-left:10rpx"/>
                 </block>
             </view>
-            <view class="line"></view>
-            <view class="total_amount_container">
-                <block wx:if="{{needConfirmOrderInfo.totalReducedPrice>0}}">
-                    <text>已优惠</text>
-                    <price value="{{needConfirmOrderInfo.totalReducedPrice}}"
-                           unit="¥"
-                           size="32"
-                           unitMode="small"
-                           smallSize="26"
-                           color="red"
-                           style="margin:0 30rpx 0 10rpx"/>
-                </block>
-                <text style="margin-right:10rpx">小计</text>
-                <price value="{{needConfirmOrderInfo.payAmount}}"
-                       unit="¥"
-                       size="38"
-                       unitMode="small"
-                       smallSize="28"/>
-            </view>
+            <!--                <view class="line"></view>-->
+            <!--                <view class="total_amount_container">-->
+            <!--                    <block wx:if="{{needConfirmOrderInfo.totalReducedPrice>0}}">-->
+            <!--                        <text>已优惠</text>-->
+            <!--                        <price value="{{needConfirmOrderInfo.totalReducedPrice}}"-->
+            <!--                               unit="¥"-->
+            <!--                               size="32"-->
+            <!--                               unitMode="small"-->
+            <!--                               smallSize="26"-->
+            <!--                               color="red"-->
+            <!--                               style="margin:0 30rpx 0 10rpx"/>-->
+            <!--                    </block>-->
+            <!--                    <text style="margin-right:10rpx">小计</text>-->
+            <!--                    <price value="{{needConfirmOrderInfo.payAmount}}"-->
+            <!--                           unit="¥"-->
+            <!--                           size="38"-->
+            <!--                           unitMode="small"-->
+            <!--                           smallSize="28"/>-->
+            <!--                </view>-->
         </view>
-        <view class="receiver_container">
-            <view class="info_block">
+        <view class="other_info_container">
+            <view class="info_block" bind:tap="onChangeRemarks">
                 <text class="hint_text">备注</text>
-                <ellip-text>{{remarks?remarks:'无'}}</ellip-text>
-                <my-icon class="arrow_right" name="arrow-right" size="22rpx"/>
-            </view>
-            <view class="info_block">
-                <text class="hint_text">收件人</text>
-                <my-icon class="arrow_right" name="arrow-right" size="22rpx"/>
+                <view class="info">
+                    <ellip-text>{{remarks ? remarks : '无';}}</ellip-text>
+                </view>
+                <my-icon class="arrow_right" name="arrow-right" color="#848587" size="30rpx"/>
             </view>
         </view>
+        <view class="bottom_block"></view>
     </scroll-view>
+    <view class="payment_info_container">
+        <view class="line"></view>
+        <view class="payment_amount_info">
+            <view class="hint_text">应付</view>
+            <price value="{{needConfirmOrderInfo.payAmount}}"
+                   unit="¥"
+                   size="36"
+                   unitMode="small-bottom"
+                   color="#D1121A"
+                   unitInterval="4rpx"/>
+            <view class="reduced_amount_info" wx:if="{{needConfirmOrderInfo.totalReducedPrice>0}}">
+                <text>（</text>
+                <text>已优惠</text>
+                <price value="{{needConfirmOrderInfo.totalReducedPrice}}"
+                       unit="¥"
+                       size="28"
+                       unitMode="small"
+                       smallSize="26"
+                       color="#D1121A"/>
+                <text>）</text>
+            </view>
+        </view>
+        <view class="payment_btn" bind:tap="onSubmitOrder">去支付</view>
+    </view>
 </page-root>
 <wxs src="./index.wxs" module="util"></wxs>

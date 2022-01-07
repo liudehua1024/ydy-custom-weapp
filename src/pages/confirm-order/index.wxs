@@ -1,3 +1,4 @@
+
 function convertAogTimeStr(aogIntervalDay, aogTime) {
 	if (!aogIntervalDay && !aogTime) {
 		return '随时提货';
@@ -16,6 +17,8 @@ function convertAogTimeStr(aogIntervalDay, aogTime) {
 			break;
 	}
 
+	str += ' ';
+
 	var h = aogTime / (60 * 60);
 	aogTime = aogTime % (60 * 60);
 	var m = aogTime / 60;
@@ -23,6 +26,8 @@ function convertAogTimeStr(aogIntervalDay, aogTime) {
 	str += h < 10 ? '0' + h : h;
 	str += ':';
 	str += m < 10 ? '0' + m : m;
+
+	str += ' ';
 	return str;
 }
 

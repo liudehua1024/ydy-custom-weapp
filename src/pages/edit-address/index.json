@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "page-root": "../../components/custom/page-root/index",
+    "ellip-text": "../../components/custom/ellip-text/index",
+    "my-icon": "../../components/custom/icon/index"
+  }
+}

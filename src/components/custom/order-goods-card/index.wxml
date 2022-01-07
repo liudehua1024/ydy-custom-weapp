@@ -1,6 +1,6 @@
 <view class="order-goods-card__container my-class">
     <view class="goods_logo_block">
-        <image class="goods_logo" mode="scaleToFill" src="{{goodsInfo.goodsCoverImg}}"/>
+        <lazy-load-image class="goods_logo" mode="scaleToFill" src="{{goodsInfo.goodsCoverImg}}"/>
     </view>
     <view class="buy_info_block">
         <view class="goods_info_block">

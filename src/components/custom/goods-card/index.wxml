@@ -11,7 +11,7 @@
         <ellip-text class="goods_name" maxLine="2">{{goodsInfo.name}}</ellip-text>
         <ellip-text class="goods_desc" wx:if="{{goodsInfo.goodsDesc}}">{{goodsInfo.goodsDesc}}</ellip-text>
         <view class="goods_sales">
-            月销量{{goodsInfo.monthSales}}
+<!--            月销量{{goodsInfo.monthSales}}-->
             库存{{goodsInfo.stock}}
         </view>
         <view class="other_block">

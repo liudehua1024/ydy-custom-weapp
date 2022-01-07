@@ -1,5 +1,5 @@
 Component({
-	// options: { virtualHost: true },
+	externalClasses: ['my-class'],
 	properties: {
 		maxLine: {
 			type: Number,
@@ -11,7 +11,7 @@ Component({
 		line: 0
 	},
 	observers: {
-		'maxLine': function (maxLine: number | string) {
+		'maxLine': function(maxLine: number | string) {
 			this.initLine(maxLine);
 		}
 	},
@@ -22,7 +22,7 @@ Component({
 		}
 	},
 	methods: {
-		initLine: function (maxLine: number | string) {
+		initLine: function(maxLine: number | string) {
 			if (wx.$isUtils.isNumber(maxLine)) {
 				this.setData({
 					line: Number(maxLine)

@@ -1,121 +1,233 @@
-.confirm-order_container {
+.content__container {
   position: relative;
-  width: 100%;
-  height: 100%;
-
-  .head_bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: unit(160, rpx);
-    background: red;
-    z-index: 1;
-  }
 }
 
-.delivery_tab_container {
-  position: relative;
-  width: calc(100% - unit(60, rpx));
-  margin: unit(20, rpx) unit(30, rpx) 0 unit(30, rpx);
+.head_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: unit(120, rpx);
+  background: red;
+  z-index: 1;
+}
+
+.confirm-order_container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
+  z-index: 2;
+}
+
+.delivery_container {
+  position: relative;
+  margin: unit(30, rpx) unit(20, rpx) 0 unit(30, rpx);
+  width: calc(100% - unit(60, rpx));
+  font-size: unit(28, rpx);
   z-index: 2;
 
-  .tab_title_container {
+  .delivery_tab_title {
     position: relative;
     width: 100%;
-    height: unit(80, rpx);
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    font-size: unit(28, rpx);
-    color: #333333;
+    height: unit(68, rpx);
 
-    .normal_bg {
+    .title_block {
       position: absolute;
-      width: 96%;
-      height: unit(70, rpx);
-      border-radius: unit(20, rpx) unit(20, rpx) 0 0;
-      background: rgba(255, 255, 255, .6);
-      z-index: 1;
-    }
-
-    .tab_title {
-      width: 44%;
-      height: unit(70, rpx);
-      z-index: 2;
-    }
-  }
-
-  .checked_left {
-    justify-content: flex-start;
-
-    .left {
-      width: 52%;
-      height: 100%;
-      color: red;
-      background: #FFFFFF;
-      border-radius: unit(20, rpx) unit(20, rpx) 0 0;
-    }
-  }
-
-  .checked_right {
-    justify-content: flex-end;
-
-    .right {
-      width: 56%;
-      height: 100%;
-      color: red;
-      background: #FFFFFF;
-      border-radius: unit(20, rpx) unit(20, rpx) 0 0;
-    }
-  }
-
-  .tab_content_container_left {
-    position: relative;
-    width: 100%;
-    height: unit(230, rpx);
-    padding: unit(20, rpx) unit(30, rpx);
-    background: rgb(255, 255, 255);
-    border-radius: 0 unit(20, rpx) unit(20, rpx) unit(20, rpx);
-
-    .service_name {
-      color: black;
-      font-size: unit(38, rpx);
-      font-weight: 600;
-    }
-
-    .service_address {
-      font-size: unit(28, rpx);
-      color: #999999;
-    }
-
-    .aog_time_block {
-      position: absolute;
-      bottom: unit(20, rpx);
-      width: calc(100% - unit(48, rpx));
+      bottom: 0;
+      width: 46%;
+      height: unit(52, rpx);
+      margin: 0 unit(20, rpx) 0 unit(20, rpx);
+      overflow: hidden;
       display: flex;
       flex-flow: row nowrap;
       align-items: flex-start;
+      justify-content: flex-start;
+      z-index: 1;
+
+      .title {
+        flex-grow: 1;
+        width: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #595959;
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .triangle {
+        display: none;
+        width: 0;
+        height: 0;
+        border-bottom: unit(100, rpx) solid white;
+      }
+    }
+
+    .left_title {
+      left: 0;
+
+      .title {
+        border-radius: unit(20, rpx) 0 0 0;
+      }
+
+      .triangle {
+        border-right: unit(40, rpx) solid transparent;
+      }
+    }
+
+    .right_title {
+      right: 0;
+      flex-flow: row-reverse nowrap;
+
+      .title {
+        border-radius: 0 unit(20, rpx) 0 0;
+      }
+
+      .triangle {
+        border-left: unit(40, rpx) solid transparent;
+      }
+    }
+
+    .checked {
+      width: calc(50% + unit(50, rpx));
+      height: 100%;
+      margin: 0;
+      z-index: 2;
+
+      .title {
+        color: #d1121a;
+        background: rgba(255, 255, 255, 1);
+      }
+
+      .triangle {
+        display: block;
+      }
+    }
+  }
+
+  .delivery_tab_content {
+    width: 100%;
+    background: white;
+    padding: unit(30, rpx) unit(30, rpx) unit(20, rpx);
+
+    .aog_time_block {
+      width: 100%;
+      height: unit(60, rpx);
+      margin-top: unit(20, rpx);
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
       justify-content: space-between;
       font-size: unit(28, rpx);
-      color: #999999;
+      color: #848587;
 
       .aog_time {
-        color: red;
+        color: #D1121A;
         font-size: unit(28, rpx);
       }
     }
   }
 
-  .tab_content_container_right {
-    width: 100%;
-    height: unit(200, rpx);
-    background: rgb(255, 255, 255);
+  .left_content {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 0 unit(20, rpx) unit(20, rpx) unit(20, rpx);
+
+    .service_name {
+      color: #2D2D2D;
+      font-size: unit(32, rpx);
+      font-weight: bold;
+    }
+
+    .service_address {
+      font-size: unit(28, rpx);
+      color: #595959;
+    }
+
+    .phone_number_block {
+      width: 100%;
+      height: unit(60, rpx);
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-between;
+      font-size: unit(28, rpx);
+      color: #848587;
+
+      .input_info {
+        width: 0;
+        height: unit(60, rpx);
+        flex-grow: 1;
+        margin-left: unit(40, rpx);
+        text-align: right;
+        color: #d1121a;
+      }
+    }
+  }
+
+  .right_content {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
     border-radius: unit(20, rpx) 0 unit(20, rpx) unit(20, rpx);
+
+    .address_block {
+      width: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      .address_info {
+        width: 100%;
+        height: unit(60, rpx);
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: flex-start;
+
+        .hint_text, .info {
+          width: 0;
+          flex-grow: 1;
+          color: #2D2D2D;
+          font-size: unit(32, rpx);
+        }
+      }
+    }
+
+    .receiver_info {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+      font-size: unit(28, rpx);
+      color: #595959;
+
+      .receiver_name {
+        max-width: unit(160, rpx);
+      }
+
+      .gender {
+        margin-left: unit(10, rpx);
+      }
+
+      .phone_number {
+        margin-left: unit(30, rpx);
+      }
+    }
+
   }
 }
 
@@ -131,7 +243,8 @@
   padding: unit(24, rpx) unit(30, rpx);
 
   .shop_name {
-    font-size: unit(30, rpx);
+    font-size: unit(28, rpx);
+    font-weight: bold;
   }
 
   .line {
@@ -141,13 +254,14 @@
   }
 
   .order_goods_list_block {
-    height: calc(unit(140*3, rpx) + unit(20*2, rpx));
+    max-height: calc(unit(140*3, rpx) + unit(20, rpx));
+    margin-top: unit(20, rpx);
     overflow: hidden;
-    padding: unit(20, rpx) 0;
   }
 
   .expand {
     height: fit-content;
+    max-height: unset;
   }
 
   .expand_goods_list_btn {
@@ -180,37 +294,101 @@
   }
 }
 
-.receiver_container {
-  position: relative;
+.other_info_container {
   width: calc(100% - unit(60, rpx));
-  margin: unit(30, rpx);
+  margin: unit(30, rpx) 0 unit(30, rpx) unit(30, rpx);
   border-radius: unit(20, rpx);
-  padding: unit(24, rpx) unit(60, rpx) unit(24, rpx) unit(30, rpx);
-  background: #FFFFFF;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: flex-start;
-  justify-content: flex-start;
+  background: white;
+  padding: 0 unit(30, rpx);
+  font-size: unit(28, rpx);
 
   .info_block {
     width: 100%;
-    height: unit(80, rpx);
+    padding: unit(20, rpx) 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .hint_text {
+      width: unit(120, rpx);
+      color: #2D2D2D;
+      font-weight: bold;
+    }
+
+    .info {
+      width: 0;
+      flex-grow: 1;
+      margin: 0 unit(10, rpx) 0 unit(20, rpx);
+      color: #848587;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.bottom_block, .payment_info_container {
+  width: 100%;
+  height: unit(110, rpx);
+}
+
+.payment_info_container {
+  position: fixed;
+  bottom: 0;
+  background: white;
+  overflow: hidden;
+  z-index: 999;
+
+  .line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #F0F0F0;
+    width: 100%;
+    height: unit(2, rpx);
+    z-index: 1;
+  }
+
+  .payment_amount_info {
+    width: 100%;
+    height: 100%;
+    margin-left: unit(30, rpx);
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-between;
-    color: #666666;
-    font-size: unit(30, rpx);
+    justify-content: flex-start;
+    color: #2D2D2D;
+    font-size: unit(32, rpx);
 
     .hint_text {
-      color: black;
-      font-weight: 600;
+      margin-right: unit(20, rpx);
     }
 
-    .arrow_right {
-      position: absolute;
-      right: unit(30, rpx);
+    .reduced_amount_info {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: unit(28, rpx);
+      line-height: unit(28, rpx);
+      color: #D1121A;
     }
+  }
 
+  .payment_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: unit(200, rpx);
+    height: 100%;
+    background: red;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: unit(32, rpx);
   }
 }

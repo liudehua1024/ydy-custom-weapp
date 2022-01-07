@@ -2185,7 +2185,7 @@ backgroundAudioManager.src = 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb
 		/** 传入 true 会返回高度信息，由于获取高度需要较高精确度，会减慢接口返回速度
 		 *
 		 * 最低基础库： `1.6.0` */
-		altitude?: string;
+		altitude?: boolean;
 		/** 接口调用结束的回调函数（调用成功、失败都会执行） */
 		complete?: GetLocationCompleteCallback;
 		/** 接口调用失败的回调函数 */

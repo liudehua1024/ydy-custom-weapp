@@ -1,3 +1,4 @@
+import { apiHost } from '@/constants';
 import { checkStatus } from 'checkStatus';
 import { CustomStatusCode, RequestError, ResultSuccessCode } from 'constant';
 
@@ -262,7 +263,7 @@ class HttpRequest {
 
 export const httpRequest = new HttpRequest(
 	{
-		baseUrl: 'https://rgchn.com',
+		baseUrl: apiHost,
 		timeout: 5 * 1000
 	},
 	{

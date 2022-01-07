@@ -24,91 +24,118 @@
         <list-view class="list_root_container"
                    bind:scroll="onListRootScroll"
                    bind:scrollToLower="onListRootScrollToLower">
-            <view class="shop_details_container">
+            <view class="shop_info_container">
                 <view class="shop_basics_info_block">
                     <lazy-load-image class="shop_logo" mode="aspectFill" src="{{shopInfo.shopImgUrl}}"
                                      defaultSrc="/assets/default_img.png"/>
 
-                    <ellip-text class="shop_basics_info shop_name">{{shopInfo.shopName}}</ellip-text>
+                    <ellip-text class="shop_basics_info shop_name">{{shopInfo.shopName;}}</ellip-text>
                     <view class="shop_basics_info shop_month_sales">
-                        月销量 {{shopInfo.monthSales ? shopInfo.monthSales : 0}}
+<!--                        月销量 {{shopInfo.monthSales ? shopInfo.monthSales : 0;}}-->
                     </view>
                 </view>
 
                 <view class="shop_other_info_block">
                     <view class="shop_notice_block">
                         公告：
-                        <ellip-text class="shop_notice">{{shop.shopNotice ? shop.shopNotice : '暂无公告'}}</ellip-text>
+                        <ellip-text class="shop_notice">{{shop.shopNotice ? shop.shopNotice : '暂无公告';}}</ellip-text>
                     </view>
                     <scroll-view class="tag_scroll_block" scroll-x enhanced show-scrollbar="{{false}}">
                         <view class="tag_list_block">
                             <block wx:for="{{tagArr}}" wx:for-item="tag" wx:if="{{tag}}" wx:key="index">
-                                <tag class="tag_note" my-class="tag_note_container">{{tag}}</tag>
+                                <tag class="tag_note" my-class="tag_note_container">{{tag;}}</tag>
                                 <view wx:key="interval-{{index}}" class="tag_interval"></view>
                             </block>
                         </view>
                     </scroll-view>
                 </view>
             </view>
-
-            <view id="shop-bar" class="shop_bar_container"></view>
-            <view class="category_list_container"
-                  wx:if="{{firstCategoryList && firstCategoryList.length > 0}}">
+            <view id="shop-bar" class="shop_bar_container">
+                <view id="cate-block"
+                      class="tag_block {{curTabId==='cate-block'?'tab_checked':''}}"
+                      bind:tap="changeTab">
+                    分类
+                </view>
+                <view id="shop-details-block"
+                      class="tag_block {{curTabId==='shop-details-block'?'tab_checked':''}}"
+                      bind:tap="changeTab">
+                    商家
+                </view>
+            </view>
+            <view class="shop_content_block category_list_container"
+                  wx:if="{{curTabId==='cate-block'}}">
                 <list-view class="list_container list_container_left" enableScroll="{{subListEnableScroll}}">
                     <block wx:for="{{firstCategoryList}}" wx:key="index">
                         <view class="first_category_block {{checkedFirstCategory.categoryId === item.categoryId ? 'category_checked':''}}"
                               data-item="{{item}}"
                               bind:tap="onCheckedFirstCategory">
-                            <ellip-text>{{item.name}}</ellip-text>
+                            <ellip-text my-class="category_name_align" maxLine="2">{{item.name;}}</ellip-text>
                         </view>
                     </block>
                 </list-view>
                 <list-view class="list_container list_container_right" enableScroll="{{subListEnableScroll}}">
-                    <block wx:for="{{util.getSecondLevelCategoryList(checkedFirstCategory.categoryId, secondCategoryListRecord)}}"
-                           wx:for-item="secondCategory" wx:key="index">
-                        <view class="second_category_block">
-                            <view class="second_category_info">
-                                <image wx:if="{{secondCategory.coverImg}}"
-                                       class="category_cover_img"
-                                       mode="aspectFill"
-                                       src="{{secondCategory.coverImg}}"></image>
-                                <view class="category_name {{secondCategory.coverImg?'category_img_name':''}}">
-                                    {{secondCategory.name}}
+                    <view class="second_category_list_content">
+                        <block wx:for="{{util.getSecondLevelCategoryList(checkedFirstCategory.categoryId, secondCategoryListRecord)}}"
+                               wx:key="index">
+                            <view class="second_category_info_block"
+                                  hover-class="second_category_info_block_click"
+                                  hover-stay-time="{{200}}"
+                                  data-item="{{item}}"
+                                  bind:tap="onChooseSecondCategory">
+                                <lazy-load-image class="category_icon_block" src="{{item.iconImg}}"
+                                                 defaultSrc="/assets/default_img.png"/>
+                                <view class="category_name_block category_name_align">
+                                    <ellip-text maxLine="2">{{util.subText(item.name, 6);}}</ellip-text>
                                 </view>
                             </view>
-                            <view class="sub_category_list_block">
-                                <block wx:for="{{secondCategory.children}}" wx:for-item="thirdCategory"
-                                       wx:key="index">
-                                    <view class="third_category_block"
-                                          hover-class="third_category_block_click"
-                                          hover-stay-time="{{200}}"
-                                          data-item="{{thirdCategory}}"
-                                          bind:tap="onChooseThirdCategory">
-                                        <lazy-load-image class="category_icon_block"
-                                                         src="{{thirdCategory.iconImg}}"
-                                                         defaultSrc="/assets/default_img.png"></lazy-load-image>
-                                        <view class="category_name_block">
-                                            {{util.subText(thirdCategory.name, 5)}}
-                                        </view>
-                                    </view>
-                                </block>
-                            </view>
-                        </view>
-                    </block>
+                        </block>
+                    </view>
                 </list-view>
+            </view>
+            <view class="shop_content_block shop_details_block"
+                  wx:if="{{curTabId==='shop-details-block'}}">
+                <view class="interval_block"></view>
+                <view class="details_info_block">
+                    <view class="info_block shop_address_block" bind:tap="onLookShopAddr">
+                        <my-icon name="location" color="#999999"/>
+                        <view class="interval"/>
+                        <ellip-text class="shop_addr" maxLine="2">
+                            {{shopInfo.province;}}{{shopInfo.city;}}{{shopInfo.district;}}{{shopInfo.address;}}{{shopInfo.homeAddress;}}
+                        </ellip-text>
+                    </view>
+                    <view class="line"/>
+                    <view class="info_block shop_phone_block" bind:tap="onCallShopPhone">
+                        <my-icon name="phone" color="#999999"/>
+                        <view class="interval"/>
+                        <view>{{shopInfo.shopPhoneNumbers;}}</view>
+                    </view>
+                </view>
             </view>
         </list-view>
     </movable-area>
     <page-container
-            show="{{totalBuyCount && showGoodsCarPanel}}"
+            show="{{showChoosePhoneNumberPanel||(totalBuyCount&&showGoodsCarPanel)}}"
             position="bottom"
             duration="{{500}}"
             close-on-slide-down="{{true}}"
-            bind:leave="closeGoodsCarPanel"
-            bind:clickoverlay="closeGoodsCarPanel"
-            custom-style="background:none"
+            bind:leave="closePageContainerPanel"
+            bind:clickoverlay="closePageContainerPanel"
     >
-        <goods-car-panel class="goods_car_panel_container"></goods-car-panel>
+        <goods-car-panel wx:if="{{totalBuyCount&&showGoodsCarPanel}}"
+                         class="goods_car_panel_container"></goods-car-panel>
+        <view class="choose_phone_number_block" wx:elif="{{showChoosePhoneNumberPanel}}">
+            <block wx:for="{{shopPhoneNumberArr}}" wx:key="index">
+                <view wx:if="{{index>0}}" class="line"/>
+                <view class="phone_number_block flex-center"
+                      hover-class="phone_number_selected"
+                      hover-stay-time="{{200}}"
+                      mark:phoneNumber="{{item}}"
+                      mark:status="{{1}}"
+                      bind:tap="onPhoneNumberClick">
+                    {{item;}}
+                </view>
+            </block>
+        </view>
     </page-container>
 </page-root>
 <wxs src="./index.wxs" module="util"></wxs>

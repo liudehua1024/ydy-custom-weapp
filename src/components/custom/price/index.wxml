@@ -3,7 +3,7 @@
     <view wx:if="{{delLine}}" class="del_line_block" style="background:{{color}}"></view>
     <block wx:if="{{unit}}">
         <text style="{{unitStyle}}">{{unit}}</text>
-        <text style="width:2rpx;{{unitStyle}}"></text>
+        <text style="{{unitIntervalStyle}}"></text>
     </block>
     <view class="price_block">
         <view class="price" style="{{prefixPriceStyle}}">{{prefixPrice}}</view>

@@ -13,7 +13,7 @@
         <slot></slot>
     </block>
     <block wx:else>
-        <view class="content_container">
+        <view class="^content__container content">
             <slot></slot>
         </view>
     </block>

@@ -46,5 +46,29 @@ interface ApiRequest extends HttpRequestManager {
 	submitOrder(config: CustomConfigReq<SubmitOrderReq, SubmitOrderResp>): void;
 
 	/**支付订单(获取订单预支付信息)*/
-	payOrder(config: CustomConfigReq<PayOrderReq, PaymentInfoResp>): void;
+	genOrderPaymentInfo(config: CustomConfigReq<GenOrderPaymentInfoReq, PaymentInfoResp>): void;
+
+	/**获取订单列表*/
+	getOrderList(config: CustomConfigReq<GetOrderListReq, GetOrderListResp>): void;
+
+	/**获取订单信息*/
+	getOrderInfo(config: CustomConfigReq<GetOrderInfoReq, OrderInfo>): void;
+
+	/**取消订单*/
+	cancelOrder(config: CustomConfigReq<CancelOrderReq, void>): void;
+
+	/** 获取用户地址 */
+	getUserAddressList(config: CustomConfigReq<void, GetUserAddressListResp>): void;
+
+	/** 获取用户默认地址 */
+	getUserDefAddress(config: CustomConfigReq<void, UserAddressInfo>): void;
+
+	/**添加地址*/
+	addUserAddress(config: CustomConfigReq<UserAddressInfo, void>): void;
+
+	/**修改地址*/
+	modifyUserAddress(config: CustomConfigReq<UserAddressInfo, void>): void;
+
+	/**删除地址*/
+	delUserAddress(config: CustomConfigReq<DelUserAddressReq, void>): void;
 }

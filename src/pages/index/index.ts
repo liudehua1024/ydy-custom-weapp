@@ -30,8 +30,7 @@ Page(
 						name: 'index',
 						text: '首页',
 						imgUrl: '/assets/tab-bar-icon/home-line.png',
-						selectedImgUrl: '/assets/tab-bar-icon/home-solid.png',
-						tipCount: 10
+						selectedImgUrl: '/assets/tab-bar-icon/home-solid.png'
 					},
 					{
 						name: 'goods-category-list',

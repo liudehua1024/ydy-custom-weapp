@@ -6,9 +6,10 @@ Component({
 		size: { type: Number, value: 28 },
 		decimalMode: { type: String, value: '' }, // 可选值:small、top,多个用-连接
 		unit: { type: String, value: '' },
-		unitMode: { type: String, value: '' }, // 可选值:small、top、left|right,多个用-连接
+		unitMode: { type: String, value: '' }, // 可选值:small、top|center|bottom、left|right,多个用-连接,默认bottom
+		unitInterval: { type: String, value: '2rpx' },
 		delLine: { type: Boolean, value: false },
-		color: { type: String, value: 'black' },
+		color: { type: String, value: '' },
 		smallRate: { type: Number, value: 0.6 },
 		smallSize: { type: Number, value: 0 }
 	},
@@ -18,33 +19,35 @@ Component({
 		prefixPriceStyle: '',
 		suffixPriceStyle: '',
 		unitAlign: 'left', // left right
+		unitIntervalStyle: '',
 		unitStyle: ''
 	},
 	observers: {
-		'value, fixed': function (value: number, fixed: number) {
+		'value, fixed': function(value: number, fixed: number) {
 			this.initPrice(value, fixed);
 		},
-		'size, decimalMode, unitMode, smallSize, smallRate': function (
+		'size, decimalMode, unitMode, unitInterval, smallSize, smallRate': function(
 			size,
 			decimalMode,
 			unitMode,
+			unitInterval,
 			smallSize,
 			smallRate
 		) {
 			this.initPriceStyle(size, decimalMode, smallSize, smallRate);
-			this.initUnitStyle(size, unitMode, smallSize, smallRate);
+			this.initUnitStyle(size, unitMode, unitInterval, smallSize, smallRate);
 		}
 	},
 	lifetimes: {
 		attached() {
-			const { value, fixed, size, decimalMode, unitMode, smallSize, smallRate } = this.properties;
+			const { value, fixed, size, decimalMode, unitMode, unitInterval, smallSize, smallRate } = this.properties;
 			this.initPrice(value, fixed);
 			this.initPriceStyle(size, decimalMode, smallSize, smallRate);
-			this.initUnitStyle(size, unitMode, smallSize, smallRate);
+			this.initUnitStyle(size, unitMode, unitInterval, smallSize, smallRate);
 		}
 	},
 	methods: {
-		initPrice: function (value: number, fixed: number) {
+		initPrice: function(value: number, fixed: number) {
 			const priceArr = wx.$numUtils.fixed(value, fixed).split(/\./);
 
 			this.setData({
@@ -52,7 +55,7 @@ Component({
 				suffixPrice: priceArr.length > 1 ? priceArr[1] : ''
 			});
 		},
-		initPriceStyle: function (
+		initPriceStyle: function(
 			size: number,
 			decimalMode: string,
 			smallSize: number,
@@ -87,9 +90,10 @@ Component({
 				suffixPriceStyle
 			});
 		},
-		initUnitStyle: function (size: number, unitMode: string, smallSize: number, smallRate: number) {
+		initUnitStyle: function(size: number, unitMode: string, unitInterval: string, smallSize: number, smallRate: number) {
 			let unitAlign = '';
 			let unitStyle = '';
+			let unitIntervalStyle = '';
 			let textSize = size;
 			if (unitMode.length > 0) {
 				const mode = unitMode.toLowerCase();
@@ -100,6 +104,8 @@ Component({
 				}
 				if (mode.includes('top')) {
 					unitStyle += 'align-self:flex-start;';
+				} else if (mode.includes('center')) {
+					unitStyle += 'align-self:center;';
 				}
 
 				if (mode.includes('small')) {
@@ -110,11 +116,14 @@ Component({
 					}
 				}
 			}
+
 			unitStyle += 'font-size:' + wx.$viewHelper.disposeSizeStyle(textSize) + ';';
 			unitStyle += 'line-height:' + wx.$viewHelper.disposeSizeStyle(textSize) + ';';
+			unitIntervalStyle = 'width:' + wx.$viewHelper.disposeSizeStyle(unitInterval) + ';';
 			this.setData({
 				unitAlign,
-				unitStyle
+				unitStyle,
+				unitIntervalStyle
 			});
 		}
 	}

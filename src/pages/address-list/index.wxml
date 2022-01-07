@@ -1,0 +1,19 @@
+<page-root>
+    <list-view class="list_container" refreshState="{{refreshState}}" enableRefresher bind:onRefresh="onRefresh">
+        <view class="content_container">
+            <block wx:for="{{addressList}}" wx:key="index">
+                <address-card class="address_card_block"
+                              model:info="{{item}}"
+                              mark:info="{{item}}"
+                              bind:defTagChange="onDefTagChange"
+                              bind:modify="onModifyAddress"
+                              bind:del="onDelAddress"
+                              bind:tap="onChooseAddress"/>
+                <view style="width:100%;height:20rpx"/>
+            </block>
+            <view class="add_btn flex-center" bind:tap="onAddAddress">
+                添加收货地址
+            </view>
+        </view>
+    </list-view>
+</page-root>

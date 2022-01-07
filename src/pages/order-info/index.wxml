@@ -1,0 +1,115 @@
+<page-root backMode="custom" bind:back="onBack">
+    <view class="order_status_container">
+        <view class="order_status">
+            <block wx:if="{{orderInfo.status==1 && endPaymentSecond>0}}">
+                等待付款，剩余
+                <count-down class="count_time" value="{{endPaymentSecond}}" bind:countEnd="onValidTimeCountEnd"/>
+            </block>
+            <block wx:if="{{orderInfo.status==2}}">已支付，等待配送</block>
+            <block wx:if="{{orderInfo.status==3}}">订单已完成</block>
+            <block wx:if="{{orderInfo.status==4}}">订单已取消</block>
+        </view>
+    </view>
+    <scroll-view class="order_container" scroll-y="{{true}}">
+        <view class="not_payment_info_block" wx:if="{{orderInfo.status==1 && endPaymentSecond>0}}">
+            <view>请在规定的时间内支付订单，否则订单将自动取消</view>
+            <view class="btn_block">
+                <view class="btn cancel_btn flex-center" bind:tap="onCancelOrder">取消订单</view>
+                <view class="btn payment_btn flex-center" bind:tap="onPayment">立即支付</view>
+            </view>
+        </view>
+        <view class="cancel_info_block" wx:if="{{orderInfo.status==4}}">
+            <view>订单已被取消</view>
+            <ellip-text maxLine="3" wx:if="{{orderInfo.canceledReason}}">：{{orderInfo.canceledReason;}}</ellip-text>
+        </view>
+        <view class="order_goods_info_container">
+            <ellip-text class="shop_name" maxLine="1">{{orderInfo.shopInfo.shopName;}}</ellip-text>
+            <view class="line"></view>
+            <view class="order_goods_list_block {{expandGoodsList?'expand':''}}">
+                <block wx:for="{{orderInfo.goodsList}}" wx:key="index">
+                    <order-goods-card goodsInfo="{{item}}"></order-goods-card>
+                </block>
+            </view>
+            <view wx:if="{{orderInfo.goodsList.length > 3}}"
+                  class="expand_goods_list_btn {{expandGoodsList?'':'expand_btn'}}" bind:tap="onToggleExpand">
+                <block wx:if="{{expandGoodsList}}">
+                    点击收起
+                    <my-icon name="arrow-up" size="24rpx" style="margin-left:10rpx"/>
+                </block>
+                <block wx:else>
+                    展开更多
+                    <my-icon name="arrow-down" size="24rpx" style="margin-left:10rpx"/>
+                </block>
+            </view>
+            <view class="line"></view>
+            <view class="total_amount_container">
+                <block wx:if="{{orderInfo.discountAmount>0}}">
+                    <text>已优惠</text>
+                    <price value="{{orderInfo.discountAmount}}"
+                           unit="¥"
+                           size="32"
+                           unitMode="small"
+                           smallSize="26"
+                           color="red"
+                           style="margin:0 30rpx 0 10rpx"/>
+                </block>
+                <text style="margin-right:10rpx">小计</text>
+                <price value="{{orderInfo.payAmount}}"
+                       unit="¥"
+                       size="38"
+                       unitMode="small"
+                       smallSize="28"/>
+            </view>
+        </view>
+        <view class="delivery_info_container">
+            <view class="title">配送信息</view>
+            <view class="line"></view>
+            <view class="info_block" bind:tap="onChangeRemarks">
+                <text class="hint_text">配送方式</text>
+                <view class="info">{{orderInfo.deliveryType == 1 ? '服务点自提' : '送货上门';}}</view>
+            </view>
+            <view class="info_block" bind:tap="onChangeRemarks">
+                <text class="hint_text">配送地址</text>
+                <view class="info receiver_address_info">
+                    <ellip-text maxLine="3">{{orderInfo.receiverAddress;}}{{orderInfo.receiverHomeAddress;}}
+                    </ellip-text>
+                    <view style="display:flex;flex-flow:row nowrap;">
+                        <block wx:if="{{orderInfo.deliveryType==2}}">
+                            <ellip-text style="max-width:100rpx">{{orderInfo.receiverName;}}</ellip-text>
+                            <view style="margin-right:20rpx;">{{addressInfo.gender == 1 ? '先生' : '女士';}}</view>
+                        </block>
+                        <view>{{orderInfo.receiverPhone;}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="info_block" bind:tap="onChangeRemarks">
+                <text class="hint_text">备注</text>
+                <view class="info">
+                    <ellip-text>{{orderInfo.remarks ? orderInfo.remarks : '无';}}</ellip-text>
+                </view>
+                <my-icon class="arrow_right" name="arrow-right" color="#848587" size="30rpx"
+                         wx:if="{{orderInfo.status==1}}"/>
+            </view>
+        </view>
+        <view class="order_other_info_container">
+            <view class="title">订单信息</view>
+            <view class="line"></view>
+            <view class="info_block" wx:if="{{orderInfo.orderSn}}">
+                <text class="hint_text">订单号码</text>
+                <view class="info">{{orderInfo.orderSn;}}</view>
+            </view>
+            <view class="info_block">
+                <text class="hint_text">下单时间</text>
+                <view class="info">{{createOrderTimeStr;}}</view>
+            </view>
+            <view class="info_block" wx:if="{{orderInfo.payTime}}">
+                <text class="hint_text">支付方式</text>
+                <view class="info">在线支付</view>
+            </view>
+            <view class="info_block" wx:if="{{orderInfo.payTime}}">
+                <text class="hint_text">支付时间</text>
+                <view class="info">{{payOrderTimeStr;}}</view>
+            </view>
+        </view>
+    </scroll-view>
+</page-root>

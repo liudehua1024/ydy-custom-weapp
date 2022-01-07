@@ -37,6 +37,9 @@ export const isUtils: IsUtils = {
 			default:
 				return false;
 		}
+	},
+	isPhoneNumber(str: string): boolean {
+		return /^1[3|4|5|6|7|8|9]\d{9}$/.test(str);
 	}
 };
 
@@ -46,9 +49,9 @@ export const strUtils: StrUtils = {
 			case 'undefined':
 				return '';
 			case 'string':
+				return arg;
 			case 'object':
-			case 'symbol':
-				return arg.toSting();
+				return JSON.stringify(arg);
 			default:
 				return arg + '';
 		}
@@ -67,6 +70,28 @@ export const strUtils: StrUtils = {
 		}
 
 		return src.substring(0, index) + str + src.substring(index, len);
+	},
+	contains(src: string, ...subs: string[]): boolean {
+		if (subs && subs.length > 0) {
+			for (const sub in subs) {
+				if (sub && src.indexOf(sub) != -1) {
+					return true;
+				}
+			}
+		}
+		return false;
+	},
+	padStart(src: string, len: number, padStr = ' '): string {
+		for (let srcLen = src.length; srcLen < len; srcLen = src.length) {
+			src = `${padStr.substring(0, len - srcLen)}${src}`;
+		}
+		return src;
+	},
+	padEnd(src: string, len: number, padStr = ' '): string {
+		for (let srcLen = src.length; srcLen < len; srcLen = src.length) {
+			src = `${src}${padStr.substring(0, len - srcLen)}`;
+		}
+		return src;
 	}
 };
 
@@ -157,6 +182,84 @@ export const arrayUtils: ArrayUtils = {
 	}
 };
 
+export const dateUtils: DateUtils = {
+	getCurTimestamp(): number {
+		return numUtils.toInt(Date.now() / 1000);
+	},
+	getZeroTimestamp(timestamp?: number): number {
+		let date: Date;
+		if (timestamp) {
+			date = this.toDate(timestamp);
+		} else {
+			date = new Date();
+		}
+
+		date.setHours(0, 0, 0, 0);
+		return this.toTimestamp(date);
+	},
+	getMothStartAndEnd(timestamp?: number): { startTime: number, endTime: number } {
+		const ret = { startTime: 0, endTime: 0 };
+
+		let date: Date;
+		if (timestamp) {
+			date = this.toDate(timestamp);
+		} else {
+			date = new Date();
+		}
+
+		date.setDate(1);
+		date.setHours(0, 0, 0, 0);
+		ret.startTime = this.toTimestamp(date);
+
+		const moth = date.getMonth();
+
+		// 获取下个月的开始时间
+		if (moth < 11) {
+			date.setMonth(moth + 1, 1);
+		} else { // 跨年
+			const year = date.getFullYear();
+			date.setFullYear(year + 1, 1, 1);
+		}
+
+		// 下个月开始时间(秒)-1,为上个月的结束时间
+		ret.endTime = this.toTimestamp(date) - 1;
+
+		return ret;
+	},
+	toDate(timestamp: number): Date {
+		return new Date(timestamp * 1000);
+	},
+	toTimestamp(date: Date): number {
+		return numUtils.toInt(date.valueOf() / 1000);
+	},
+	format(time: number | Date, formatStr = 'yyyy-MM-dd HH:mm:ss'): string {
+		if (typeof time === 'number') {
+			time = this.toDate(time);
+		}
+
+		const opt: Record<string, string> = {
+			'y+': time.getFullYear().toString(),        // 年
+			'M+': (time.getMonth() + 1).toString(),     // 月
+			'd+': time.getDate().toString(),            // 日
+			'H+': time.getHours().toString(),           // 时,24小时制
+			'h+': (time.getHours() % 12).toString(),    // 时,12小时制
+			'm+': time.getMinutes().toString(),         // 分
+			's+': time.getSeconds().toString()          // 秒
+		};
+
+		let ret;
+		for (let k in opt) {
+			ret = new RegExp('(' + k + ')').exec(formatStr);
+			if (ret) {
+				formatStr = formatStr.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (strUtils.padStart(opt[k], ret[1].length, '0')));
+			}
+		}
+
+		return formatStr;
+	}
+
+};
+
 export const viewHelper: ViewHelper = {
 	disposeSizeStyle: function(size: number | string, defUnit: 'px' | 'rpx' = 'rpx'): string {
 		let sizeStr = size + '';
@@ -174,5 +277,24 @@ export const viewHelper: ViewHelper = {
 			}
 		});
 		return styleStr;
+	}
+};
+
+export const privacyHelper: PrivacyHelper = {
+	filterName(name: string): string {
+		if (!name) {
+			return '';
+		}
+		return name.charAt(0) + '**';
+	},
+	filterPhoneNumber(phoneNumber: string): string {
+		if (!phoneNumber) {
+			return '';
+		}
+		const ln = phoneNumber.length;
+		if (ln > 6) {
+			return phoneNumber.substring(0, 2) + '*****' + phoneNumber.substring(ln - 4, ln);
+		}
+		return phoneNumber;
 	}
 };

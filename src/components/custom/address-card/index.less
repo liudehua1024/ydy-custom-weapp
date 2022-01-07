@@ -1,0 +1,125 @@
+.address-card__container {
+  width: 100%;
+  padding: 0 unit(24, rpx);
+  border-radius: unit(24, rpx);
+  background: white;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: unit(28, rpx);
+  color: #666666;
+
+  .address_info_container {
+    width: 100%;
+    height: unit(160, rpx);
+    margin-top: unit(24, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .name_img_block {
+      width: unit(76, rpx);
+      height: unit(76, rpx);
+      margin-top: unit(28, rpx);
+      background: #FFF6F5;
+      border-radius: 50%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: center;
+      color: #DB3A32;
+      font-size: unit(38, rpx);
+      line-height: 1;
+    }
+
+    .info_block {
+      width: 0;
+      flex-grow: 1;
+      margin: 0 unit(20, rpx);
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+      font-size: unit(32, rpx);
+
+      .receiver_info {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        line-height: unit(30, rpx);
+
+        .receiver_name {
+          max-width: unit(160, rpx);
+          color: #2D2D2D;
+        }
+
+        .gender {
+          margin-left: unit(10, rpx);
+          font-size: unit(28, rpx);
+          //color: #2D2D2D;
+        }
+
+        .phone_number {
+          margin-left: unit(20, rpx);
+        }
+      }
+
+      .full_address_info {
+        margin-top: unit(10, rpx);
+        color: #2D2D2D;
+      }
+    }
+
+    .edit_btn {
+      width: unit(60, rpx);
+      height: 40%;
+      align-self: center;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+  }
+
+  .line {
+    width: 100%;
+    background: #F0F0F0;
+    height: 1px;
+    z-index: 1;
+  }
+
+  .operation_container {
+    width: 100%;
+    height: unit(80, rpx);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    color: #666666;
+    font-size: unit(28, rpx);
+    line-height: unit(28, rpx);
+
+    .def_tag_checkbox_group_block {
+      height: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      line-height: unit(28, rpx);
+    }
+
+    .del_btn {
+      width: unit(80, rpx);
+      height: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}

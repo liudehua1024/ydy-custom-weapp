@@ -16,15 +16,15 @@
             <view class="action_block order_manager_block">
                 <text class="title">订单管理</text>
                 <view class="manager_btn_block order_manager_btn_block">
-                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}">
+                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}" mark:status="{{0}}" bind:tap="onToOrderList">
                         <image class="btn_img" src='/assets/order-manager.png'></image>
                         <text>全部订单</text>
                     </view>
-                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}">
+                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}" mark:status="{{1}}" bind:tap="onToOrderList">
                         <image class="btn_img" src='/assets/not-pay.png'></image>
                         <text>待付款</text>
                     </view>
-                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}">
+                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}" mark:status="{{2}}" bind:tap="onToOrderList">
                         <image class="btn_img" src='/assets/waiting-receive.png'></image>
                         <text>待收货</text>
                     </view>
@@ -33,17 +33,21 @@
             <view class="action_block other_manager_block">
                 <text class="title">更多</text>
                 <view class="manager_btn_block">
-                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}">
-                        <image class="btn_img" src='/assets/personal-info-manager.png'></image>
-                        <text>修改信息</text>
-                    </view>
-                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}">
+<!--                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}">-->
+<!--                        <image class="btn_img" src='/assets/personal-info-manager.png'></image>-->
+<!--                        <text>修改信息</text>-->
+<!--                    </view>-->
+                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}" bind:tap="onManagerAddress">
                         <image class="btn_img" src='/assets/location-manager.png'></image>
                         <text>地址管理</text>
                     </view>
-                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}">
-                        <image class="btn_img" src='/assets/customer-service.png'></image>
-                        <text>我的客服</text>
+<!--                    <view class="btn_block" hover-class="action_block_click" hover-stay-time="{{200}}">-->
+<!--                        <image class="btn_img" src='/assets/customer-service.png'></image>-->
+<!--                        <text>我的客服</text>-->
+<!--                    </view>-->
+                    <view class="btn_block">
+                    </view>
+                    <view class="btn_block">
                     </view>
                     <view class="btn_block">
                     </view>

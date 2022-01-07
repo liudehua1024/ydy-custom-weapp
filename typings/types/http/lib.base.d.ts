@@ -109,9 +109,8 @@ interface HttpRequestTask {
 }
 
 /** 包含自定义配置和 **/
-interface CustomConfigReq<T, R> {
-	req: T;
+type CustomConfigReq<T, R> = {
 	other?: Record<string, any>;
 	custom?: RequestCustomConfig;
 	callback?: RequestCallback<R>;
-}
+} & (T extends void ? { req?: T } : { req: T });

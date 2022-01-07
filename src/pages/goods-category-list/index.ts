@@ -8,15 +8,18 @@ Page(
 			listRootEnableScroll: true,
 			subListEnableScroll: false,
 			shopBarTop: 0,
+			curTabId: 'cate-block', // 当前TAB页面id
 			shopId: 0,
 			shopInfo: {} as ShopInfo,
+			shopPhoneNumberArr: [] as Array<string>,
 			monthSales: 0,
 			tagArr: [] as string[],
 			firstCategoryList: [] as Array<GoodsCategoryInfo>,
 			secondCategoryListRecord: {} as Record<string, Array<GoodsCategoryInfo>>,
 			checkedFirstCategory: {} as GoodsCategoryInfo,
 			totalBuyCount: 0,
-			showGoodsCarPanel: false
+			showGoodsCarPanel: false,
+			showChoosePhoneNumberPanel: false
 		},
 		$eventBusListeners: {
 			'goodsCarPosChange': function(evt: EventBusData<GoodsCarPosInfo>) {
@@ -63,23 +66,28 @@ Page(
 			wx.$eventBus.removeStickEventData('enterShop', 'goodsCarPosChange', 'goodsCarGoodsList');
 		},
 		initData(shopInfo: ShopInfo) {
-			const { shopId, shopSalesInfo, shopTags } = Object.assign(
-				{ shopSalesInfo: {}, shopTags: '' },
-				shopInfo
-			);
+			this.setData({ shopId: shopInfo.shopId, shopInfo });
+			this.initShopInfo(shopInfo);
 
-			let monthSales = shopSalesInfo && shopSalesInfo.monthSales ? shopSalesInfo.monthSales : 0;
-			const tagArr = wx.$arrayUtils.strToArray(shopTags);
-
-			this.setData({ shopId, shopInfo, monthSales, tagArr });
-
-			if (shopId !== wx.constants.serviceShopId) { // 子店
+			if (shopInfo.shopId !== wx.constants.serviceShopId) { // 子店
 				this.getShopInfo();
 			} else { // 母店
 				// 发送进入店铺事件消息
 				wx.$eventBus.pushStickEvent('enterShop', shopInfo);
 				this.getGoodsCategoryList({ level: 1 });
 			}
+		},
+		initShopInfo(shopInfo: ShopInfo) {
+			const { shopSalesInfo, shopTags, shopPhoneNumbers } = Object.assign(
+				{ shopSalesInfo: {}, shopTags: '', shopPhoneNumbers: '' },
+				shopInfo
+			);
+
+			let monthSales = shopSalesInfo && shopSalesInfo.monthSales ? shopSalesInfo.monthSales : 0;
+			const tagArr = wx.$arrayUtils.strToArray(shopTags);
+			const shopPhoneNumberArr = shopPhoneNumbers.split(',');
+
+			this.setData({ shopInfo, monthSales, tagArr, shopPhoneNumberArr });
 		},
 		onGoodsCarBtnClick() {
 			if (wx.$loginHelper.checkLogin()) {
@@ -88,8 +96,12 @@ Page(
 				wx.$dialogUtils.showNoLoginDialog();
 			}
 		},
-		closeGoodsCarPanel() {
-			this.setData({ showGoodsCarPanel: false });
+		changeTab(evt: TouchEvent) {
+			const { id } = evt.currentTarget;
+			this.setData({ curTabId: id });
+		},
+		closePageContainerPanel() {
+			this.setData({ showGoodsCarPanel: false, showChoosePhoneNumberPanel: false });
 		},
 		onGoodsCarPosChange: function(goodsCarPos: GoodsCarPosInfo) {
 			wx.$eventBus.pushStickEvent('goodsCarPosChange', goodsCarPos);
@@ -104,6 +116,47 @@ Page(
 		onListRootScrollToLower() {
 			this.setData({
 				subListEnableScroll: true
+			});
+		},
+		onLookShopAddr() {
+			const { shopInfo } = this.data;
+			wx.openLocation({
+				latitude: shopInfo.latitude,
+				longitude: shopInfo.longitude,
+				scale: 18,
+				name: shopInfo.shopName
+			}).then();
+		},
+		onCallShopPhone() {
+			const { shopPhoneNumberArr } = this.data;
+			if (shopPhoneNumberArr.length === 1) {
+				this.callPhone(shopPhoneNumberArr[0]);
+			} else { // 需要选择拨打的号码
+				this.setData({ showChoosePhoneNumberPanel: true });
+			}
+		},
+		onPhoneNumberClick(evt: TouchEvent) {
+			this.setData({ showChoosePhoneNumberPanel: false });
+			const { phoneNumber } = Object.assign({ phoneNumber: '' }, evt.mark);
+			this.callPhone(phoneNumber);
+		},
+		callPhone(phoneNumber: string) {
+			if (!phoneNumber) return;
+			wx.makePhoneCall({
+				phoneNumber,
+				fail(err) {
+					const { errMsg } = err;
+					if (errMsg.endsWith('cancel')) return; // 手动取消
+					wx.setClipboardData({
+						data: phoneNumber,
+						complete() {
+							wx.$dialogUtils.showTipDialog({
+								title: '温馨提示',
+								content: '当前手机不支持拨号，已复制号码到您的剪切板。'
+							});
+						}
+					});
+				}
 			});
 		},
 		onCheckedFirstCategory(evt: TouchEvent) {
@@ -122,8 +175,9 @@ Page(
 				queryChildren: 1
 			} as ShopGoodsCategoryListReq);
 		},
-		onChooseThirdCategory(evt: TouchEvent) {
+		onChooseSecondCategory(evt: TouchEvent) {
 			const { item } = evt.currentTarget.dataset;
+			console.log(item);
 			wx.$router
 				.to({
 					name: 'goods-list',
@@ -142,7 +196,7 @@ Page(
 				callback: {
 					success: (res: ResponseResult<ShopInfoResp>) => {
 						const shopInfo = res.data;
-						this.setData({ shopInfo });
+						this.initShopInfo(shopInfo);
 						// 发送进入店铺事件消息
 						wx.$eventBus.pushStickEvent('enterShop', shopInfo);
 						this.getGoodsCategoryList({ level: 1 });

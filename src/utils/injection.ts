@@ -6,13 +6,12 @@ import { dialogUtils } from '@/utils/dialogUtils';
 import { EventBusManager } from '@/utils/eventBusHelper';
 import { MyLoginHelper } from '@/utils/loginHelper';
 import { toastUtils } from '@/utils/toastUtils';
-import { arrayUtils, isUtils, numUtils, strUtils, viewHelper } from '@/utils/utils';
+import { arrayUtils, dateUtils, isUtils, numUtils, privacyHelper, strUtils, viewHelper } from '@/utils/utils';
+import { wxContents } from '@/constants';
 
+// 加载默认常量
 const injectionConstants = () => {
-	wx.constants = {
-		serviceShopId: 10,
-		tabBarHeight: 110
-	};
+	wx.constants = wxContents;
 };
 
 const createApiRequest = (): ApiRequest => {
@@ -39,7 +38,9 @@ const injectionUtils = () => {
 	wx.$strUtils = strUtils;
 	wx.$numUtils = numUtils;
 	wx.$arrayUtils = arrayUtils;
+	wx.$dateUtils = dateUtils;
 	wx.$viewHelper = viewHelper;
+	wx.$privacyHelper = privacyHelper;
 	wx.$toastUtils = toastUtils;
 	wx.$dialogUtils = dialogUtils;
 	wx.$eventBus = new EventBusManager();

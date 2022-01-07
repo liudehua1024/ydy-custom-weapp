@@ -170,12 +170,13 @@ interface SubmitOrderReq {
 }
 
 //[响应]订单提交信息
-interface SubmitOrderResp extends OrderInfo {}
+interface SubmitOrderResp extends OrderInfo {
+}
 
-//[请求]支付订单(获取订单预支付信息)
-interface PayOrderReq {
+//[请求]支付订单(生成订单预支付信息)
+interface GenOrderPaymentInfoReq {
 	orderId: number; // 订单id
-	payMethod: number; // 支付方式
+	payMethod: number; // 支付方式 1微信支付
 	payAmount: number; // 支付金额
 }
 
@@ -189,9 +190,50 @@ interface WxPaymentInfoResp {
 }
 
 //[响应]订单预支付信息
-type PaymentInfoResp = WxPaymentInfoResp;
+interface PaymentInfoResp {
+	orderId: number;
+	payMethod: number;
+	paymentInfo: WxPaymentInfoResp;
+}
 
 //[响应]创建的订单信息
 interface CreateOrderResp extends OrderInfo {
 	paymentInfo: PaymentInfoResp;
+}
+
+//[请求]获取订单列表
+interface GetOrderListReq extends PaginationReq {
+	shopId?: number;        // 店铺id
+	serviceShopId: number; // 服务点(母店)id
+	likeOrderSn?: string;   // 订单号(模糊查询)
+	status?: number;        // 订单状态
+	startTime: number; // 起始时间
+	endTime: number; // 结束时间
+}
+
+//[响应]获取订单列表
+interface GetOrderListResp extends Pagination<Array<OrderInfo>> {
+}
+
+//[请求]获取订单信息
+interface GetOrderInfoReq {
+	orderId?: number; // 订单id
+	orderSn?: string; // 订单号
+}
+
+//[请求]取消订单
+interface CancelOrderReq {
+	orderId?: number; // 订单id
+	orderSn?: string; // 订单号
+	reason: string; // 取消原因
+}
+
+//[响应]用户地址列表
+interface GetUserAddressListResp {
+	addressList: Array<UserAddressInfo>;
+}
+
+//[请求]删除用户地址
+interface DelUserAddressReq {
+	id: number;
 }

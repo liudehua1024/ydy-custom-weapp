@@ -21,40 +21,17 @@ const dialogState = {
  * @param opt
  */
 function showDialog(opt: ModalOptions) {
-	const { level } = opt;
-	if (!level || level < dialogState.curLevel) {
-		if (!level) {
-			console.error(`dialog level error.`);
-		} else {
-			console.debug(
-				`低级别dialog无法覆盖高级别弹窗,level =${level} curLevel=${dialogState.curLevel}`
-			);
-		}
+	const { level } = Object.assign({ level: dialogLevel.Normal }, opt); // 默认普通级
+	if (level < dialogState.curLevel) {
+		console.debug(
+			`低级别dialog无法覆盖高级别弹窗,level =${level} curLevel=${dialogState.curLevel}`
+		);
 		return;
 	}
 
+	dialogState.curLevel = level;
 	if (wx.$isUtils.isFun(opt.ready)) opt.ready();
-	wx.showModal(
-		Object.assign(
-			{
-				ready: () => {
-					dialogState.curLevel = level;
-					if (wx.$isUtils.isFun(opt.ready)) opt.ready();
-				},
-				success: (res: ModalSuccessResult) => {
-					if (wx.$isUtils.isFun(opt.success)) opt.success(res);
-				},
-				fail: (err: ModalCallbackResult) => {
-					if (wx.$isUtils.isFun(opt.fail)) opt.fail(err);
-				},
-				complete: () => {
-					dialogState.curLevel = dialogLevel.None;
-					if (wx.$isUtils.isFun(opt.complete)) opt.complete();
-				}
-			},
-			opt
-		)
-	);
+	wx.showModal(opt);
 }
 
 /**

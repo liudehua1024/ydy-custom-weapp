@@ -6,7 +6,7 @@
     <view class="goods_info_block">
         <ellip-text class="goods_name">{{goodsInfo.name}}</ellip-text>
         <ellip-text class="goods_desc">{{goodsInfo.goodsDesc}}</ellip-text>
-        <text class="goods_month_sales">{{monthSales > 0 ? '月销量' + monthSales : ''}}</text>
+<!--        <text class="goods_month_sales">{{monthSales > 0 ? '月销量' + monthSales : ''}}</text>-->
         <view class="other_block">
             <view class="price_and_count_block">
                 <view class="good_price_block">

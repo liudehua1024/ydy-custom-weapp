@@ -1,0 +1,42 @@
+<page-root>
+    <form bind:submit="onSubmit">
+        <view class="edit_info_container">
+            <view class="info_block">
+                <view class="hint_text">收货人</view>
+                <view class="must_flag">*</view>
+                <input id="receiverName"
+                       name="receiverName"
+                       class="input_info"
+                       type="text"
+                       confirm-type="next"
+                       maxlength="10"
+                       model:value="{{inputReceiverName}}"/>
+                <view wx:if="{{inputReceiverName}}" id="receiverNameClear" class="clear_btn flex-center" bind:tap="onClear">
+                    <my-icon name="close" size="40" color="#B6B6B6"></my-icon>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="info_block">
+                <view class="hint_text">手机号</view>
+                <view class="must_flag">*</view>
+                <input id="phoneNumber"
+                       name="phoneNumber"
+                       class="input_info"
+                       type="number"
+                       confirm-type="done"
+                       maxlength="11"
+                       model:value="{{inputPhoneNumber}}"/>
+                <view wx:if="{{inputPhoneNumber}}" id="phoneNumberClear" class="clear_btn flex-center" bind:tap="onClear">
+                    <my-icon name="close" size="40" color="#B6B6B6"></my-icon>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="def_receiver_switch_block">
+                <view class="hint_text">设为默认提货人</view>
+                <view class="tip_text">每次下单会默认使用该提货人</view>
+                <switch class="switch_btn" model:checked="{{defReceiverSwitch}}" color="#d1121a"/>
+            </view>
+        </view>
+        <button class="save_btn_block" form-type="submit">保存</button>
+    </form>
+</page-root>

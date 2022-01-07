@@ -1,0 +1,18 @@
+<page-root>
+    <view class="remarks_block">
+        <textarea class="input_remarks"
+                  type="text"
+                  value="{{remarks}}"
+                  disabled="{{!editable}}"
+                  bind:input="onInput"
+                  placeholder="可备注送货上门时间或其它信息"
+                  maxlength="100">
+        </textarea>
+        <view wx:if="{{editable}}" class="length_info">
+            <text class="residue_len">{{remarks.length}}</text>
+            <text style="margin: 0 4rpx">/</text>
+            <text>100</text>
+        </view>
+    </view>
+    <button wx:if="{{editable}}" class="save_btn_block" bind:tap="onKeep">保存</button>
+</page-root>
