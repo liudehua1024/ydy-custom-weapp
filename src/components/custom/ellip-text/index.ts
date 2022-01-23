@@ -19,6 +19,9 @@ Component({
 		attached() {
 			const { maxLine } = this.properties;
 			this.initLine(maxLine);
+		},
+		ready() {
+
 		}
 	},
 	methods: {

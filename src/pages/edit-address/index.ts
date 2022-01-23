@@ -32,7 +32,7 @@ Page(
 				address: '',
 				longitude: undefined,
 				latitude: undefined
-			},
+			} as AddressInfo,
 			genderManChecked: true,
 			genderWomanChecked: false,
 			inputHomeAddress: '',
@@ -43,7 +43,7 @@ Page(
 		},
 		onLoad(query) {
 			// @ts-ignore
-			this.mapCtx = wx.createMapContext('mapId', this);
+			// this.mapCtx = wx.createMapContext('mapId', this);
 			const {
 				id,
 				province,
@@ -91,6 +91,28 @@ Page(
 						}
 				});
 			} else {
+				const {
+					defProvince,
+					defCity,
+					defDistrict,
+					defAddress,
+					defLatitude,
+					defLongitude
+				} = wx.constants;
+
+				this.setData({
+					inputLocation:
+						{
+							province: defProvince,
+							city: defCity,
+							district: defDistrict,
+							address: defAddress,
+							longitude: defLongitude,
+							latitude: defLatitude
+						}
+				});
+
+
 				this.setTitle('新增地址');
 			}
 		},
@@ -117,28 +139,28 @@ Page(
 			const { inputLocation, mapMarker } = this.data;
 			const { longitude, latitude } = inputLocation;
 			Object.assign(mapMarker, { longitude, latitude });
-			this.mapCtx.moveToLocation({
-				longitude,
-				latitude
-			});
+			// this.mapCtx.moveToLocation({
+			// 	longitude,
+			// 	latitude
+			// });
 			this.setData({ mapMarker });
 		},
 		onChooseLocation() {
-			const chooseLocationConfig = {
-				key: 'NFIBZ-53JWI-EJ3GX-5YKNZ-AHZMO-VGFCL', //使用在腾讯位置服务申请的key
-				referer: '云店员', //调用插件的app的名称
-				scale: 18
-			} as Record<string, any>;
-
-			const { longitude, latitude } = this.data.inputLocation;
-			if (longitude !== undefined && latitude !== undefined) {
-				Object.assign(chooseLocationConfig, { longitude, latitude });
-			}
-
-			wx.$router.toPlugin({
-				name: 'chooseLocation',
-				params: chooseLocationConfig
-			});
+			// const chooseLocationConfig = {
+			// 	key: 'NFIBZ-53JWI-EJ3GX-5YKNZ-AHZMO-VGFCL', //使用在腾讯位置服务申请的key
+			// 	referer: '云店员', //调用插件的app的名称
+			// 	scale: 18
+			// } as Record<string, any>;
+			//
+			// const { longitude, latitude } = this.data.inputLocation;
+			// if (longitude !== undefined && latitude !== undefined) {
+			// 	Object.assign(chooseLocationConfig, { longitude, latitude });
+			// }
+			//
+			// wx.$router.toPlugin({
+			// 	name: 'chooseLocation',
+			// 	params: chooseLocationConfig
+			// });
 		},
 		onRadioChange(evt: TouchEvent) {
 			const { value } = evt.detail;

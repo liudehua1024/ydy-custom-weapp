@@ -22,7 +22,7 @@
                 <view class="aog_time_block">
                     <view>提货时间</view>
                     <view class="aog_time">
-                        {{util.convertAogTimeStr(shopInfo.aogIntervalDay, shopInfo.aogTime);}} 可自提
+                        {{util.convertAogTimeStr(shopInfo.psTimeType, shopInfo.psTime);}} 可自提
                     </view>
                 </view>
                 <view class="phone_number_block">
@@ -59,7 +59,7 @@
                 <view class="aog_time_block">
                     <view>送货时间</view>
                     <view class="aog_time">
-                        {{util.convertAogTimeStr(shopInfo.aogIntervalDay, shopInfo.aogTime);}} 后
+                        {{util.convertAogTimeStr(shopInfo.psTimeType, shopInfo.psTime);}} 后
                     </view>
                 </view>
             </view>

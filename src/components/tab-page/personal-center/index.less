@@ -116,6 +116,7 @@
     color: #333333;
 
     .btn_block {
+      position: relative;
       width: 0;
       flex-grow: 1;
       display: flex;
@@ -139,4 +140,15 @@
 
 .other_manager_block {
   margin-top: unit(40, rpx);
+}
+
+.btn_customer_service {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.btn_customer_service::after {
+  border: none;
 }

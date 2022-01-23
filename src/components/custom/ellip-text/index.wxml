@@ -1,3 +1,3 @@
-<view class="ellip my-class {{line > 1 ? 'ellip_multiple' : ''}}" style="{{line>1 ? '-webkit-line-clamp:'+line+';':''}}">
+<view id="xx" class="ellip my-class {{line > 1 ? 'ellip_multiple' : ''}}" style="{{line>1 ? '-webkit-line-clamp:'+line+';':''}}">
     <slot></slot>
 </view>

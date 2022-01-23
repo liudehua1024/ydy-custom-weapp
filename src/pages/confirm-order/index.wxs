@@ -1,27 +1,24 @@
 
-function convertAogTimeStr(aogIntervalDay, aogTime) {
-	if (!aogIntervalDay && !aogTime) {
+function convertAogTimeStr(psTimeType, psTime) {
+	if (!psTimeType && !psTime) {
 		return '随时提货';
 	}
 
 	var str = '';
-	switch (aogIntervalDay) {
-		case 0:
+	switch (psTimeType) {
+		case 1:
 			str = '当天';
 			break;
-		case 1:
+		case 2:
 			str = '次日';
-			break;
-		default:
-			str = aogIntervalDay + '天';
 			break;
 	}
 
 	str += ' ';
 
-	var h = aogTime / (60 * 60);
-	aogTime = aogTime % (60 * 60);
-	var m = aogTime / 60;
+	var h = parseInt(psTime / (60 * 60));
+	psTime = psTime % (60 * 60);
+	var m = parseInt(psTime / 60);
 
 	str += h < 10 ? '0' + h : h;
 	str += ':';

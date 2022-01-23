@@ -38,7 +38,7 @@
                 <view class="shop_other_info_block">
                     <view class="shop_notice_block">
                         公告：
-                        <ellip-text class="shop_notice">{{shop.shopNotice ? shop.shopNotice : '暂无公告';}}</ellip-text>
+                        <ellip-text id="xx" class="shop_notice" maxLine="3">{{shopInfo.shopNotice ? shopInfo.shopNotice : '暂无公告';}}</ellip-text>
                     </view>
                     <scroll-view class="tag_scroll_block" scroll-x enhanced show-scrollbar="{{false}}">
                         <view class="tag_list_block">

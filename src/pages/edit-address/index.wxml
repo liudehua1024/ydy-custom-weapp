@@ -1,5 +1,5 @@
 <page-root>
-    <map id="mapId" class="map" setting="{{mapSetting}}" markers="{{[mapMarker]}}" wx:if="{{mapMarker.longitude!==undefined}}" bind:tap="onChooseLocation"/>
+    <!--    <map id="mapId" class="map" setting="{{mapSetting}}" markers="{{[mapMarker]}}" wx:if="{{mapMarker.longitude!==undefined}}" bind:tap="onChooseLocation"/>-->
     <view class="choose_location_container" bind:tap="onChooseLocation">
         <view class="info" wx:if="{{inputLocation.city}}">
             <view class="address">
@@ -7,13 +7,13 @@
             </view>
             <view class="full_district">{{inputLocation.province;}}{{inputLocation.city;}}{{inputLocation.district;}}
             </view>
-            <my-icon class="icon_arrow" name="arrow-right" size="32" color="#CDCDCD"/>
+            <!--            <my-icon class="icon_arrow" name="arrow-right" size="32" color="#CDCDCD"/>-->
         </view>
-        <view class="location_placeholder" wx:else>
-            <my-icon name="location" size="30"/>
-            <view style="height:1px;width:6rpx"></view>
-            <view>点击选择收货地址</view>
-        </view>
+        <!--        <view class="location_placeholder" wx:else>-->
+        <!--            <my-icon name="location" size="30"/>-->
+        <!--            <view style="height:1px;width:6rpx"></view>-->
+        <!--            <view>点击选择收货地址</view>-->
+        <!--        </view>-->
     </view>
     <form style="width:100%" bind:submit="onSubmit">
         <input name="id" value="{{addressId}}" style="display:none;"/>

@@ -12,14 +12,14 @@
            <slot></slot>
        </block>
        <block wx:else>
-           <divider
-                   my-class="load-end-class"
-                   line-class="load-end-line-class"
-                   height="{{height}}px"
-                   lineHeight="2"
-                   size=""
-                   color=""
-                   content="{{loadEndTips}}"/>
+<!--           <divider-->
+<!--                   my-class="load-end-class"-->
+<!--                   line-class="load-end-line-class"-->
+<!--                   height="{{height}}px"-->
+<!--                   lineHeight="2"-->
+<!--                   size=""-->
+<!--                   color=""-->
+<!--                   content="{{loadEndTips}}"/>-->
        </block>
    </view>
 </view>

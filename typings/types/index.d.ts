@@ -49,6 +49,12 @@ interface NavBarConfig {
 interface GlobalConstants {
 	serviceShopId: number;
 	tabBarHeight: number;
+	defProvince: string,
+	defCity: string,
+	defDistrict: string,
+	defAddress: string,
+	defLatitude: number,
+	defLongitude: number
 }
 
 interface HandlePageOption {

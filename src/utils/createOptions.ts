@@ -1,6 +1,6 @@
 function handlePageEventOption(opt: WxPage.Options) {
 	if (!wx.$isUtils.isEmpty(opt.$eventBusListeners)) {
-		opt.$initBusGroup = function () {
+		opt.$initBusGroup = function() {
 			this.$eventBusGroup = wx.$eventBus.createEventBusGroup();
 			wx.$eventBus.registerEventBusGroup(this.$eventBusGroup);
 
@@ -26,7 +26,7 @@ function handlePageEventOption(opt: WxPage.Options) {
 			}
 		};
 
-		opt.$removeEventGroup = function () {
+		opt.$removeEventGroup = function() {
 			if (this.$eventBusGroup) {
 				wx.$eventBus.unregisterEventBusGroup(this.$eventBusGroup);
 			}
@@ -73,7 +73,8 @@ export const handlePageOption: HandlePageOption = (opt: WxPage.Options) => {
 							delete query.params;
 							Object.assign(query, obj);
 						}
-					} catch (e) {}
+					} catch (e) {
+					}
 				}
 			}
 			if (wx.$isUtils.isFun(this._onLoad)) this._onLoad(query);
@@ -88,6 +89,19 @@ export const handlePageOption: HandlePageOption = (opt: WxPage.Options) => {
 				this.$api.stopTask();
 			}
 			if (wx.$isUtils.isFun(this._onUnload)) this._onUnload();
+		},
+		onShareAppMessage(_: WechatMiniprogram.Page.IShareAppMessageOption): WechatMiniprogram.Page.ICustomShareContent | void {
+			return {
+				title: '做您的饮食生活小帮手，免费配送到家',
+				path: '/pages/index/index',
+				imageUrl: 'https://ydy-1304112527.cos.ap-shanghai.myqcloud.com/%E4%BC%98%E9%B2%9C%E4%BC%98%E5%93%81/50.jpeg'
+			};
+		},
+		onShareTimeline(): WechatMiniprogram.Page.ICustomTimelineContent | void {
+			return {
+				title: '做您的饮食生活小帮手，免费配送到家',
+				imageUrl: 'https://ydy-1304112527.cos.ap-shanghai.myqcloud.com/%E4%BC%98%E9%B2%9C%E4%BC%98%E5%93%81/50.jpeg'
+			};
 		},
 		_onLoad: opt.onLoad,
 		_onUnload: opt.onUnload

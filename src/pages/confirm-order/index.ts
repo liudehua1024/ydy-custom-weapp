@@ -10,7 +10,7 @@ Page(
 			aogTimeStr: '',
 			needConfirmOrderInfo: {} as ConfirmOrderInfo,
 			expandGoodsList: false,
-			deliveryType: 1,
+			deliveryType: 2,
 			remarks: '',
 			addressInfo: {} as UserAddressInfo
 		},
