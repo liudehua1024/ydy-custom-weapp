@@ -1,6 +1,6 @@
 Page(
 	wx.$handlePageOption({
-		name: 'goods-category-list',
+		name: 'shop-index',
 		$jsonParams: true,
 		data: {
 			showGoodsCarBtn: false,
@@ -88,11 +88,6 @@ Page(
 			const shopPhoneNumberArr = shopPhoneNumbers.split(',');
 
 			this.setData({ shopInfo, monthSales, tagArr, shopPhoneNumberArr });
-
-			const query = this.createSelectorQuery().select("#xx");
-			query.boundingClientRect().exec(function(res){
-				console.log("xxxxxx->", res[0].height);
-			});
 		},
 		onGoodsCarBtnClick() {
 			if (wx.$loginHelper.checkLogin()) {

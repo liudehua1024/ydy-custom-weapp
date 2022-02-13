@@ -6,6 +6,7 @@
                   disabled="{{!editable}}"
                   bind:input="onInput"
                   placeholder="可备注送货上门时间或其它信息"
+                  placeholder-class="input_remarks_placeholder"
                   maxlength="100">
         </textarea>
         <view wx:if="{{editable}}" class="length_info">

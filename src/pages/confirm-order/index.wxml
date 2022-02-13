@@ -44,11 +44,11 @@
             <view class="delivery_tab_content right_content" wx:else>
                 <view class="address_block">
                     <view class="address_info" bind:tap="onChooseAddress">
-                        <view class="hint_text" wx:if="{{!addressInfo.city}}">点击选择地址</view>
+                        <view class="hint_text" wx:if="{{!addressInfo.city}}">点击编辑地址</view>
                         <ellip-text class="info" wx:else>
                             {{addressInfo.address;}}{{addressInfo.homeAddress;}}
                         </ellip-text>
-                        <my-icon class="arrow_right" name="arrow-right" color="#848587" size="30rpx"/>
+                        <my-icon class="arrow_right" name="arrow-right" color="#848587" size="36rpx"/>
                     </view>
                     <view class="receiver_info" wx:if="{{addressInfo.city}}">
                         <ellip-text class="receiver_name">{{addressInfo.receiverName;}}</ellip-text>
@@ -109,7 +109,7 @@
                 <view class="info">
                     <ellip-text>{{remarks ? remarks : '无';}}</ellip-text>
                 </view>
-                <my-icon class="arrow_right" name="arrow-right" color="#848587" size="30rpx"/>
+                <my-icon class="arrow_right" name="arrow-right" color="#848587" size="36rpx"/>
             </view>
         </view>
         <view class="bottom_block"></view>
@@ -120,18 +120,17 @@
             <view class="hint_text">应付</view>
             <price value="{{needConfirmOrderInfo.payAmount}}"
                    unit="¥"
-                   size="36"
-                   unitMode="small-bottom"
+                   size="38"
                    color="#D1121A"
-                   unitInterval="4rpx"/>
-            <view class="reduced_amount_info" wx:if="{{needConfirmOrderInfo.totalReducedPrice>0}}">
+                   unitInterval="8rpx"/>
+            <view class="reduced_amount_info"  wx:if="{{needConfirmOrderInfo.totalReducedPrice>0}}">
                 <text>（</text>
                 <text>已优惠</text>
                 <price value="{{needConfirmOrderInfo.totalReducedPrice}}"
                        unit="¥"
-                       size="28"
-                       unitMode="small"
+                       size="32"
                        smallSize="26"
+                       unitInterval="6rpx"
                        color="#D1121A"/>
                 <text>）</text>
             </view>

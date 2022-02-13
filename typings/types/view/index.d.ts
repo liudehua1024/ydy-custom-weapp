@@ -37,3 +37,11 @@ interface GoodsCarAnimOption {
 	top: number;
 	left: number;
 }
+
+interface CateGoodsListInfo {
+	cateId: number;
+	curPage: number;
+	hasNextPage: boolean;
+	scrollTop: number;
+	goodsList: Array<GoodsInfo>;
+}

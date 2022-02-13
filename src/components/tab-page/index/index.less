@@ -12,6 +12,52 @@
   background: #F0F0F0;
 }
 
+.shop_info_container {
+  position: relative;
+  width: calc(100% - unit(24, rpx) * 2);
+  padding: unit(20, rpx) unit(24, rpx);
+  margin: unit(20, rpx) unit(24, rpx);
+  background: #FFFFFF;
+  border-radius: unit(16, rpx);
+  box-shadow: #DDDDDD 0 0 unit(10, rpx);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: unit(220, rpx);
+
+  .shop_logo {
+    position: absolute;
+    right: unit(24, rpx);
+    top: unit(20, rpx);
+    border-radius: unit(10, rpx);
+    width: unit(180, rpx);
+    height: unit(180, rpx);
+  }
+
+  .shop_name_block {
+    width: calc(100% - unit(204, rpx));
+
+    .shop_name {
+      width: 100%;
+      font-weight: bold;
+      font-size: unit(38, rpx);
+      line-height: unit(38, rpx);
+    }
+  }
+
+  .shop_notice_block {
+    width: calc(100% - unit(204, rpx));
+    margin-top: unit(20, rpx);
+
+    .shop_notice {
+      width: 100%;
+      font-size: unit(30, rpx);
+      line-height: unit(38, rpx);
+    }
+  }
+}
+
 .divider_block {
   width: 100%;
   display: flex;

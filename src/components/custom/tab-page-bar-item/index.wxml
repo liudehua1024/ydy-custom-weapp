@@ -3,7 +3,7 @@
             src="{{selected && selectedImgUrl ? selectedImgUrl : imgUrl}}"
             style="height:{{imgSize}}rpx;width:{{imgSize}}rpx;"></image>
     <view style="width:100%;height:{{textImgPadding}}rpx;"></view>
-    <view style="font-size:{{textSize}}rpx;color: {{selected ? selectedColor : color}};">
-        {{text}}
+    <view style="font-size:{{textSize}}rpx;line-height:{{textSize}}rpx;color: {{selected ? selectedColor : color}};">
+        {{text;}}
     </view>
 </badge>

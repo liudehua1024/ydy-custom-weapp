@@ -6,6 +6,7 @@ Component({
 	},
 	behaviors: [componentBehavior, componentTabPageBehavior],
 	data: {
+		shopInfo: {} as ShopInfo,
 		subShopList: [] as Array<ShopInfo>,
 		refreshState: false,
 		hasNextPage: false,
@@ -13,17 +14,28 @@ Component({
 	},
 	methods: {
 		onShow() {
+			this.setData({ shopInfo: wx.$getAppGlobalData().serviceShop });
 		},
 		// 被第一次展示时
 		onFirstShow() {
 			this.onRefresh({}, true);
+		},
+		toGoodsListPage(_: TouchEvent) {
+			const { shopInfo } = this.data;
+			if (!shopInfo || !shopInfo.shopId) return;
+			wx.$router
+				.to({
+					name: 'shop-index',
+					params: shopInfo
+				})
+				.then();
 		},
 		onShopCardClick(evt: TouchEvent) {
 			const { shopInfo } = evt.target.dataset;
 			if (!shopInfo || !shopInfo.shopId) return;
 			wx.$router
 				.to({
-					name: 'goods-category-list',
+					name: 'shop-index',
 					params: shopInfo
 				})
 				.then();

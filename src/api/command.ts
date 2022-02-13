@@ -124,13 +124,13 @@ export class ApiCommand extends RequestManager implements ApiRequest {
 	}
 
 	/**添加地址*/
-	addUserAddress(config: CustomConfigReq<UserAddressInfo, void>): void {
+	addUserAddress(config: CustomConfigReq<UserAddressInfo, UserAddressInfo>): void {
 		config.custom = Object.assign({}, config.custom, { useToken: true });
 		this.sendRequest('POST', '/api/auth/buyer/address/add', config);
 	}
 
 	/**修改地址*/
-	modifyUserAddress(config: CustomConfigReq<UserAddressInfo, void>): void {
+	modifyUserAddress(config: CustomConfigReq<UserAddressInfo, UserAddressInfo>): void {
 		config.custom = Object.assign({}, config.custom, { useToken: true });
 		this.sendRequest('POST', '/api/auth/buyer/address/edit', config);
 	}

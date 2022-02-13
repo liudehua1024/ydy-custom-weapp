@@ -39,7 +39,7 @@ Page(
 			inputReceiverName: '',
 			genderCheckStates: [true, false],
 			inputPhoneNumber: '',
-			defTagCheckState: false
+			defTagCheckState: true
 		},
 		onLoad(query) {
 			// @ts-ignore
@@ -214,9 +214,11 @@ Page(
 			this.$api?.modifyUserAddress({
 				req: info,
 				callback: {
-					success() {
+					success(res) {
 						wx.$toastUtils.showMsgToast('修改地址成功');
-						wx.$eventBus.pushEvent('refreshAddressList');
+						// wx.$eventBus.pushEvent('refreshAddressList');
+
+						wx.$eventBus.pushEvent('chooseAddress', res.data);
 						wx.$router.pop().then();
 					}
 				}
@@ -226,9 +228,10 @@ Page(
 			this.$api?.addUserAddress({
 				req: info,
 				callback: {
-					success() {
+					success(res) {
 						wx.$toastUtils.showMsgToast('增加地址成功');
-						wx.$eventBus.pushEvent('refreshAddressList');
+						// wx.$eventBus.pushEvent('refreshAddressList');
+						wx.$eventBus.pushEvent('chooseAddress', res.data);
 						wx.$router.pop().then();
 					}
 				}

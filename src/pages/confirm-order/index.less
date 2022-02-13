@@ -29,19 +29,19 @@
   position: relative;
   margin: unit(30, rpx) unit(20, rpx) 0 unit(30, rpx);
   width: calc(100% - unit(60, rpx));
-  font-size: unit(28, rpx);
+  font-size: unit(32, rpx);
   z-index: 2;
 
   .delivery_tab_title {
     position: relative;
     width: 100%;
-    height: unit(68, rpx);
+    height: unit(80, rpx);
 
     .title_block {
       position: absolute;
       bottom: 0;
       width: 46%;
-      height: unit(52, rpx);
+      height: unit(68, rpx);
       margin: 0 unit(20, rpx) 0 unit(20, rpx);
       overflow: hidden;
       display: flex;
@@ -124,12 +124,12 @@
       flex-flow: row nowrap;
       align-items: center;
       justify-content: space-between;
-      font-size: unit(28, rpx);
+      font-size: unit(30, rpx);
       color: #848587;
 
       .aog_time {
         color: #D1121A;
-        font-size: unit(28, rpx);
+        font-size: unit(30, rpx);
       }
     }
   }
@@ -149,7 +149,7 @@
     }
 
     .service_address {
-      font-size: unit(28, rpx);
+      font-size: unit(30, rpx);
       color: #595959;
     }
 
@@ -160,7 +160,7 @@
       flex-flow: row nowrap;
       align-items: center;
       justify-content: space-between;
-      font-size: unit(28, rpx);
+      font-size: unit(30, rpx);
       color: #848587;
 
       .input_info {
@@ -212,7 +212,7 @@
       flex-flow: row nowrap;
       align-items: flex-start;
       justify-content: flex-start;
-      font-size: unit(28, rpx);
+      font-size: unit(32, rpx);
       color: #595959;
 
       .receiver_name {
@@ -243,7 +243,7 @@
   padding: unit(24, rpx) unit(30, rpx);
 
   .shop_name {
-    font-size: unit(28, rpx);
+    font-size: unit(32, rpx);
     font-weight: bold;
   }
 
@@ -273,7 +273,7 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
-    font-size: unit(24, rpx);
+    font-size: unit(28, rpx);
     color: #999999;
   }
 
@@ -290,7 +290,7 @@
     align-items: center;
     justify-content: flex-end;
     color: black;
-    font-size: unit(30, rpx);
+    font-size: unit(32, rpx);
   }
 }
 
@@ -300,15 +300,16 @@
   border-radius: unit(20, rpx);
   background: white;
   padding: 0 unit(30, rpx);
-  font-size: unit(28, rpx);
+  font-size: unit(32, rpx);
 
   .info_block {
     width: 100%;
-    padding: unit(20, rpx) 0;
+    padding: unit(30, rpx) 0;
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-start;
     justify-content: flex-start;
+    line-height: unit(38, rpx);
 
     .hint_text {
       width: unit(120, rpx);
@@ -336,7 +337,7 @@
 
 .payment_info_container {
   position: fixed;
-  bottom: 0;
+  bottom: env(safe-area-inset-bottom);;
   background: white;
   overflow: hidden;
   z-index: 999;
@@ -360,7 +361,7 @@
     align-items: center;
     justify-content: flex-start;
     color: #2D2D2D;
-    font-size: unit(32, rpx);
+    font-size: unit(36, rpx);
 
     .hint_text {
       margin-right: unit(20, rpx);
@@ -371,8 +372,8 @@
       flex-flow: row nowrap;
       align-items: center;
       justify-content: flex-start;
-      font-size: unit(28, rpx);
-      line-height: unit(28, rpx);
+      font-size: unit(32, rpx);
+      line-height: unit(32, rpx);
       color: #D1121A;
     }
   }
@@ -389,6 +390,6 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: unit(32, rpx);
+    font-size: unit(38, rpx);
   }
 }

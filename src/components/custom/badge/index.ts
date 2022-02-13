@@ -14,7 +14,11 @@ Component({
 			type: Boolean,
 			value: false
 		},
-		align: String
+		align: String,
+		show: {
+			type: Boolean,
+			value: true
+		},
 	},
 	data: {
 		finalCount: ''

@@ -12,12 +12,21 @@
             </view>
             <view class="price_info_block">
                 <block wx:if="{{goodsInfo.goodsOriginPrice !== goodsInfo.goodsSellPrice}}">
-                    <price my-class="original_price" value="{{goodsInfo.goodsOriginPrice}}" unit="¥" size="28"
+                    <price my-class="original_price"
+                           value="{{goodsInfo.goodsOriginPrice}}"
+                           unit="¥"
+                           size="30"
                            smallSize="24"
                            unitMode="small"
+                           unitInterval="6rpx"
                            color="#848587" delLine/>
                 </block>
-                <price value="{{goodsInfo.goodsSellPrice}}" unit="¥" size="30" smallSize="24" unitMode="small"
+                <price value="{{goodsInfo.goodsSellPrice}}"
+                       unit="¥"
+                       size="32"
+                       smallSize="24"
+                       unitMode="small"
+                       unitInterval="6rpx"
                        color="#2D2D2D"/>
             </view>
         </view>

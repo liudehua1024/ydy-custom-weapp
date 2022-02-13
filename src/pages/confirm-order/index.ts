@@ -53,10 +53,17 @@ Page(
 			});
 		},
 		onChooseAddress() {
-			wx.$router.to({
-				name: 'address-list',
-				params: { isChooseAddress: true }
-			}).then();
+			// wx.$router.to({
+			// 	name: 'address-list',
+			// 	params: { isChooseAddress: true }
+			// }).then();
+
+			const { addressInfo } = this.data;
+			if (addressInfo?.phoneNumber) {
+				wx.$router.to({ name: 'edit-address', params: addressInfo }).then();
+			} else {
+				wx.$router.to({ name: 'edit-address' }).then();
+			}
 		},
 		onToggleExpand() {
 			const { expandGoodsList } = this.data;

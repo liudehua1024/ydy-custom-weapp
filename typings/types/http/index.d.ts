@@ -64,10 +64,10 @@ interface ApiRequest extends HttpRequestManager {
 	getUserDefAddress(config: CustomConfigReq<void, UserAddressInfo>): void;
 
 	/**添加地址*/
-	addUserAddress(config: CustomConfigReq<UserAddressInfo, void>): void;
+	addUserAddress(config: CustomConfigReq<UserAddressInfo, UserAddressInfo>): void;
 
 	/**修改地址*/
-	modifyUserAddress(config: CustomConfigReq<UserAddressInfo, void>): void;
+	modifyUserAddress(config: CustomConfigReq<UserAddressInfo, UserAddressInfo>): void;
 
 	/**删除地址*/
 	delUserAddress(config: CustomConfigReq<DelUserAddressReq, void>): void;

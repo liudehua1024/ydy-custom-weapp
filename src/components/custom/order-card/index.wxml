@@ -35,7 +35,12 @@
             </view>
         </scroll-view>
         <view class="order_count_info">
-            <price value="{{info.payAmount}}" style="font-weight:bold;" unit="¥" size="30" smallSize="24" unitMode="small"
+            <price value="{{info.payAmount}}"
+                   style="font-weight:bold;"
+                   unit="¥"
+                   size="32"
+                   smallSize="26"
+                   unitMode="small"
                    color="#2D2D2D"/>
             <view>共 {{info.goodsList.length}} 件</view>
         </view>

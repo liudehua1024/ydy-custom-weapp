@@ -30,7 +30,6 @@ export class MyLoginHelper implements LoginHelper {
 	private setLoginState(loginState: LoginResp) {
 		if (wx.$isUtils.isEmpty(loginState)) loginState = {} as LoginResp;
 		this.loginState = loginState;
-		this.callLoginEvent();
 	}
 
 	clearLoginState(callEvent: boolean = false) {
@@ -74,6 +73,7 @@ export class MyLoginHelper implements LoginHelper {
 			fail: (res) => {
 				console.error('微信授权失败:', res.errMsg);
 				MyLoginHelper.showLoginFailMsg('微信授权失败', opt);
+				this.callLoginEvent();
 			}
 		});
 	}
@@ -86,6 +86,7 @@ export class MyLoginHelper implements LoginHelper {
 			fail: (res) => {
 				console.error('微信授权失败:', res.errMsg);
 				MyLoginHelper.showLoginFailMsg('微信授权失败', opt);
+				this.callLoginEvent();
 			}
 		});
 	}
@@ -101,6 +102,9 @@ export class MyLoginHelper implements LoginHelper {
 				fail: (err) => {
 					this.clearLoginState();
 					MyLoginHelper.showLoginFailMsg('登录失败:' + err.msg, opt);
+				},
+				complete: () => {
+					this.callLoginEvent();
 				}
 			}
 		});

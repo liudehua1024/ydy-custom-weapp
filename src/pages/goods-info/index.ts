@@ -7,7 +7,7 @@ Page(
 			goodsInfo: { name: '', coverImg: '', originPrice: 0, sellPrice: 0 } as GoodsInfo
 		},
 		$eventBusListeners: {
-			'goodsCarGoodsList': function (evt: EventBusData<UserShopGoodsCarResp>) {
+			'goodsCarGoodsList': function(evt: EventBusData<UserShopGoodsCarResp>) {
 				if (!wx.$loginHelper.getLoginState()) {
 					// 未登录
 					return;
@@ -15,12 +15,15 @@ Page(
 				const { recordList } = evt.data;
 				const { goodsInfo } = this.data;
 
+				let buyCount = 0;
 				for (const record of recordList) {
 					if (record.goodsId === goodsInfo.goodsId) {
-						this.setData({ buyCount: record.buyCount });
+						buyCount = record.buyCount;
 						break;
 					}
 				}
+
+				this.setData({ buyCount });
 			}
 		},
 		onLoad(query) {

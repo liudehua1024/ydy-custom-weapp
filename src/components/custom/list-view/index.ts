@@ -18,13 +18,14 @@ Component({
 		scrollTop: { type: Number, value: 0 }
 	},
 	data: {
+		scrollTop_: 0,
 		pullArrowDeg: 0,
 		pullTip: '下拉刷新',
 		showPullTip: true,
 		loadMoreProp: { enable: false, threshold: 0 }
 	},
 	observers: {
-		'enableLoadMore,lowerThreshold': function (enableLoadMore, lowerThreshold) {
+		'enableLoadMore,lowerThreshold': function(enableLoadMore, lowerThreshold) {
 			this.setData({
 				loadMoreProp: {
 					enable: enableLoadMore,
@@ -40,7 +41,6 @@ Component({
 				if (!result) return;
 				this.clientRect = result;
 			});
-
 			query.exec();
 		}
 	},
@@ -87,7 +87,7 @@ Component({
 		},
 		onScroll(evt: TouchEvent) {
 			const { scrollTop } = evt.detail;
-			this.setData({ scrollTop });
+			this.setData({ scrollTop, scrollTop_: scrollTop });
 			const { width, height } = Object.assign({ width: 0, height: 0 }, this.clientRect);
 			this.triggerEvent('scroll', Object.assign({ width, height }, evt.detail), {});
 		},

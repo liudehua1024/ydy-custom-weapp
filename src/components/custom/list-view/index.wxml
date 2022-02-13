@@ -9,6 +9,7 @@
             refresher-threshold="{{refresherThreshold}}"
             refresher-default-style="none"
             throttle="{{false}}"
+            scroll-top="{{scrollTop}}"
             bind:refresherpulling="onPulling"
             bind:refresherabort="onPullCancel"
             bind:refresherrestore="onPullCancel"

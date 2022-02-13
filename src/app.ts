@@ -11,8 +11,6 @@ App<IAppOption>({
 		/**将一些方法挂载到wx上*/
 		injection();
 		this.initConfig();
-		wx.$loginHelper.autoLogin();
-		
 	},
 	initConfig(): void {
 		const systemInfo = wx.getSystemInfoSync();
@@ -30,5 +28,5 @@ App<IAppOption>({
 		screenConfig.screenHeight = systemInfo.screenHeight;
 		screenConfig.windowWidth = systemInfo.windowWidth;
 		screenConfig.windowHeight = systemInfo.windowHeight;
-	}
+	},
 });

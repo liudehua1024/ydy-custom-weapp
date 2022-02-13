@@ -51,7 +51,7 @@ Page(
 		},
 		onToShopInfo(evt: TouchEvent) {
 			const { info } = Object.assign({}, evt.mark);
-			wx.$router.to({ name: 'goods-category-list', params: info?.shopInfo }).then();
+			wx.$router.to({ name: 'shop-index', params: info?.shopInfo }).then();
 		},
 		getOrderList(showLoading = false) {
 			const { serviceShopId } = this.data;

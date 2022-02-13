@@ -25,30 +25,40 @@
                    bind:scroll="onListRootScroll"
                    bind:scrollToLower="onListRootScrollToLower">
             <view class="shop_info_container">
-                <view class="shop_basics_info_block">
-                    <lazy-load-image class="shop_logo" mode="aspectFill" src="{{shopInfo.shopImgUrl}}"
-                                     defaultSrc="/assets/default_img.png"/>
-
-                    <ellip-text class="shop_basics_info shop_name">{{shopInfo.shopName;}}</ellip-text>
-                    <view class="shop_basics_info shop_month_sales">
-<!--                        月销量 {{shopInfo.monthSales ? shopInfo.monthSales : 0;}}-->
-                    </view>
+                <lazy-load-image class="shop_logo" mode="aspectFill" src="{{shopInfo.shopImgUrl}}"
+                                 defaultSrc="/assets/default_img.png"/>
+                <view class="shop_name_block">
+                    <ellip-text class="shop_name">{{shopInfo.shopName}}</ellip-text>
+                </view>
+                <view class="shop_notice_block">
+                    <ellip-text class="shop_notice" maxLine="5">{{shopInfo.shopNotice ? shopInfo.shopNotice : '暂无公告'}}</ellip-text>
                 </view>
 
-                <view class="shop_other_info_block">
-                    <view class="shop_notice_block">
-                        公告：
-                        <ellip-text id="xx" class="shop_notice" maxLine="3">{{shopInfo.shopNotice ? shopInfo.shopNotice : '暂无公告';}}</ellip-text>
-                    </view>
-                    <scroll-view class="tag_scroll_block" scroll-x enhanced show-scrollbar="{{false}}">
-                        <view class="tag_list_block">
-                            <block wx:for="{{tagArr}}" wx:for-item="tag" wx:if="{{tag}}" wx:key="index">
-                                <tag class="tag_note" my-class="tag_note_container">{{tag;}}</tag>
-                                <view wx:key="interval-{{index}}" class="tag_interval"></view>
-                            </block>
-                        </view>
-                    </scroll-view>
-                </view>
+
+                <!--                <view class="shop_basics_info_block">-->
+                <!--                    <lazy-load-image class="shop_logo" mode="aspectFill" src="{{shopInfo.shopImgUrl}}"-->
+                <!--                                     defaultSrc="/assets/default_img.png"/>-->
+
+                <!--                    <ellip-text class="shop_basics_info shop_name">{{shopInfo.shopName;}}</ellip-text>-->
+                <!--&lt;!&ndash;                    <view class="shop_basics_info shop_month_sales">&ndash;&gt;-->
+                <!--&lt;!&ndash;                        月销量 {{shopInfo.monthSales ? shopInfo.monthSales : 0;}}&ndash;&gt;-->
+                <!--&lt;!&ndash;                    </view>&ndash;&gt;-->
+                <!--                </view>-->
+
+                <!--                <view class="shop_other_info_block">-->
+                <!--                    <view class="shop_notice_block">-->
+                <!--                        公告：-->
+                <!--                        <ellip-text id="xx" class="shop_notice" maxLine="3">{{shopInfo.shopNotice ? shopInfo.shopNotice : '暂无公告';}}</ellip-text>-->
+                <!--                    </view>-->
+                <!--                    <scroll-view class="tag_scroll_block" scroll-x enhanced show-scrollbar="{{false}}">-->
+                <!--                        <view class="tag_list_block">-->
+                <!--                            <block wx:for="{{tagArr}}" wx:for-item="tag" wx:if="{{tag}}" wx:key="index">-->
+                <!--                                <tag class="tag_note" my-class="tag_note_container">{{tag;}}</tag>-->
+                <!--                                <view wx:key="interval-{{index}}" class="tag_interval"></view>-->
+                <!--                            </block>-->
+                <!--                        </view>-->
+                <!--                    </scroll-view>-->
+                <!--                </view>-->
             </view>
             <view id="shop-bar" class="shop_bar_container">
                 <view id="cate-block"

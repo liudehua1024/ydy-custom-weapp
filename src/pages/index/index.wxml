@@ -4,7 +4,8 @@
         <tab-page-item generic:tab-page-comp="tab-page-personal-center" name="personal-center" />
         <tab-page-bar slot="tab-bar"
                       items="{{items}}"
-                      model:selected-name="{{selectedName}}">
+                      disable="{{loginState}}"
+                      selected-name="{{selectedName}}">
         </tab-page-bar>
     </tab-page-switcher>
 </page-root>

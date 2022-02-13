@@ -10,7 +10,7 @@
         <view class="other_block">
             <view class="price_and_count_block">
                 <view class="good_price_block">
-                    <price value="{{goodsInfo.sellPrice}}" unit="¥" size="28" color="red"/>
+                    <price value="{{goodsInfo.sellPrice}}" unit="¥" size="38" color="red"/>
                     <view style="width:6rpx;height:1rpx;"/>
                     <price  wx:if="{{goodsInfo.discount}}" value="{{goodsInfo.originPrice}}" size="24" color="#595959" delLine="{{true}}"/>
                     <view class="discount_block" wx:if="{{goodsInfo.discount}}">

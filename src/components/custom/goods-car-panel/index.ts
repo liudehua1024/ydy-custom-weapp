@@ -3,7 +3,8 @@ import { componentBehavior } from '@/components/behavior';
 Component({
 	behaviors: [componentBehavior],
 	properties: {
-		shopInfo: { type: Object, value: {} as ShopInfo }
+		shopInfo: { type: Object, value: {} as ShopInfo },
+		showGoods: { type: Boolean, value: false }
 	},
 	data: {
 		listHeight: '',
@@ -20,11 +21,13 @@ Component({
 		'goodsCarGoodsList': function(evt: EventBusData<UserShopGoodsCarResp>) {
 			if (!wx.$loginHelper.checkLogin()) return;
 			const { recordList } = evt.data;
+			const { showGoods } = this.data;
 			let len = recordList.length;
 			if (len > 4) len = 4;
 			const height = len * 180 + (len - 1) * 2;
 			const data = {
 				...evt.data,
+				showGoods: len > 0 && showGoods,
 				listHeight: wx.$viewHelper.disposeSizeStyle(height)
 			};
 			this.setData(data);
@@ -35,8 +38,15 @@ Component({
 		}
 	},
 	methods: {
+		onMaskClick(){
+			this.setData({ showGoods: false });
+		},
 		onClearGoods(_: TouchEvent) {
 			this.clearUserShopGoodsCar();
+		},
+		onChangeShowGoods() {
+			const { showGoods, totalBuyCount } = this.data;
+			this.setData({ showGoods: totalBuyCount > 0 && !showGoods });
 		},
 		onCountChange(evt: TouchEvent) {
 			const { item } = evt.currentTarget.dataset;
@@ -54,6 +64,7 @@ Component({
 		},
 		toConfirmOrderPage(_: TouchEvent) {
 			const { shopInfo, totalBuyCount, totalOriginPrice, totalSellPrice, totalReducedPrice, recordList } = this.data;
+			if (totalBuyCount === 0) return;
 
 			const goodsList = recordList.map(value => {
 				return {

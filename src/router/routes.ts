@@ -51,5 +51,9 @@ export const routes: Array<Route> = [
 	{
 		name: 'cancel-order',
 		url: '/pages/cancel-order/index'
+	},
+	{
+		name: 'shop-index',
+		url: '/pages/shop-index/index'
 	}
 ];

@@ -48,6 +48,7 @@
   background: #F4F4F4;
 
   .shop_info_container {
+    position: relative;
     width: calc(100% - unit(24, rpx) * 2);
     padding: unit(20, rpx) unit(24, rpx);
     margin: unit(20, rpx) unit(24, rpx);
@@ -58,100 +59,133 @@
     flex-flow: column nowrap;
     align-items: flex-start;
     justify-content: flex-start;
+    min-height: unit(220, rpx);
 
-    .shop_basics_info_block {
-      position: relative;
-      width: 100%;
-      height: unit(120, rpx);
-      overflow: hidden;
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: flex-start;
-      justify-content: flex-start;
+    .shop_logo {
+      position: absolute;
+      right: unit(24, rpx);
+      top: unit(20, rpx);
+      border-radius: unit(10, rpx);
+      width: unit(180, rpx);
+      height: unit(180, rpx);
+    }
 
-      .shop_logo {
-        position: absolute;
-        right: 0;
-        top: 0;
-        border-radius: unit(10, rpx);
-        width: unit(120, rpx);
-        height: unit(120, rpx);
-      }
-
-      .shop_basics_info {
-        width: calc(100% - unit(120, rpx) - unit(20, rpx));
-      }
+    .shop_name_block {
+      width: calc(100% - unit(204, rpx));
 
       .shop_name {
-        color: black;
-        font-weight: 600;
+        width: 100%;
+        font-weight: bold;
         font-size: unit(38, rpx);
+        line-height: unit(38, rpx);
       }
-
-      .shop_month_sales {
-        color: black;
-        font-size: unit(22, rpx);
-        line-height: unit(24, rpx);
-        margin-top: unit(8, rpx);
-      }
-
     }
 
-    .shop_other_info_block {
-      width: 100%;
-      min-height: unit(100, rpx);
-      display: flex;
-      flex-flow: column-reverse nowrap;
-      align-items: flex-end;
-      align-content: flex-end;
+    .shop_notice_block {
+      width: calc(100% - unit(204, rpx));
+      margin-top: unit(20, rpx);
 
-      .tag_scroll_block {
+      .shop_notice {
         width: 100%;
-        height: unit(38, rpx);
-
-        .tag_list_block {
-          height: 100%;
-          display: flex;
-          flex-flow: row nowrap;
-
-          .tag_note {
-            height: 100%;
-            flex-grow: 0;
-            flex-shrink: 0;
-          }
-
-          .tag_note_container {
-            border-color: #f1c6c6;
-            background: none;
-            color: #F55938;
-            font-size: unit(22, rpx);
-          }
-
-          .tag_interval {
-            flex-grow: 0;
-            flex-shrink: 0;
-            width: unit(10, rpx);
-            height: unit(10, rpx);
-          }
-        }
+        font-size: unit(30, rpx);
+        line-height: unit(38, rpx);
       }
-
-      .shop_notice_block {
-        width: 100%;
-        margin-top: unit(10, rpx);
-        display: flex;
-        flex-flow: row nowrap;
-        font-size: unit(26, rpx);
-        color: #333333;
-
-        .shop_notice {
-          width: 0;
-          flex-grow: 1;
-          color: #666666;
-        }
-      }
-
     }
+
+
+    //.shop_basics_info_block {
+    //  position: relative;
+    //  width: 100%;
+    //  height: unit(120, rpx);
+    //  overflow: hidden;
+    //  display: flex;
+    //  flex-flow: column nowrap;
+    //  align-items: flex-start;
+    //  justify-content: flex-start;
+    //
+    //  .shop_logo {
+    //    position: absolute;
+    //    right: 0;
+    //    top: 0;
+    //    border-radius: unit(10, rpx);
+    //    width: unit(120, rpx);
+    //    height: unit(120, rpx);
+    //  }
+    //
+    //  .shop_basics_info {
+    //    width: calc(100% - unit(120, rpx) - unit(20, rpx));
+    //  }
+    //
+    //  .shop_name {
+    //    color: black;
+    //    font-weight: 600;
+    //    font-size: unit(38, rpx);
+    //  }
+    //
+    //  .shop_month_sales {
+    //    color: black;
+    //    font-size: unit(22, rpx);
+    //    line-height: unit(24, rpx);
+    //    margin-top: unit(8, rpx);
+    //  }
+    //
+    //}
+    //
+    //.shop_other_info_block {
+    //  width: 100%;
+    //  min-height: unit(100, rpx);
+    //  display: flex;
+    //  flex-flow: column-reverse nowrap;
+    //  align-items: flex-end;
+    //  align-content: flex-end;
+    //
+    //  .tag_scroll_block {
+    //    width: 100%;
+    //    height: unit(38, rpx);
+    //
+    //    .tag_list_block {
+    //      height: 100%;
+    //      display: flex;
+    //      flex-flow: row nowrap;
+    //
+    //      .tag_note {
+    //        height: 100%;
+    //        flex-grow: 0;
+    //        flex-shrink: 0;
+    //      }
+    //
+    //      .tag_note_container {
+    //        border-color: #f1c6c6;
+    //        background: none;
+    //        color: #F55938;
+    //        font-size: unit(22, rpx);
+    //      }
+    //
+    //      .tag_interval {
+    //        flex-grow: 0;
+    //        flex-shrink: 0;
+    //        width: unit(10, rpx);
+    //        height: unit(10, rpx);
+    //      }
+    //    }
+    //  }
+    //
+    //  .shop_notice_block {
+    //    width: 100%;
+    //    margin-top: unit(10, rpx);
+    //    display: flex;
+    //    flex-flow: row nowrap;
+    //    font-size: unit(26, rpx);
+    //    color: #333333;
+    //
+    //    .shop_notice {
+    //      width: 0;
+    //      flex-grow: 1;
+    //      color: #666666;
+    //    }
+    //  }
+    //
+    //}
   }
 
   .shop_bar_container {

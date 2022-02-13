@@ -7,6 +7,18 @@
         bind:onRefresh="onRefresh"
         bind:onLoadMore="onLoadMore">
     <view>
+        <view class="shop_info_container" catch:tap="toGoodsListPage">
+            <lazy-load-image class="shop_logo" mode="aspectFill" src="{{shopInfo.shopImgUrl}}"
+                             defaultSrc="/assets/default_img.png"/>
+            <view class="shop_name_block">
+                <ellip-text class="shop_name">{{shopInfo.shopName;}}</ellip-text>
+            </view>
+            <view class="shop_notice_block">
+                <ellip-text class="shop_notice" maxLine="5">{{shopInfo.shopNotice ? shopInfo.shopNotice : '暂无公告';}}
+                </ellip-text>
+            </view>
+        </view>
+
         <divider
                 my-class="load-end-class"
                 line-class="load-end-line-class"
@@ -24,5 +36,6 @@
                        bind:tap="onShopCardClick"/>
         </block>
     </view>
-    <load-more slot="list-bottom" wx:if="{{hasNextPage||isLoadEnd}}" loadingState="{{hasNextPage}}" loadEndState="{{isLoadEnd}}"></load-more>
+    <load-more slot="list-bottom" wx:if="{{hasNextPage||isLoadEnd}}" loadingState="{{hasNextPage}}"
+               loadEndState="{{isLoadEnd}}"></load-more>
 </list-view>

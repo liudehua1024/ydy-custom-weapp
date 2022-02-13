@@ -79,8 +79,8 @@
                     <my-icon name="close" size="40" color="#B6B6B6"></my-icon>
                 </view>
             </view>
-            <view class="line"/>
-            <view class="info_block">
+<!--            <view class="line"/>-->
+            <view class="info_block" style="display:none">
                 <view class="hint_text">默认地址</view>
                 <view class="input_info"></view>
                 <checkbox-group name="defTag" class="def_tag_checkbox_group_block">
